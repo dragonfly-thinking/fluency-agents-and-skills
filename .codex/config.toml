@@ -27,3 +27,17 @@ config_file = "agents/fact-checker.toml"
 [agents.writing_editor]
 description = "Improves drafts for clarity, grammar, structure, and tone without replacing the user's voice. Returns a structured edit list plus a cleaned version. Used by the proofread skill."
 config_file = "agents/writing-editor.toml"
+
+# ─── Base starter-kit agents ─────────────────────────────────────────
+
+[agents.vault_librarian]
+description = "Finds files in the user's notes, drafts, and saved material. Returns paths and one-line descriptions. Use to preserve the parent agent's context window."
+config_file = "agents/vault-librarian.toml"
+
+[agents.web_searcher]
+description = "Goes out to the open web, reads relevant sources, returns a sourced answer with inline citations. Use when web information is required — addresses the query directly, with citations the parent/user can follow to go deeper."
+config_file = "agents/web-searcher.toml"
+
+[agents.project_planner]
+description = "Decomposes a goal into milestones, tasks, dependencies, and honest estimates. Output pastes cleanly into Things, Notion, Linear."
+config_file = "agents/project-planner.toml"

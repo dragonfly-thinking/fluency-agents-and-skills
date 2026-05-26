@@ -1,39 +1,51 @@
 # Fluency Agents and Skills
 
-A working example of **agents and skills** from the Dragonfly Thinking **AI Fluency** course — the "Extending your Agent" session. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://developers.openai.com/codex/cli) and you have a small, real multi-agent setup to learn from and adapt.
+The **agents and skills** starter kit from the Dragonfly Thinking **AI Fluency** course. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://developers.openai.com/codex/cli) and you have a real multi-agent setup — specialist subagents plus a library of user-facing skills — to learn from and adapt.
 
-One piece of work walked all the way through: take a messy draft → **proofread** it (a skill that calls a specialist subagent) → **visually explain** it (a skill) → **publish** it to a live URL (a skill). Optionally, **critically review** it (a skill that fans out to two subagents in parallel).
+A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent is a *specialist* a skill can hand work to. Several skills delegate to the base agents below.
+
+## The agents (specialists)
+
+| Agent | What it does |
+|-------|--------------|
+| **critical-friend** | Pressure-tests an argument or plan — pushbacks, steel-manned counter-position, blind spots |
+| **fact-checker** | Verifies factual/statistical claims against authoritative primary sources via web search |
+| **writing-editor** | Heavy editorial pass — clarity, structure, voice, cuts — without replacing your voice |
+| **project-planner** | Turns a goal into milestones, tasks, dependencies, and honest estimates |
+| **vault-librarian** | Reads your local notes/vault and surfaces what's relevant to the task |
+| **web-searcher** | Multi-query web research, returns a sourced answer with inline citations |
+
+## The skills (verbs you invoke)
+
+| Skill | What it does | Delegates to |
+|-------|--------------|--------------|
+| **proofread** | Clarity / grammar / structure / tone pass | writing-editor |
+| **critical-review** | Stress-test an argument and fact-check its claims, in parallel | critical-friend + fact-checker |
+| **research-brief** | Sourced briefing on a topic | web-searcher |
+| **discovery-interview** | Interviews you to turn a vague idea into a spec | project-planner |
+| **premortem** | Surfaces how a plan could fail before you commit | project-planner |
+| **weekly-review** | Pulls the week together into a review | vault-librarian + project-planner |
+| **daily-brief** | A morning brief from your notes and the web | vault-librarian + web-searcher |
+| **visual-explainer** | Turns content into a shareable HTML one-pager | — |
+| **slides** | Builds an HTML slide deck | — |
+| **canvas-design** | Designs canvas/poster-style visual layouts | — |
+| **pdf-create** | Produces a polished PDF | — |
+| **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
 
 ## What's inside
 
 ```
 .
-├── briefing-note-draft.md     # the draft we work on (a policy briefing note, with deliberate flaws)
-├── .claude/                   # the Claude Code kit
-│   ├── agents/                #   subagents (specialists)
-│   │   ├── writing-editor.md
-│   │   ├── critical-friend.md
-│   │   └── fact-checker.md
-│   └── skills/                #   skills (the verbs you invoke)
-│       ├── proofread/             → delegates to writing-editor
-│       ├── visual-explainer/      → turns content into a shareable HTML page
-│       ├── here-now/              → publishes to a live {slug}.here.now URL
-│       └── critical-review/       → fans out to critical-friend + fact-checker
-└── .codex/                    # the Codex kit (same capabilities, Codex-native)
+├── briefing-note-draft.md     # a sample draft to try the skills on
+├── .claude/                   # Claude Code kit
+│   ├── agents/                #   6 subagents (.md)
+│   └── skills/                #   12 skills (SKILL.md per folder)
+└── .codex/                    # Codex kit (same capabilities, Codex-native)
     ├── AGENTS.md
-    ├── config.toml            #   registers the 3 agent roles (multi_agent = true)
-    ├── agents/                #   agent role personas (TOML)
-    │   ├── critical-friend.toml
-    │   ├── fact-checker.toml
-    │   └── writing-editor.toml
-    └── skills/                #   the same 4 skills, SKILL.md format
+    ├── config.toml            #   registers the agent roles (multi_agent = true)
+    ├── agents/                #   6 agent-role personas (.toml, via config_file)
+    └── skills/                #   the same 12 skills, SKILL.md format
 ```
-
-## Skills vs. agents — the lesson
-
-- A **skill** is a *verb* you invoke ("proofread this"). It's instructions + optional bundled files.
-- A **subagent** is a *specialist* a skill can delegate to — its own focused context and persona.
-- `proofread` is a skill that hands the work to the **writing-editor** subagent. `critical-review` fans out to **critical-friend** + **fact-checker** in parallel. `visual-explainer` and `here-now` are skills with no subagent — not everything needs a specialist.
 
 ## Claude Code vs. Codex
 
@@ -42,18 +54,17 @@ Both runtimes have skills and subagents, configured differently:
 | | Claude Code | Codex |
 |---|---|---|
 | Skills | `.claude/skills/<name>/SKILL.md` | `.codex/skills/<name>/SKILL.md` (same format) |
-| Subagents | `.claude/agents/<name>.md` (markdown) | `.codex/agents/<name>.toml` registered in `.codex/config.toml` |
-| Subagent routing | automatic | explicit — *"use the critical_friend agent to…"* |
+| Subagents | `.claude/agents/<name>.md` (markdown) | `.codex/agents/<name>.toml`, registered in `.codex/config.toml` |
+| Subagent routing | automatic | explicit — *"use the web_searcher agent to…"* |
 
 See [`.codex/AGENTS.md`](.codex/AGENTS.md) for the full Codex mapping and setup notes.
 
 ## Getting started
 
 1. Clone this repo and open the folder in Claude Code or Codex.
-2. Open `briefing-note-draft.md` and read it.
-3. Ask your agent to **proofread** it — watch the skill hand off to the writing-editor specialist.
-4. Ask it to turn the cleaned draft into a **visual one-pager**, then **publish** it.
-5. (Optional) Ask for a **critical review** to stress-test the argument and fact-check its claims.
+2. Try the demo flow on the sample draft: **proofread** `briefing-note-draft.md` (watch the hand-off to writing-editor), then **critical-review** it, then turn it into a **visual-explainer** one-pager and **here-now** publish it.
+3. Or just invoke any skill on your own work — *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*.
+4. To install the kit globally: copy `.claude/` into `~/.claude/` (Claude Code) or merge `.codex/config.toml` + `agents/` into `~/.codex/` and the skills into `~/.codex/skills/` (Codex).
 
 ---
 
