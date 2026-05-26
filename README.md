@@ -57,7 +57,6 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 
 ```
 .
-├── after-automation.md        # a sample draft to try the skills on
 ├── .claude/                   # Claude Code kit
 │   ├── agents/                #   6 subagents (.md)
 │   └── skills/                #   13 skills (SKILL.md per folder)
@@ -80,13 +79,13 @@ Both runtimes have skills and subagents, configured differently:
 
 See [`.codex/AGENTS.md`](.codex/AGENTS.md) for the full Codex mapping and setup notes.
 
-## Getting started
+## How to kick things off
 
 1. Clone this repo and open the folder in Claude Code or Codex.
-2. **First time?** Run **`setup-workspace`** — it'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`. (Already have a workspace? It'll detect that and offer to add a project, refresh context, or add a guardrail instead.)
-3. Try the demo flow on the sample draft: **proofread** `after-automation.md` (watch the hand-off to writing-editor), then **critical-review** it, then turn it into a **visual-explainer** one-pager and **here-now** publish it.
-4. Or just invoke any skill on your own work — *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*.
-5. To install the kit globally: copy `.claude/` into `~/.claude/` (Claude Code) or merge `.codex/config.toml` + `agents/` into `~/.codex/` and the skills into `~/.codex/skills/` (Codex).
+2. **First time?** Run **`setup-workspace`**. It'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`. If you already have a workspace, it'll detect that and offer to add a project, refresh context, or add a guardrail instead.
+3. **Have a new idea or project you can't quite write down?** Run **`discovery-interview`**. It interviews you with the non-obvious questions until the shape of what you want is clear, then writes the spec.
+4. **Working on something concrete?** Just invoke any skill on the real work — *"proofread this draft"*, *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*, *"publish this with here-now"*.
+5. **Install globally?** Copy `.claude/` into `~/.claude/` (Claude Code), or merge `.codex/config.toml` + `agents/` into `~/.codex/` and the skills into `~/.codex/skills/` (Codex). Then the skills and subagents are available in every session.
 
 ---
 
