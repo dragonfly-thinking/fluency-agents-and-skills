@@ -1,0 +1,29 @@
+# Codex CLI configuration for the Session 3 "Extending" demo.
+#
+# Enables the multi-agent / subagent system and registers the three review
+# agents the demo's skills spawn. Each role's persona lives in its own file
+# under agents/ (referenced via config_file).
+#
+# Drop this `.codex/` folder at the root of your workspace, or merge these
+# blocks into your `~/.codex/config.toml` and copy the `agents/` folder beside
+# whichever config.toml you're using.
+#
+# In Codex, subagents are invoked EXPLICITLY (unlike Claude Code's auto-routing).
+# The critical-review and proofread skills spawn these by agent_role.
+
+[features]
+multi_agent = true
+
+# ─── Subagent registry ──────────────────────────────────────────────
+
+[agents.critical_friend]
+description = "Stress-tests a draft argument by attacking its reasoning honestly — pushbacks, steel-manned counter-position, hidden assumptions, missing voices. Not a proofreader or fact-checker. Used by the critical-review skill."
+config_file = "agents/critical-friend.toml"
+
+[agents.fact_checker]
+description = "Finds the verifiable factual and statistical claims in a draft and checks them against authoritative primary sources via web search. Returns per-claim verdicts. Used by the critical-review skill."
+config_file = "agents/fact-checker.toml"
+
+[agents.writing_editor]
+description = "Improves drafts for clarity, grammar, structure, and tone without replacing the user's voice. Returns a structured edit list plus a cleaned version. Used by the proofread skill."
+config_file = "agents/writing-editor.toml"
