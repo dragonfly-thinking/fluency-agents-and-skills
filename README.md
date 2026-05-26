@@ -4,6 +4,26 @@ The **agents and skills** starter kit from the Dragonfly Thinking **AI Fluency**
 
 A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent is a *specialist* a skill can hand work to. Several skills delegate to the base agents below.
 
+## Install (let your agent do it)
+
+Clone the repo, open it in Claude Code or Codex, and just say:
+
+> **"Read AGENTS.md and install this kit for me."**
+
+The agent follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 12 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
+
+```bash
+# Claude Code
+mkdir -p ~/.claude/agents ~/.claude/skills
+cp -R .claude/agents/* ~/.claude/agents/ && cp -R .claude/skills/* ~/.claude/skills/
+
+# Codex (then merge .codex/config.toml's [agents.*] blocks into ~/.codex/config.toml)
+mkdir -p ~/.codex/agents ~/.codex/skills
+cp -R .codex/agents/* ~/.codex/agents/ && cp -R .codex/skills/* ~/.codex/skills/
+```
+
+Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md) for verification and runtime notes.
+
 ## The agents (specialists)
 
 | Agent | What it does |
