@@ -6,11 +6,11 @@ A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent
 
 ## Install (let your agent do it)
 
-Clone the repo, open it in Claude Code or Codex, and just say:
+In Claude Code or Codex, paste this repo's URL and say:
 
-> **"Read AGENTS.md and install this kit for me."**
+> **"Read the AGENTS.md in this repo and install the kit for me."**
 
-The agent follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 13 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
+The agent fetches the files and follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 13 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
 
 ```bash
 # Claude Code
@@ -81,11 +81,11 @@ See [`.codex/AGENTS.md`](.codex/AGENTS.md) for the full Codex mapping and setup 
 
 ## How to kick things off
 
-1. Clone this repo and open the folder in Claude Code or Codex.
-2. **First time?** Run **`setup-workspace`**. It'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`. If you already have a workspace, it'll detect that and offer to add a project, refresh context, or add a guardrail instead.
-3. **Have a new idea or project you can't quite write down?** Run **`discovery-interview`**. It interviews you with the non-obvious questions until the shape of what you want is clear, then writes the spec.
-4. **Working on something concrete?** Just invoke any skill on the real work — *"proofread this draft"*, *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*, *"publish this with here-now"*.
-5. **Install globally?** Copy `.claude/` into `~/.claude/` (Claude Code), or merge `.codex/config.toml` + `agents/` into `~/.codex/` and the skills into `~/.codex/skills/` (Codex). Then the skills and subagents are available in every session.
+Once the kit is installed (see [Install](#install-let-your-agent-do-it) above), here's how to use it:
+
+- **First time?** Run **`setup-workspace`**. It'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`. If you already have a workspace, it'll detect that and offer to add a project, refresh context, or add a guardrail instead.
+- **Have a new idea or project you can't quite write down?** Run **`discovery-interview`**. It asks the non-obvious questions until the shape of what you want is clear, then writes the spec.
+- **Working on something concrete?** Invoke any skill on the real work — *"proofread this draft"*, *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*, *"publish this with here-now"*.
 
 ---
 
