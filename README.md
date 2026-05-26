@@ -36,7 +36,7 @@ A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent
 
 ```
 .
-├── briefing-note-draft.md     # a sample draft to try the skills on
+├── after-automation.md        # a sample draft to try the skills on
 ├── .claude/                   # Claude Code kit
 │   ├── agents/                #   6 subagents (.md)
 │   └── skills/                #   12 skills (SKILL.md per folder)
@@ -62,7 +62,7 @@ See [`.codex/AGENTS.md`](.codex/AGENTS.md) for the full Codex mapping and setup 
 ## Getting started
 
 1. Clone this repo and open the folder in Claude Code or Codex.
-2. Try the demo flow on the sample draft: **proofread** `briefing-note-draft.md` (watch the hand-off to writing-editor), then **critical-review** it, then turn it into a **visual-explainer** one-pager and **here-now** publish it.
+2. Try the demo flow on the sample draft: **proofread** `after-automation.md` (watch the hand-off to writing-editor), then **critical-review** it, then turn it into a **visual-explainer** one-pager and **here-now** publish it.
 3. Or just invoke any skill on your own work — *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*.
 4. To install the kit globally: copy `.claude/` into `~/.claude/` (Claude Code) or merge `.codex/config.toml` + `agents/` into `~/.codex/` and the skills into `~/.codex/skills/` (Codex).
 
