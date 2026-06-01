@@ -10,7 +10,7 @@ In Claude Code or Codex, paste this repo's URL and say:
 
 > **"Read the AGENTS.md in this repo and install the kit for me."**
 
-The agent fetches the files and follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 13 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
+The agent fetches the files and follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 14 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
 
 ```bash
 # Claude Code
@@ -33,7 +33,7 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 | **writing-editor** | Heavy editorial pass — clarity, structure, voice, cuts — without replacing your voice |
 | **project-planner** | Turns a goal into milestones, tasks, dependencies, and honest estimates |
 | **vault-librarian** | Reads your local notes/vault and surfaces what's relevant to the task |
-| **web-searcher** | Multi-query web research, returns a sourced answer with inline citations |
+| **web-searcher** | Routes a query to the best backend — cited search, papers, public stats, or live X/social — and returns a sourced answer with inline citations |
 
 ## The skills (verbs you invoke)
 
@@ -52,6 +52,7 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 | **canvas-design** | Designs canvas/poster-style visual layouts | — |
 | **pdf-create** | Produces a polished PDF | — |
 | **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
+| **generate-image** | Generates an image from a prompt (Nano Banana via one OpenRouter key) | — |
 
 ## What's inside
 
@@ -59,12 +60,12 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 .
 ├── .claude/                   # Claude Code kit
 │   ├── agents/                #   6 subagents (.md)
-│   └── skills/                #   13 skills (SKILL.md per folder)
+│   └── skills/                #   14 skills (SKILL.md per folder)
 └── .codex/                    # Codex kit (same capabilities, Codex-native)
     ├── AGENTS.md
     ├── config.toml            #   registers the agent roles (multi_agent = true)
     ├── agents/                #   6 agent-role personas (.toml, via config_file)
-    └── skills/                #   the same 13 skills, SKILL.md format
+    └── skills/                #   the same 14 skills, SKILL.md format
 ```
 
 ## Claude Code vs. Codex
