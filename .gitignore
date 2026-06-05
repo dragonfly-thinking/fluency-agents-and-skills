@@ -1,1 +1,8 @@
 .DS_Store
+
+# here-now local publish state (the skill itself says never commit this)
+.herenow/
+
+# python bytecode
+__pycache__/
+*.pyc
