@@ -1,8 +1,10 @@
 # Fluency Agents and Skills
 
-The **agents and skills** starter kit from the Dragonfly Thinking **AI Fluency** course. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://developers.openai.com/codex/cli) and you have a real multi-agent setup — specialist subagents plus a library of user-facing skills — to learn from and adapt.
+Everything you take home from the Dragonfly Thinking **AI Fluency** course: the agents and skills we built and used, setup guides for the external connections we covered, and the key points from each session. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://developers.openai.com/codex/cli) and you have a real multi-agent setup — to use as-is, and to make your own.
 
 A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent is a *specialist* a skill can hand work to. Several skills delegate to the base agents below.
+
+**Fresh from the course?** After installing, start with [`course-notes/`](course-notes/) — the key points from all four sessions, with ready-to-paste prompts for putting them into action.
 
 ## Install (let your agent do it)
 
@@ -10,7 +12,7 @@ In Claude Code or Codex, paste this repo's URL and say:
 
 > **"Read the AGENTS.md in this repo and install the kit for me."**
 
-The agent fetches the files and follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 14 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
+The agent fetches the files and follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 15 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
 
 ```bash
 # Claude Code
@@ -39,7 +41,8 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 
 | Skill | What it does | Delegates to |
 |-------|--------------|--------------|
-| **setup-workspace** | First-time init of your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` setup. Smart-detects whether you already have a workspace; if you do, helps add a project, refresh context, or add a guardrail. | discovery-interview (optional) |
+| **setup-workspace** | First-time init of your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` setup. Smart-detects whether you already have a workspace; if you do, helps add a project, refresh context, or add a guardrail. | new-project / discovery-interview |
+| **new-project** | Interviews you to find and shape your next project — offers ideas if you're not sure what to work on — then scaffolds it as a tracked project: `overview.md` + `plan.md` + `progress.md` + a router entry. | discovery-interview / project-planner |
 | **proofread** | Clarity / grammar / structure / tone pass | writing-editor |
 | **critical-review** | Stress-test an argument and fact-check its claims, in parallel | critical-friend + fact-checker |
 | **research-brief** | Sourced briefing on a topic | web-searcher |
@@ -54,18 +57,32 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 | **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
 | **generate-image** | Generates an image from a prompt (Nano Banana via one OpenRouter key) | — |
 
+## External connections (`mcp/`)
+
+Agent-followable setup guides — point your agent at one and say *"follow this and set it up for me"*:
+
+| Guide | What it unlocks | Key? |
+|-------|-----------------|------|
+| [`mcp/paper-search.md`](mcp/paper-search.md) | Academic literature — arXiv, PubMed, Semantic Scholar and ~20 more | None |
+| [`mcp/data-commons.md`](mcp/data-commons.md) | Public statistics — World Bank, WHO, UN, ABS and ~240 datasets | Free key |
+| [`mcp/openrouter.md`](mcp/openrouter.md) | Image generation (`generate-image`), live cited search, X/social search | One paid key (~$10 credit) |
+
+Together these fill out all of the `web-searcher` agent's lanes — it routes queries to whichever source fits.
+
 ## What's inside
 
 ```
 .
 ├── .claude/                   # Claude Code kit
 │   ├── agents/                #   6 subagents (.md)
-│   └── skills/                #   14 skills (SKILL.md per folder)
-└── .codex/                    # Codex kit (same capabilities, Codex-native)
-    ├── AGENTS.md
-    ├── config.toml            #   registers the agent roles (multi_agent = true)
-    ├── agents/                #   6 agent-role personas (.toml, via config_file)
-    └── skills/                #   the same 14 skills, SKILL.md format
+│   └── skills/                #   15 skills (SKILL.md per folder)
+├── .codex/                    # Codex kit (same capabilities, Codex-native)
+│   ├── AGENTS.md
+│   ├── config.toml            #   registers the agent roles (multi_agent = true)
+│   ├── agents/                #   6 agent-role personas (.toml, via config_file)
+│   └── skills/                #   the same 15 skills, SKILL.md format
+├── course-notes/              # Key points from the 4 sessions + put-into-action prompts
+└── mcp/                       # Setup guides for external connections (paper-search, …)
 ```
 
 ## Claude Code vs. Codex
@@ -85,8 +102,22 @@ See [`.codex/AGENTS.md`](.codex/AGENTS.md) for the full Codex mapping and setup 
 Once the kit is installed (see [Install](#install-let-your-agent-do-it) above), here's how to use it:
 
 - **First time?** Run **`setup-workspace`**. It'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`. If you already have a workspace, it'll detect that and offer to add a project, refresh context, or add a guardrail instead.
-- **Have a new idea or project you can't quite write down?** Run **`discovery-interview`**. It asks the non-obvious questions until the shape of what you want is clear, then writes the spec.
+- **Starting something new — or not sure what to start?** Run **`new-project`**. It opens by asking what you'd like to work on, helps you find the project if you want ideas, then scaffolds it as a tracked project (`overview.md` / `plan.md` / `progress.md`) so a future session can pick up exactly where you left off.
+- **Have an idea you can't quite write down?** Run **`discovery-interview`**. It asks the non-obvious questions until the shape of what you want is clear, then writes the spec.
 - **Working on something concrete?** Invoke any skill on the real work — *"proofread this draft"*, *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*, *"publish this with here-now"*.
+- **Not sure what to do with any of this?** Paste this into your agent:
+
+> *Read the course notes in `course-notes/`, then look at what's actually set up on my computer. What from the course am I not using yet? Suggest three things worth putting into action this week — and walk me through the first one.*
+
+## Make it yours
+
+This is a starter, not a product. The whole point of the course was that you can shape these tools — so shape them:
+
+- **Improve a skill** after it stumbles: *"that wasn't quite right — update the proofread skill so it keeps my heading style next time."*
+- **Add a skill** when you notice a repeated task: *"I keep doing X by hand — turn it into a skill."* (Tip from Session 3: add a line to your `CLAUDE.md` / `AGENTS.md` asking your agent to *suggest* these moments.)
+- **Trim and tailor**: delete skills you never use, adjust defaults, add examples of your own documents to a skill's folder so outputs come out in your style.
+
+Your agent can do all of this for you — just ask.
 
 ---
 

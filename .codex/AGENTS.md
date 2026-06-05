@@ -25,7 +25,7 @@ In Codex, subagents are invoked **explicitly** — *"use the web_searcher agent 
 
 ## Skills here
 
-Same 12 skills as the Claude side. Skills that delegate to a role:
+Same 15 skills as the Claude side. Skills that delegate to a role:
 
 | Skill | Delegates to |
 |-------|--------------|
@@ -33,18 +33,21 @@ Same 12 skills as the Claude side. Skills that delegate to a role:
 | `critical-review` | `critical_friend` + `fact_checker` (in parallel) |
 | `research-brief` | `web_searcher` |
 | `discovery-interview` | `project_planner` |
+| `new-project` | `project_planner` (and the `discovery-interview` skill) |
 | `premortem` | `project_planner` |
 | `weekly-review` | `vault_librarian` + `project_planner` |
 | `daily-brief` | `vault_librarian` + `web_searcher` |
 
-Standalone (no subagent): `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`.
+`setup-workspace` hands project creation to the `new-project` skill. Standalone (no
+subagent): `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`,
+`generate-image`.
 
 ```
 .codex/
 ├── AGENTS.md
 ├── config.toml          ← [features] multi_agent + 6 [agents.*] registrations
 ├── agents/              ← 6 agent-role personas (.toml; the source of truth)
-└── skills/              ← 12 skills (SKILL.md per folder)
+└── skills/              ← 15 skills (SKILL.md per folder)
 ```
 
 ## Discovery — read this before installing

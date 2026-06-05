@@ -59,34 +59,15 @@ When finished, tell the user where to save the files:
 
 ## Mode B — ADD PROJECT (workspace exists)
 
-The user wants to scope a new piece of work into their existing setup.
+The user wants to scope a new piece of work into their existing setup. **Hand this off to
+the `new-project` skill** — that's the dedicated tool for it.
 
-1. **Ask what the project is.** One question. Capture: name (suggest kebab-case slug), 1-2 sentence description, current status.
-2. **Optionally** ask one follow-up if the project is genuinely vague — *"Want me to interview you more thoroughly first?"* — and if yes, hand off to the `discovery-interview` skill, then come back to write the file.
-3. **Write `projects/<kebab-slug>/index.md`** with this structure:
+`new-project` runs a light interview (goal, constraints, what's out of scope), proposes the
+structure, and scaffolds `projects/<slug>/` with `overview.md`, `plan.md`, and `progress.md`,
+then adds a one-line entry to the router file.
 
-```markdown
-# <Project name>
-
-## What it is
-<1-2 sentences>
-
-## Status
-<where we are right now>
-
-## Key people / stakeholders
-<if mentioned, otherwise omit>
-
-## Current focus
-<what's happening this week / sprint / phase>
-
-## How I want agents to help here
-<project-specific guidance, if any — otherwise omit>
-```
-
-4. **Update the router file** (CLAUDE.md / AGENTS.md): add a one-line entry under the **Projects** section pointing at the new folder. If a Projects section doesn't exist, add it.
-
-5. Confirm the path saved and ask: *"Anything wrong with this?"*
+Don't scaffold the project inline here — `new-project` produces the richer, self-tracking
+structure rather than a single `index.md`, and keeps project setup in one place.
 
 ## Mode C — REFRESH CONTEXT (workspace exists)
 
@@ -107,8 +88,9 @@ User wants to add an "always remember" rule to the router file.
 
 ## Composition notes
 
-- **For deep project scoping**, hand off to `discovery-interview` instead of asking lots of questions inline.
-- **For project planning** after a project is scoped, suggest the user run `project-planner` (subagent) on the new `projects/<name>/index.md`.
+- **To scaffold a project**, hand off to `new-project` — it writes the overview/plan/progress structure and updates the router.
+- **For deep scoping of a vague idea** before scaffolding, hand off to `discovery-interview`.
+- **For project planning** after a project is scoped, suggest the user run `project-planner` (subagent) on the new `overview.md` / `plan.md`.
 - **Never run multiple modes in one invocation.** One mode per session — keep it focused.
 
 ## Anti-patterns

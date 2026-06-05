@@ -113,9 +113,10 @@ current session.
 
 - **Free, no key:** arXiv, PubMed, bioRxiv, medRxiv, Semantic Scholar, Crossref,
   IACR and more.
-- **Sibling source:** for public statistics — population, economy, health,
-  demographics — Data Commons fills the other lane of `web-searcher`. Same idea,
-  but it needs a free API key from <https://apikeys.datacommons.org>.
+- **Sibling sources:** for public statistics — population, economy, health,
+  demographics — [`data-commons.md`](data-commons.md) fills the other lane of
+  `web-searcher` (free API key). For image generation and live/social search,
+  see [`openrouter.md`](openrouter.md).
 - Source repo: <https://github.com/openags/paper-search-mcp>. Follow **this**
   guide, not the repo's README — its `uvx` and Smithery commands have the traps
   noted above.
