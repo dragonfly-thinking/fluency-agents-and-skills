@@ -15,6 +15,29 @@ The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format)
 
 ---
 
+## Step 0 — get the repo onto disk
+
+You may have been given only this repo's **URL**. The install commands below assume the repo's files are on the user's machine, so get them there first. **Do not install by fetching files one at a time over the web** — you'll miss scripts and subfolders.
+
+No GitHub account is needed for any of this; the repo is public.
+
+- **If the repo is already on disk** (you're reading this file locally): skip to the install for your runtime.
+- **If the user downloaded it themselves** (e.g. they say "I downloaded it"): look for `fluency-agents-and-skills-main` — usually in `~/Downloads`, possibly still zipped. Unzip if needed, then **move it somewhere durable** before installing, e.g. `mv ~/Downloads/fluency-agents-and-skills-main ~/fluency-agents-and-skills`. Downloads folders get purged, and `course-notes/` + `mcp/` need to live on after install.
+- **Otherwise, fetch it yourself.** Prefer `git` if it's available; fall back to a plain ZIP download (no git, no account needed):
+
+```bash
+# With git
+git clone https://github.com/dragonfly-thinking/fluency-agents-and-skills.git ~/fluency-agents-and-skills
+
+# Without git
+curl -L https://github.com/dragonfly-thinking/fluency-agents-and-skills/archive/refs/heads/main.zip -o /tmp/fluency-kit.zip
+unzip -q /tmp/fluency-kit.zip -d ~ && mv ~/fluency-agents-and-skills-main ~/fluency-agents-and-skills
+```
+
+Use `~/fluency-agents-and-skills` as the standard location — the course materials assume the repo lives somewhere predictable. Run the install commands below from inside it.
+
+---
+
 ## Claude Code install
 
 Copy the agents and skills into the user's home Claude directory:
@@ -26,6 +49,8 @@ cp -R .claude/skills/*  ~/.claude/skills/
 ```
 
 That's it. Claude Code auto-discovers `~/.claude/agents/` and `~/.claude/skills/`. Restart the session (or start a new one) and the skills/agents are live. Skills route automatically when the user describes the task.
+
+**Verify:** in the new session, have the user type `/` — the installed skills (`proofread`, `slides`, `new-project`, …) should appear in the list — and run `/agents` to confirm the six subagents are registered. If they don't appear, check the files actually landed (`ls ~/.claude/skills ~/.claude/agents`) and that the session was fully restarted.
 
 ---
 
@@ -75,7 +100,7 @@ Tell the user it's done and give them something to try:
 
 Then two more things:
 
-1. **Point at the course notes.** If the repo is on the user's machine, mention `course-notes/` — the key points from the four course sessions. Offer: *"Want me to read the course notes and suggest what's worth putting into action first?"* If the kit was installed from a URL and the repo is NOT on disk, offer to download it so `course-notes/` and `mcp/` (the external-connection setup guides) stay available.
+1. **Point at the course notes.** Tell the user where the repo lives on their machine (normally `~/fluency-agents-and-skills` — see Step 0) and that `course-notes/` there holds the key points from the four course sessions, with `mcp/` holding the external-connection setup guides. Offer: *"Want me to read the course notes and suggest what's worth putting into action first?"*
 2. **Tell them the kit is theirs to shape.** One line is enough: *"If a skill ever gets something wrong, just tell me — I can update the skill so it doesn't happen again. And if you notice a task you repeat, I can turn it into a new skill."*
 
 ## Runtime dependencies to mention

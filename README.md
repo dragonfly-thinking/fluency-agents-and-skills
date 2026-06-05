@@ -8,11 +8,18 @@ A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent
 
 ## Install (let your agent do it)
 
-In Claude Code or Codex, paste this repo's URL and say:
+No GitHub account needed — this page is public. Copy this page's link, paste it into Claude Code or Codex, and say:
 
-> **"Read the AGENTS.md in this repo and install the kit for me."**
+> **"Read the AGENTS.md at this link and install the kit for me."**
 
-The agent fetches the files and follows [`AGENTS.md`](AGENTS.md) — copying the 6 agents and 15 skills into `~/.claude/` or `~/.codex/` (and, for Codex, merging the agent registrations into `config.toml`). Or do it by hand:
+Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 15 skills into your setup (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
+
+Already downloaded the kit (the green **Code → Download ZIP** button)? Same idea — tell your agent: *"I've downloaded the fluency kit to my Downloads folder — install it for me."*
+
+<details>
+<summary>Prefer to do it by hand? (terminal commands)</summary>
+
+From inside the downloaded/cloned folder:
 
 ```bash
 # Claude Code
@@ -25,6 +32,8 @@ cp -R .codex/agents/* ~/.codex/agents/ && cp -R .codex/skills/* ~/.codex/skills/
 ```
 
 Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md) for verification and runtime notes.
+
+</details>
 
 ## The agents (specialists)
 
