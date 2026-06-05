@@ -5,8 +5,6 @@ description: >-
   that surfaces what could go wrong, what's a real threat vs. a paper threat,
   and what nobody wants to say out loud. Use before you commit, not after.
 version: 1.0.0
-_nf_types:
-  version: text
 ---
 
 # Premortem

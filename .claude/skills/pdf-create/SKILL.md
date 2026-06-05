@@ -5,8 +5,6 @@ description: >-
   reports, proposals, one-pagers, anything that needs to be sendable and
   print-ready. Use when "open in browser" isn't enough.
 version: 1.0.0
-_nf_types:
-  version: text
 ---
 
 # PDF Create

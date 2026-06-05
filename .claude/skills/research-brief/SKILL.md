@@ -5,8 +5,6 @@ description: >-
   synthesis. The "now synthesise it" follow-up to a raw Web Searcher run. Use
   when you want a real briefing, not just a list of links.
 version: 1.0.0
-_nf_types:
-  version: text
 ---
 
 # Research Brief

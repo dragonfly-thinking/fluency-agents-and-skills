@@ -6,10 +6,6 @@ description: >-
   visually, create a comparison, build a timeline, or turn dense information
   into something scannable and shareable.
 version: 1.0.0
-_nf_types:
-  name: text
-  description: text
-  version: text
 ---
 
 # Visual Explainer

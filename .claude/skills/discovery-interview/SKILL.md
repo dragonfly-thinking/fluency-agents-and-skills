@@ -6,8 +6,6 @@ description: >-
   shape of what you want is clear. Use when you can feel the idea but can't
   write it down yet.
 version: 1.0.0
-_nf_types:
-  version: text
 ---
 
 # Discovery Interview

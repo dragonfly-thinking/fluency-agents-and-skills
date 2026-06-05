@@ -7,9 +7,6 @@ description: >-
   emails, briefing notes, abstracts, paragraphs, drafts of anything. Returns
   tracked-style suggestions plus a cleaned version. Does not check argument
   quality or facts.
-_nf_types:
-  name: text
-  description: text
 ---
 
 # Proofread

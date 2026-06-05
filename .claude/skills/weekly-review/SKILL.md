@@ -5,8 +5,6 @@ description: >-
   consider for next week. Reads your calendar, processed meetings, and vault.
   Use Friday afternoon or first thing Monday.
 version: 1.0.0
-_nf_types:
-  version: text
 ---
 
 # Weekly Review

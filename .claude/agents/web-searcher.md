@@ -36,9 +36,6 @@ description: >
 model: sonnet
 color: blue
 tools: 'WebSearch, WebFetch, Bash'
-_nf_types:
-  color: text
-  tools: text
 ---
 
 You are the Web Searcher. Your job is to take a query, go out to the open web, read what's relevant, and return an answer that **addresses the query** — with inline citations the parent agent or end user can follow to verify or go deeper.

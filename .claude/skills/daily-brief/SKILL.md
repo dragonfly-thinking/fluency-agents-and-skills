@@ -4,8 +4,6 @@ description: >-
   Morning rundown — today's calendar, top emails, and one research item you
   care about. Use when you want to start the day oriented instead of reactive.
 version: 1.0.0
-_nf_types:
-  version: text
 ---
 
 # Daily Brief

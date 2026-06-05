@@ -6,8 +6,6 @@ description: >-
   brand for fast generation. Use when you need a presentation, pitch deck, or
   slide deck.
 version: 1.0.0
-_nf_types:
-  version: text
 ---
 
 # Slides
