@@ -21,17 +21,20 @@ You may have been given only this repo's **URL**. The install commands below ass
 
 No GitHub account is needed for any of this; the repo is public.
 
-- **If the repo is already on disk** (you're reading this file locally): skip to the install for your runtime.
-- **If the user downloaded it themselves** (e.g. they say "I downloaded it"): look for `fluency-agents-and-skills-main` — usually in `~/Downloads`, possibly still zipped. Unzip if needed, then **move it somewhere durable** before installing, e.g. `mv ~/Downloads/fluency-agents-and-skills-main ~/fluency-agents-and-skills`. Downloads folders get purged, and `course-notes/` + `mcp/` need to live on after install.
-- **Otherwise, fetch it yourself.** Prefer `git` if it's available; fall back to a plain ZIP download (no git, no account needed):
+- **If the repo is already on disk** (you're reading this file locally): it's ready to install — **but the kit gets updated between sessions, so if this might be an older copy from a previous course session, re-download the current version first** (see below) and install that, not stale files.
+- **If the user downloaded it themselves** (e.g. they say "I downloaded it"): look for `fluency-agents-and-skills-main` — usually in `~/Downloads`, possibly still zipped. Unzip if needed, then **move it somewhere durable** before installing, e.g. `mv ~/Downloads/fluency-agents-and-skills-main ~/fluency-agents-and-skills`. Downloads folders get purged, and `course-notes/` + `mcp/` need to live on after install. (If their download is from an earlier session, prefer re-fetching the latest as below.)
+- **Otherwise, fetch it yourself — don't assume `git` is installed.** Most course participants won't have it (on a fresh Mac, even running `git` triggers an install prompt that can hang you). Default to the plain **ZIP download** — no git, no account. This is also the **update path**: re-downloading always gets the latest and replaces an older copy.
 
 ```bash
-# With git
-git clone https://github.com/dragonfly-thinking/fluency-agents-and-skills.git ~/fluency-agents-and-skills
-
-# Without git
+# No git needed — also the update path; replaces any existing copy
 curl -L https://github.com/dragonfly-thinking/fluency-agents-and-skills/archive/refs/heads/main.zip -o /tmp/fluency-kit.zip
-unzip -q /tmp/fluency-kit.zip -d ~ && mv ~/fluency-agents-and-skills-main ~/fluency-agents-and-skills
+rm -rf ~/fluency-agents-and-skills && unzip -q /tmp/fluency-kit.zip -d ~ && mv ~/fluency-agents-and-skills-main ~/fluency-agents-and-skills
+```
+
+Only if `git` is *already* installed, cloning is a fine alternative (and makes later updates a `git pull`):
+
+```bash
+git clone https://github.com/dragonfly-thinking/fluency-agents-and-skills.git ~/fluency-agents-and-skills
 ```
 
 Use `~/fluency-agents-and-skills` as the standard location — the course materials assume the repo lives somewhere predictable. Run the install commands below from inside it.
