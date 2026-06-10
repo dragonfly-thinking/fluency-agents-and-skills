@@ -50,7 +50,7 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 
 | Skill | What it does | Delegates to |
 |-------|--------------|--------------|
-| **setup-workspace** | First-time init of your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` setup. Smart-detects whether you already have a workspace; if you do, helps add a project, refresh context, or add a guardrail. | new-project / discovery-interview |
+| **setup-workspace** | Sets up your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`, writing the files for you. Smart-detects what you've got: builds from scratch if there's nothing, fills the gaps if your setup is half-done, or adds a project / refreshes context / adds a guardrail if it's complete. | new-project / discovery-interview |
 | **new-project** | Interviews you to find and shape your next project — offers ideas if you're not sure what to work on — then scaffolds it as a tracked project: `overview.md` + `plan.md` + `progress.md` + a router entry. | discovery-interview / project-planner |
 | **proofread** | Clarity / grammar / structure / tone pass | writing-editor |
 | **critical-review** | Stress-test an argument and fact-check its claims, in parallel | critical-friend + fact-checker |
@@ -110,7 +110,7 @@ See [`.codex/AGENTS.md`](.codex/AGENTS.md) for the full Codex mapping and setup 
 
 Once the kit is installed (see [Install](#install-let-your-agent-do-it) above), here's how to use it:
 
-- **First time?** Run **`setup-workspace`**. It'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`. If you already have a workspace, it'll detect that and offer to add a project, refresh context, or add a guardrail instead.
+- **First time?** Run **`setup-workspace`**. It'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` *for you* — nothing to copy or save by hand. **Coming back after the course?** Run it again — it'll check what you've already got, fill in anything missing, and leave the rest alone. (If your workspace is already complete, it offers to add a project, refresh context, or add a guardrail instead.)
 - **Starting something new — or not sure what to start?** Run **`new-project`**. It opens by asking what you'd like to work on, helps you find the project if you want ideas, then scaffolds it as a tracked project (`overview.md` / `plan.md` / `progress.md`) so a future session can pick up exactly where you left off.
 - **Have an idea you can't quite write down?** Run **`discovery-interview`**. It asks the non-obvious questions until the shape of what you want is clear, then writes the spec.
 - **Working on something concrete?** Invoke any skill on the real work — *"proofread this draft"*, *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*, *"publish this with here-now"*.

@@ -99,7 +99,7 @@ No API key is needed for anonymous publishing (URLs expire in 24h). For permanen
 
 Tell the user it's done and give them something to try:
 
-> "Installed 6 agents and 15 skills. **First time?** Run *`setup-workspace`* — it'll interview you and create your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`. Or try: *start a new project with `new-project`* (it opens by asking what you'd like to work on), *run `discovery-interview` on an idea you've been sitting on*, *build me slides on X*, *research-brief on Y*, or *publish something with here-now*."
+> "Installed 6 agents and 15 skills. **First time?** Run *`setup-workspace`* — it'll interview you and create your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` for you. **Been here before?** Run *`setup-workspace`* again — it'll spot what's missing from your setup and fill just those gaps. Or try: *start a new project with `new-project`* (it opens by asking what you'd like to work on), *run `discovery-interview` on an idea you've been sitting on*, *build me slides on X*, *research-brief on Y*, or *publish something with here-now*."
 
 Then two more things:
 

@@ -25,6 +25,15 @@ Before doing anything else, look for an existing workspace. Check **both** scope
 
 Use `ls` and `Read` to check — never assume from memory.
 
+**Note which of these expected pieces exist and which are missing** — this is what separates INIT from GAP-FILL:
+
+- the router file (`CLAUDE.md` / `AGENTS.md`)
+- `context/bio.md`
+- `context/work.md`
+- `context/company.md` (only relevant if the user works for an organisation)
+
+A router with all of these = a *complete* workspace. A router with some missing = a *partial* one.
+
 ## Step 2 — Decide which mode to run
 
 Based on what you found:
@@ -32,7 +41,8 @@ Based on what you found:
 | Found | Default mode |
 |---|---|
 | Nothing anywhere | **INIT** (no question — just run it) |
-| Workspace exists, no explicit user direction | **ASK** the user which mode they want |
+| Router exists but pieces are missing (`bio.md` / `work.md` absent) | **GAP-FILL** (Mode E) — create just what's missing |
+| Complete workspace, no explicit user direction | **ASK** the user which mode they want |
 | Workspace exists, user named a mode (e.g. "add a project for X") | Run that mode |
 
 When you need to ASK, use this exact prompt:
@@ -50,12 +60,7 @@ The user has nothing set up. Run the **full setup interview** to produce their f
 
 **Read and follow exactly:** [`references/init-interview.md`](references/init-interview.md)
 
-Do not paraphrase or shorten — that file is the canonical interview. It enforces 5-question max, one-question-at-a-time, and a single-code-block output. Follow it verbatim.
-
-When finished, tell the user where to save the files:
-- **Claude Code:** workspace root or `~/.claude/`. Save router as `CLAUDE.md`.
-- **Codex:** workspace root or `~/.codex/`. Save router as `AGENTS.md`.
-- **Claude Desktop (Cowork):** paste files into Custom Instructions, or upload to a Claude Project.
+Do not paraphrase or shorten — that file is the canonical interview. It enforces 5-question max, one-question-at-a-time, and that **you write the files yourself** at the end (you have file tools — use them; never make the user copy a code block into files by hand). Follow it verbatim.
 
 ## Mode B — ADD PROJECT (workspace exists)
 
@@ -85,6 +90,20 @@ User wants to add an "always remember" rule to the router file.
 1. Ask: *"What's the rule?"* — capture verbatim.
 2. Append it to the router file's "Always remember" section. Don't reorder existing rules.
 3. Show the updated section back to the user.
+
+## Mode E — GAP-FILL (workspace exists but incomplete)
+
+A router file is there, but expected pieces are missing. Fill **only the holes** — never touch files that already exist.
+
+1. **Tell the user what you found and what's missing**, plainly: *"You've got `CLAUDE.md` and `context/bio.md`, but no `work.md`. Want me to create that?"*
+2. **Get a yes**, then run a **short interview scoped only to the missing files** — same rules as init (one question at a time, anchor on examples, one or two questions per missing file max):
+   - Missing `work.md` → ask about their recurring weekly work.
+   - Missing `bio.md` → ask role + who they serve + one sentence in their own voice.
+   - Missing `company.md` → only if they work for an organisation; otherwise skip — don't create it.
+   - Missing or empty router → rebuild it from the context files that *do* exist, plus the safety-floor guardrails (no auto-send, confirm destructive).
+3. **Write the missing files yourself** with your file tools. Never output a code block for the user to paste.
+4. **Leave existing files alone.** If an existing file looks weak too, say so and offer REFRESH separately — don't silently overwrite it here.
+5. Confirm what you created (full paths) and what you left untouched.
 
 ## Composition notes
 

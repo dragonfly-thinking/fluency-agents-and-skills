@@ -57,44 +57,22 @@ Adapt order to what the user already shared. Cover:
 
 ### 6. AFTER 5 QUESTIONS (or sooner if materials covered enough)
 
-Stop asking. Produce **exactly ONE code block total** that contains all file contents. Inside that single code block, clearly label each file and its content. **Do NOT output multiple separate code blocks.**
+Stop asking. Now **create the files yourself** — you have file-writing tools, so use them. Do **not** print the file contents in a code block for the user to copy into files by hand; that's the old paste workflow and it dumps the work back on them. You write the files; the user just reviews.
 
-Use this exact format:
+**First, settle two things:**
 
-```
-[ROUTER FILE — output only ONE of these, based on the tool the user is using]
-Save to: CLAUDE.md
----
-[router content — see structure below]
+- **Router filename** — `CLAUDE.md` for Claude Code, `AGENTS.md` for Codex. If you're unsure which runtime you're in, ask.
+- **Where the workspace goes** — default to the current working directory (the folder the user opened). Tell them they can instead keep it at `~/.claude/` (Claude) or `~/.codex/` (Codex) so it loads in *every* session, and offer to put it there if they'd prefer.
 
-OR
+**Then write each file** with your file tools:
 
-Save to: AGENTS.md
----
-[router content — see structure below]
+- the router — `CLAUDE.md` *or* `AGENTS.md` (only one)
+- `context/bio.md`
+- `context/work.md`
+- `context/company.md` — only if they work for an organisation
+- `projects/<project-name>/index.md` — only if they named a current project (kebab-case, e.g. `mobile-app-relaunch`)
 
-
-[context/bio.md]
----
-[content]
-
-
-[context/work.md]
----
-[content]
-
-
-[context/company.md]  (ONLY if they work for an organisation)
----
-[content]
-
-
-[projects/<project-name>/index.md]  (ONLY if they named a current project)
----
-[content]
-```
-
-Use a kebab-case project name (`mobile-app-relaunch`, not `Mobile App Relaunch`).
+After writing, **tell the user exactly which files you created and where** (full paths), in plain language. Nothing for them to paste.
 
 ---
 
@@ -165,7 +143,7 @@ Sections:
 
 ## 7. VALIDATE WITH A NEGATIVE FRAME
 
-After showing the code block, ask:
+After writing the files, ask:
 
 > *"What's wrong with this?"*
 
@@ -173,11 +151,9 @@ Not *"does this look right?"* — the negative frame surfaces real objections.
 
 ## 8. ONE ROUND OF EDITS, THEN DONE
 
-Make one round of edits based on the user's answer. Then tell them where to save the files:
+Make one round of edits based on the user's answer, then **apply them to the files in place** — re-write the affected files yourself. Don't hand the user a corrected block to paste.
 
-- **Claude Code:** at their workspace root or `~/.claude/`. Save the router content as `CLAUDE.md`. Keep the folder structure (router file at root, `context/` and `projects/` as subfolders).
-- **Codex:** at their workspace root or `~/.codex/`. Save the router content as `AGENTS.md`.
-- **Claude Desktop (Cowork):** paste all files (clearly labelled by filename) into Custom Instructions, OR upload them as attached files to a Claude Project and reference the project for future chats.
+When done, confirm what's now on disk: the router (`CLAUDE.md` / `AGENTS.md`) at the chosen location, with `context/` and `projects/` as subfolders beside it. Tell them it loads automatically next session — nothing for them to wire up.
 
 ---
 
