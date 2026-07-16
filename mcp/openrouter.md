@@ -3,7 +3,9 @@
 **You are an AI coding agent (Claude Code or Codex). The user wants to set up
 OpenRouter — one API key that unlocks capabilities this kit can't do on its own:
 image generation (the `generate-image` skill), live web search with real
-citations, and X/social search (the premium lanes of the `web-searcher` agent).**
+citations, X/social search (the premium lanes of the `web-searcher` agent), and
+PDF→Markdown conversion — including true OCR for scanned documents (see
+[`../guides/file-conversion.md`](../guides/file-conversion.md)).**
 
 One key powers all of it, pay-as-you-go, no extra subscriptions. Rough costs: an
 image ≈ $0.04, a search ≈ $0.001 — $10 of credit lasts a long time.

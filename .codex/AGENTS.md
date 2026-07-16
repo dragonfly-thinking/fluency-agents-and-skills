@@ -25,7 +25,7 @@ In Codex, subagents are invoked **explicitly** — *"use the web_searcher agent 
 
 ## Skills here
 
-Same 17 skills as the Claude side. Skills that delegate to a role:
+Same 18 skills as the Claude side. Skills that delegate to a role:
 
 | Skill | Delegates to |
 |-------|--------------|
@@ -47,7 +47,7 @@ subagent): `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-no
 ├── AGENTS.md
 ├── config.toml          ← [features] multi_agent + 6 [agents.*] registrations
 ├── agents/              ← 6 agent-role personas (.toml; the source of truth)
-└── skills/              ← 17 skills (SKILL.md per folder)
+└── skills/              ← 18 skills (SKILL.md per folder)
 ```
 
 ## Discovery — read this before installing

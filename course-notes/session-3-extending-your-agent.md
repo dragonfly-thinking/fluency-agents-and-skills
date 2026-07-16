@@ -32,7 +32,7 @@ We extended our agent's capabilities in two directions: with **skills** (reusabl
 - Skills can also **dispatch sub-agents** as part of their instructions (e.g. the `proofread` skill hands off to the `writing-editor` sub-agent). And sub-agents can in turn invoke skills.
 - **Why this matters**: skills are a way to *codify your expertise* — the way you like a task done, the conventions you follow, the format of the output. They make your agent meaningfully better at the specific work you do.
 - Invoked by typing `/` in the chat and choosing the skill, or by mentioning it by name. You can add extra context inline (e.g. `/visual-explainer make it pirate-themed`).
-- **Making your own**: the simplest way is to just ask — *"turn what we just did into a skill; write the SKILL.md for me"* — and the agent writes the folder. There's also a **`skill-creator`** skill that interviews you and packages things up properly: it's a one-line install from the public catalogs (ask your agent to *"install skill-creator from Anthropic's skills repo"* — Codex users have an equivalent in OpenAI's skills catalog).
+- **Making your own**: the simplest way is to just ask — *"turn what we just did into a skill; write the SKILL.md for me"* — and the agent writes the folder. For a more guided build, this kit includes **`skill-creator`** (adapted from Anthropic's public one; works in both runtimes): it interviews you, scaffolds the folder, and validates the result.
 
 ## Where Skills and Sub-agents Live: Global vs Project
 

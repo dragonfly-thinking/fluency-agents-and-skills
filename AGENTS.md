@@ -1,6 +1,6 @@
 # Install guide — for the agent
 
-**You are an AI coding agent (Claude Code or Codex). The user has asked you to set up this kit. Follow the steps for the user's runtime below.** This installs 6 specialist subagents and 17 skills into the user's environment so they're available in every session, not just this folder.
+**You are an AI coding agent (Claude Code or Codex). The user has asked you to set up this kit. Follow the steps for the user's runtime below.** This installs 6 specialist subagents and 18 skills into the user's environment so they're available in every session, not just this folder.
 
 If you don't know which runtime you're in: you're **Claude Code** if you read `CLAUDE.md` and use `.claude/`; you're **Codex** if you read `AGENTS.md` and use `.codex/`. If unsure, ask the user.
 
@@ -9,7 +9,7 @@ If you don't know which runtime you're in: you're **Claude Code** if you read `C
 ## What gets installed
 
 - **6 agents** (specialists a skill can delegate to): `critical-friend`, `fact-checker`, `writing-editor`, `project-planner`, `vault-librarian`, `web-searcher`
-- **17 skills** (verbs the user invokes): `setup-workspace`, `new-project`, `proofread`, `critical-review`, `research-brief`, `discovery-interview`, `premortem`, `weekly-review`, `daily-brief`, `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`, `generate-image`, `verify-work`, `handoff`
+- **18 skills** (verbs the user invokes): `setup-workspace`, `new-project`, `proofread`, `critical-review`, `research-brief`, `discovery-interview`, `premortem`, `weekly-review`, `daily-brief`, `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`, `generate-image`, `verify-work`, `handoff`, `skill-creator`
 
 The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format). Install the one matching the runtime. The repo also carries `course-notes/` (session key points) and `mcp/` (external-connection setup guides) — these stay in the repo rather than being installed; see the wrap-up step.
 
@@ -99,7 +99,7 @@ No API key is needed for anonymous publishing (URLs expire in 24h). For permanen
 
 Tell the user it's done and give them something to try:
 
-> "Installed 6 agents and 17 skills. **First time?** Run *`setup-workspace`* — it'll interview you and create your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` for you. **Been here before?** Run *`setup-workspace`* again — it'll spot what's missing from your setup and fill just those gaps. Or try: *start a new project with `new-project`* (it opens by asking what you'd like to work on), *run `discovery-interview` on an idea you've been sitting on*, *build me slides on X*, *research-brief on Y*, or *publish something with here-now*."
+> "Installed 6 agents and 18 skills. **First time?** Run *`setup-workspace`* — it'll interview you and create your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` for you. **Been here before?** Run *`setup-workspace`* again — it'll spot what's missing from your setup and fill just those gaps. Or try: *start a new project with `new-project`* (it opens by asking what you'd like to work on), *run `discovery-interview` on an idea you've been sitting on*, *build me slides on X*, *research-brief on Y*, or *publish something with here-now*."
 
 Then two more things:
 

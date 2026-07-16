@@ -2,9 +2,9 @@
 
 **Why this matters:** agents work best on plain text. A content-heavy PDF or Word
 doc becomes far more useful — searchable, quotable, editable, cheap in tokens —
-once it's Markdown. Renaming a file to `.md` does **not** convert it; the two
-routes below do. (And for going the *other* way — Markdown out to polished PDF or
-slides — see the end.)
+once it's Markdown. Renaming a file to `.md` does **not** convert it; the routes
+below do. (For going the *other* way — Markdown out to polished PDF or slides —
+see the end.)
 
 You can read this yourself, or point your agent at it: *"read
 `guides/file-conversion.md` and convert the PDFs in this folder for me."*
@@ -22,69 +22,88 @@ without any external service:
 
 Under the hood it will read the file directly or use a small free tool (it may ask
 to install a Python library or `pandoc` the first time — that's normal and safe).
-This route is free and keeps everything on your machine.
+Free, and everything stays on your machine.
 
-**Batch tip from the course:** for a folder of many documents, this is a perfect
+**Batch tip from the course:** for a folder of many documents this is a perfect
 **routine** — *"each night, convert any new PDFs in `~/Inbox` to Markdown"* — or a
 one-off: *"convert all 70 PDFs in this folder; keep a progress log as you go."*
 
-**Where Route 1 falls short:** scanned documents (images of text), complex
-multi-column layouts, and documents where the tables and figures really matter.
-That's Route 2.
+**Where Route 1 falls short:** scanned documents (images of text) and complex
+multi-column layouts. That's Route 2.
 
-## Route 2 — Mistral OCR (scanned & complex documents, high fidelity)
+## Route 2 — the one-key route: OpenRouter (recommended)
 
-**Mistral OCR** is a paid API that reads a document the way a human does — layout,
-tables, figures — and returns clean **Markdown**, preserving the images. It
-handles PDF, DOCX and PPTX, including scans. Cost is per page and small (a few
-dollars per **thousand** pages — check [mistral.ai/pricing](https://mistral.ai/pricing)
-for the current rate); converting even a large personal library costs pocket money.
+If you set up **OpenRouter** from this kit ([`../mcp/openrouter.md`](../mcp/openrouter.md)
+— the same single key that powers image generation and live search), you already
+have professional PDF conversion. OpenRouter's **`file-parser`** feature attaches
+a PDF to any model request, with a choice of engine:
 
-**You are an AI agent setting this up — steps:**
+| Engine | What it's for | Cost |
+|---|---|---|
+| **`cloudflare-ai`** | Converts ordinary PDFs to **Markdown** | **Free** |
+| **`mistral-ocr`** | True OCR for **scanned/image-heavy** documents | **$2 per 1,000 pages** |
 
-1. **API key.** Have the user create one at
-   [console.mistral.ai](https://console.mistral.ai) (email signup → API Keys →
-   create). Store it as an environment variable — **never paste a key into a
-   skill, note, or any file your workspace tracks**:
-   ```bash
-   # macOS/Linux — add to ~/.zshrc or ~/.bashrc
-   export MISTRAL_API_KEY="the-key"
-   ```
-2. **Install the library:** `pip install mistralai` (or `pip3`).
-3. **Convert.** The core call, per the official docs
-   ([docs.mistral.ai](https://docs.mistral.ai/studio-api/document-processing/basic_ocr)):
+**You are an AI agent doing this for the user — the request shape** (docs:
+[openrouter.ai/docs → Multimodal → PDFs](https://openrouter.ai/docs/guides/overview/multimodal/pdfs)):
+a normal `/chat/completions` call with the PDF attached as a file part
+(`{"type": "file", "file": {"filename": "doc.pdf", "file_data": "<url or base64>"}}`),
+plus:
 
-   ```python
-   import os
-   from mistralai import Mistral
+```json
+"plugins": [
+  { "id": "file-parser", "pdf": { "engine": "cloudflare-ai" } }
+]
+```
 
-   client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+Prompt the model with *"return the full document as clean Markdown, preserving
+headings and tables"* and save the reply as the `.md` file. Two practical notes:
 
-   ocr_response = client.ocr.process(
-       model="mistral-ocr-latest",
-       document={"type": "document_url", "document_url": "https://arxiv.org/pdf/2201.04234"},
-       include_image_base64=True,   # also return the document's images
-   )
-   ```
+- Responses include an **`annotations`** object — send it back on follow-up
+  requests about the same PDF to skip re-parsing (and re-billing on `mistral-ocr`).
+- On the `mistral-ocr` path OpenRouter forwards **at most 8 images per PDF** (all
+  *text* is preserved in full). Fine for most documents; for genuinely
+  image-heavy ones, use Route 3.
 
-   For a **local file**, upload it first (`client.files.upload(...)`) or pass it
-   base64-encoded — the docs page above shows both variants; follow whichever the
-   current SDK documents. Each page comes back as Markdown; images arrive as
-   placeholders (plus base64 data if requested) — write them into an `_assets/`
-   folder next to the Markdown and the links keep working.
+Offer to wrap this in a small script — and then **package it as a skill** with
+`skill-creator`, so next time it's one command.
 
-4. **Wrap it up.** Write the user a small script (input files → output folder,
-   one `.md` per document), test it on one real document, and **offer to package
-   it as a skill** — "convert-docs" — so next time it's a slash command. Add a
-   note to their `CLAUDE.md`/`AGENTS.md` if they convert often.
+## Route 3 — Mistral OCR direct (image-heavy & maximum fidelity)
+
+The engine behind Route 2's OCR is **Mistral OCR**, and you can use it directly —
+worth it when a document's images and figures all need to survive, since the
+direct API returns every image (not capped at 8) alongside the Markdown. Handles
+PDF, DOCX and PPTX, including scans. Requires its own key (so it breaks the
+one-key principle — that's the trade): create one at
+[console.mistral.ai](https://console.mistral.ai), store it as an environment
+variable (**never in a tracked file**), `pip install mistralai`, then per the
+[official docs](https://docs.mistral.ai/studio-api/document-processing/basic_ocr):
+
+```python
+import os
+from mistralai import Mistral
+
+client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+
+ocr_response = client.ocr.process(
+    model="mistral-ocr-latest",
+    document={"type": "document_url", "document_url": "https://arxiv.org/pdf/2201.04234"},
+    include_image_base64=True,   # also return the document's images
+)
+```
+
+Each page comes back as Markdown; write returned images into an `_assets/` folder
+next to the `.md` and the links keep working. Priced per page — a few dollars per
+*thousand* pages (check [mistral.ai/pricing](https://mistral.ai/pricing) for the
+current rate).
 
 ## Which route when?
 
 | Document | Route |
 |---|---|
 | Exported PDF, Word, PowerPoint (real text) | **1** — just ask |
-| Scanned pages, photographed documents | **2** — Mistral OCR |
-| Complex layouts, tables and figures that must survive | **2** |
+| Ordinary PDF you want as clean Markdown | **2** with `cloudflare-ai` (free) |
+| Scanned pages, photographed documents | **2** with `mistral-ocr` |
+| Image/figure-heavy documents where everything must survive | **3** — Mistral direct |
 | Hundreds of documents on a budget | **1** first; **2** for the ones that come out mangled |
 
 ## Going the other way — Markdown out to polished formats
