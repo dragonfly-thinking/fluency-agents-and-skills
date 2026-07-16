@@ -1,78 +1,121 @@
 # AI Fluency Session 4 — Key Points
 
-**Session 4: Working Well (Consolidation)**
+**Session 4: Going AI-Native — working well with your agent**
 
-The final session. Instead of racing on to new capabilities, we consolidated what we already have and learned to *use it well*: where everything actually lives on your computer, how to set up a project properly (by letting the agent interview you), how to stay the director with planning mode and permission modes, and how to structure ongoing work so your agent can always pick up where it left off. The one genuinely new capability: **routines** — scheduled tasks that run in the background, which everyone set up and ran live. We closed the course with the path forward: a final resource pack with everything covered, external data connections to set up in your own time, and the core skill underneath it all — knowing you can figure it out with your agent as the teacher.
+The final session. Instead of racing on to new capabilities, we consolidated what we already have and learned to *use it well*: moving into a proper editor (**VS Code**) as a shared workspace, knowing where your agents actually live on your computer, setting up projects that document themselves, staying the director with planning mode, and — the one genuinely new capability — **routines**: scheduled tasks that run in the background, which everyone set up and ran live. Along the way: keeping sensitive folders out of bounds, talking to your agent from your phone, GitHub, converting file formats, and verifying an agent's work. The closing theme tied the course together: **augmentation, not automation** — don't slot these tools into your old process; reinvent the process around them.
 
 ---
 
 ## The Story So Far
 
-- **Session 1** — got an agent installed and pointed at a folder.
-- **Session 2** — built its workspace and gave it a map (AGENTS.md / CLAUDE.md, context files, sub-agents).
-- **Session 3** — gave the agent skills and connected it out to other tools; published to the live web.
-- **Today** — consolidation: use what you have *well*, plus background routines.
+- **Session 1** — put a little agent *inside your computer*, pointed at a folder.
+- **Session 2** — gave it a **map** (the `AGENTS.md` / `CLAUDE.md` orientation file), furnished its environment with context, and met **sub-agents**.
+- **Session 3** — handed it **tools and a filing cabinet of skills**, and published to the live web.
+- **Today** — bring it together: work *closely* with your agent in an editor, set it running in the **background**, and keep the workspace organised over time.
 
-## A quick teaser: anyone can build apps now
+## Why VS Code (and the tour)
 
-- Sam opened with a look at **Replit** (replit.com) — an app builder where you describe what you want in chat and it builds the app for you.
-- Starter plan ~US$20/month. You won't build Microsoft Outlook, but a recipe planner or a small internal tool for your team is genuinely within reach — including logins so you can share it with specific people.
-- The point: if you ever think "I wish there was a little app for this," there can be. It's never been easier.
+- **VS Code** is a free code editor built by Microsoft that developers use every day — and it turns out to be an excellent *shared workspace* for working with agents, even if you never write code.
+- The chat apps are great, but they're constrained when you want to be **hands-on with the outputs**: making edits yourself, viewing PDFs and spreadsheets in place, collaborating on a document rather than just asking for changes.
+- The key mental model: VS Code, Claude Code and Codex are all just **windows into the same folder**. Opening a folder in VS Code and in Claude isn't syncing two copies — it's *the same files*, seen through two windows.
+- **The tour:** the file tree on the left mirrors your file explorer (click to open, right-click to create); **extensions** add abilities — start with the **Claude** and/or **Codex** extension (the full agent as a sidebar in your workspace), plus Markdown preview, a PDF viewer, and CSV/Word viewers. The recommended set, with install steps, is in [`../guides/vscode-setup.md`](../guides/vscode-setup.md).
+- **Draft in Markdown, right where the agent can see it.** Create a `.md` file, type your notes or scaffold there, then: *"read my `writing.md` and turn it into a report in this style."* No copy-paste shuffle — and you can make the last-15% edits yourself, which is exactly where these tools sometimes fall short.
 
 ## Where everything lives (the recap that matters)
 
-- **These tools work on your file system.** You create a folder, open it with Claude/Codex, and that folder becomes the agent's workspace — it can read, create, move, and edit everything inside it.
-- **The apps are just different windows into the same folder.** Claude Code, Cowork, Codex, a code editor — same files and folders underneath. (For Microsoft Cowork folks, the equivalent "window" is your OneDrive.)
-- **Orientation files** (`CLAUDE.md` for Claude, `AGENTS.md` for Codex/Cursor) are preloaded instructions read at the start of *every* session. Every new session is a blank slate — this file is how you stop re-explaining yourself.
-- **They stack.** One at the workspace root for general orientation; another inside a project folder for project-specific instructions. The deeper you go, the more specific they get — and the agent loads both.
-- **The `.claude` folder** holds your sub-agents and skills. The dot means "configuration" and makes it invisible in Finder by default — it's still there, and a code editor (or asking your agent) will show it.
-- **Viewing markdown nicely:** markdown is plain text with hashes. Apps like **Obsidian** render it as formatted documents — worth installing if you're not working in a code editor.
+- **These tools work on your file system.** The folders and files are on your computer; the apps are just windows onto them. The AI *processing* happens on the provider's servers (whatever's in the context window gets sent off), but your files stay put unless you explicitly publish or sync them.
+- **Global vs. project config.** Configuration lives in hidden **dot-folders** (`.claude` / `.codex`): a **global** one in your home folder (`~`) that applies everywhere, and **project-local** ones that apply only inside that folder. Easiest way to find your global config: *ask your agent to open it for you*.
+- **Orientation files stack.** One at the workspace root for general orientation; another inside a project folder for project-specific instructions. The agent loads both.
+- **File paths.** Every file has a unique address. Right-click → **Copy Path** and hand the agent the exact address, or **@-tag** the file by name in the chat. A big time-saver over making it search.
+- **Viewing markdown nicely:** VS Code previews it; outside an editor, **Obsidian** renders Markdown as formatted documents.
+
+## Keeping sensitive folders out of bounds
+
+- By default agents won't rummage through unrelated folders — but don't just *trust* that. Two layers:
+  1. **Instructions** in your `AGENTS.md` / `CLAUDE.md` ("never open `~/Private`") — good, but it's *asking*, like giving someone a key and requesting they stay out of one room.
+  2. **Guardrails** — a small piece of configuration that actually *blocks* the action before it runs (in Claude these are called **hooks**). That's locking the door rather than asking.
+- Do both. A worked, copy-able guardrail example lives in [`../guides/folder-guardrails.md`](../guides/folder-guardrails.md).
 
 ## Set up a project by letting the agent interview you
 
-- We pasted in a **project-setup prompt** that interviews you — asking what you're trying to achieve, what you're working with — and then configures the project folder for ongoing collaboration.
-- Why the interview pattern works: when you're doing something new, you often don't know what the agent needs to know — or the extent of your own ignorance. Letting it ask the questions surfaces the useful context you wouldn't have thought to provide.
-- The questions adapt to what's already in your folder — it searches first, then asks what it actually needs.
+- The **`new-project`** skill (in this kit — just type `/new-project`) interviews you about what you're trying to achieve, then scaffolds the project folder: an **overview**, a **plan**, a **progress log**, plus a tasks folder for bigger pieces of work.
+- Why the interview pattern works: when you're doing something new you don't know what the agent needs to know — or the extent of your own ignorance. Letting it ask the questions surfaces context you'd never have thought to volunteer. (It searches the folder first and only asks what it actually needs.)
+- **Properties (frontmatter).** A few labels at the top of a Markdown file — `status`, `owner`, `updated`, `tags` — let your agent answer *"which tasks are still pending?"* by reading the labels instead of re-reading everything. The agent maintains these, not you.
+- The skill is a sensible default, not a rule — edit it to match how you like to organise your work.
 
 ## Planning mode — staying the director
 
-- The mode selector gives the agent different levels of permission: **ask-each-time**, **accept edits**, **auto**, up to bypass-everything. Auto saves you clicking "yes, yes, yes."
+- The mode selector gives the agent different levels of permission: **ask-each-time**, **accept edits**, **auto**, up to bypass-everything. Auto saves you clicking "yes, yes, yes." (A fuller map of modes and safe defaults: [`../guides/interface-and-settings.md`](../guides/interface-and-settings.md).)
 - **Plan mode** is special: the agent *cannot take action* while in it. It goes back and forth with you, builds a plan, and asks before switching back to a mode where it can act. No more jumping the gun.
-- In Codex, type `plan` or press shift-tab. No direct equivalent in Copilot? Just say *"plan this out — don't take any action yet"* and you get most of the benefit.
-- Best practice: go back and forth in plan mode, then **ask it to save the plan as a file** in the project so it can be referenced in future sessions.
+- In Codex, type `plan` or press shift-tab. In Copilot, say *"plan this out — don't take any action yet"* for most of the benefit.
+- Best practice: iterate in plan mode, then **ask it to save the plan as a file** in the project so future sessions can pick it up.
 
 ## Plans, task files, and progress logs — work that tracks itself
 
-- Context windows are finite (200K–1M tokens, roughly 150–750K words) and the automatic summaries agents make when context fills up are lossy — they don't know which fine details are crucial.
-- The answer: **break work into self-contained units with their own files.** A task index with checkboxes the agent ticks off, one file (or folder) per task for bigger work, and a **progress log** updated as it works.
-- The payoff: when you start a new session — or your computer crashes mid-task — the agent reads the project files and picks up exactly where it left off. Other agents (and sub-agents) can get up to speed the same way.
-- Update the project's orientation file to point at these: *"if you need to be brought up to speed, read these context documents."*
+- Context windows are finite, and the automatic summaries agents make when context fills are lossy — they don't know which fine detail was crucial.
+- The answer: **break work into self-contained units with their own files.** A task index with checkboxes, one file (or folder) per task for bigger work, a **progress log** updated as it works.
+- The payoff: a new session — or a recovery after a crash — reads the project files and picks up exactly where things left off. Sub-agents get up to speed the same way.
+- Point your project's orientation file at them: *"if you need to be brought up to speed, read these context documents."*
+- The habit underneath all of this — and how to bake it in so it happens without you remembering — is [Self-Documenting Workspaces](self-documenting-workspaces.md).
+
+## A self-improving workspace
+
+- Small additions to your `AGENTS.md` / `CLAUDE.md` make the setup get better on its own: **suggest improvements after running a skill**, **propose a skill when a task repeats**, keep a **`gotchas.md`** of things learned the hard way.
+- You can even run a routine that periodically reviews how you've been working and proposes new skills, folders or resources.
+- The ready-to-paste lines are in [Self-Documenting Workspaces](self-documenting-workspaces.md) — and the `setup-workspace` skill seeds them into your orientation file automatically.
 
 ## Routines — your agent working in the background
 
-- Both Claude and Codex support **routines**: scheduled tasks that run on a recurrence you choose (daily, hourly, weekly, or manually triggered) — on your computer (local) or in the cloud (runs even with your laptop closed).
-- Sam's example: a **daily explainer** routine that uses the visual-explainer skill to teach him one new AI concept each morning, saved to a folder. We each built and ran one live (Thai recipes featured).
-- Routines can use everything you've already built — your skills, sub-agents, and folders. They're not lightweight extras; they're full agent sessions on a schedule.
-- Practical gotchas we hit live: choose **local** unless you want the GitHub-connected cloud setup; if a routine seems stuck on "running," click into it — there may be a **permission prompt waiting quietly**; and check the output folder, because it sometimes finishes without saying so.
-- Use-cases generated in the room: a fortnightly **blog editorial pipeline** (generate candidate questions every two months), an **alert system tracking regulator publications**, weekly news digests on a topic, and batch-converting PDFs to markdown overnight to save tokens.
+- A **routine** (Claude) or **scheduled task** (Codex) is a pre-saved prompt that fires on a schedule — daily, weekly, or manually triggered — as a full agent session, with access to everything you've built (skills, sub-agents, folders).
+- Examples from the course: a **daily news digest** (Sam's uses the visual-explainer skill to produce a clean HTML page each morning), a **morning brief**, an important-email flag, an alert system tracking regulator publications, batch-converting PDFs to Markdown overnight.
+- **Local vs. cloud:** local runs on your laptop (awake and online); cloud runs without it — for Claude, cloud routines work through **GitHub** (files pulled from your repo, processed, results written back — see [`../guides/github-basics.md`](../guides/github-basics.md)). No GitHub? Run it locally.
+- **Two settings to get right:** permissions to **auto** (so it can finish without waiting on approvals), and **choose the model to match the job** (a heavyweight model for real thinking; a fast/cheap one for mechanical tasks).
+- Practical gotchas we hit live: if a routine seems stuck on "running," click into it — there may be a **permission prompt waiting quietly**; and check the output folder, because it sometimes finishes without saying so.
+
+## Working from your phone
+
+- **Codex:** lives in the ChatGPT phone app — pair it with your computer (QR code) and kick off or steer tasks from anywhere.
+- **Claude:** pair the Claude mobile app with the agent running on your computer (the feature demoed as *Dispatch* in the session — Claude currently splits this across **Remote Control** for Claude Code sessions and **Dispatch** in Cowork) and fire off voice or text instructions on the go while your machine (awake and online) does the work.
+- Setup steps for both — and the cloud-computer option for the very dedicated — are in [`../guides/on-the-go.md`](../guides/on-the-go.md).
+
+## What is GitHub?
+
+- An online store for folders of files: **backup** (restore everything if your laptop dies), **collaboration** (share a workspace with your team), and **version history** (every change kept; roll back any mistake). It's how Dragonfly's own (mostly non-developer) team shares everything — and it's what unlocks Claude's cloud routines.
+- Mild learning curve, but your agent knows it deeply. Plain-English explainer + agent-followable setup: [`../guides/github-basics.md`](../guides/github-basics.md).
+
+## Converting file formats
+
+- Renaming a file to `.md` does **not** convert it. Instead **ask your agent to convert** — it moves reliably between PDF, Word, PowerPoint, HTML and Markdown. Agents work best on text, so converting content-heavy PDFs/Word docs to Markdown makes everything downstream better.
+- A practical pattern from the room: wordy PowerPoint → save as **PDF** → agent turns it into a **visual HTML** page → iterate → distribute as PDF or a pin-gated `here.now` page.
+- Full instructions — including the high-fidelity **Mistral OCR** route for scanned or complex PDFs — in [`../guides/file-conversion.md`](../guides/file-conversion.md).
+
+## Verifying an agent's work
+
+- *"How do you know it did what you asked?"* You're responsible for the output, so build verification in — and never let an agent mark its own homework.
+- **Ad-hoc:** the **`verify-work`** skill (in this kit) spins up fresh adversarial sub-agents that check the finished work against what was actually asked, requirement by requirement.
+- **Repeatable:** for processes you run often and know the "correct" answer for, build a dedicated verification step into the skill or routine itself.
+- The deeper move (from a participant with a test-and-evaluation background): map how *you* actually check this kind of work — your own standards and tests — and mechanise *that*. Ask the agent *"what are my options here?"* as a thought-partner; keep your own judgement in the loop.
 
 ## Tokens, plans, and the cost mindset
 
-- The $20/month plans are a great *taste* of the capabilities — and when you start running routines and real work, you'll hit their limits.
-- Reframe: don't compare it to app subscriptions; compare it to *what you'd pay a person to do the work*. AI isn't traditional software — every request consumes real resources, like fuel. The higher tiers currently give you far more token value than they cost.
+- The $20/month plans are a great *taste* — real use (routines, verification passes, sub-agents) will hit their limits, because doing something *well* takes more loops than you first expect.
+- Reframe: don't compare it to app subscriptions; compare it to *what you'd pay a person to do the work*. The higher tiers currently give you far more token value than they cost.
 
-## Deferred to the final resource pack
+## The pack (you're holding it)
 
-In the interest of time (and sanity), some things moved to the take-home pack rather than live setup:
-
-- **Research connections**: a tool giving your agent access to open-access academic journals, and Google's **Data Commons** (hundreds of statistical sources — World Bank, ABS, and more; free, needs an API key).
-- **One key to rule them all**: a single service (one API key) that unlocks search, image generation, better PDF→markdown conversion, and more — instead of signing up for everything separately.
-- **You're holding the pack** — this repo is it: all the skills, the agents, and setup instructions. **Recommended move:** point your agent at it and *chat about it* — "what fun stuff could we set up from this?" — and let it walk you through installation.
+- **This repo is the take-home pack**: the agents, the skills (including `new-project`, `verify-work`, `handoff`), these course notes, plain-English guides (`guides/`), and setup instructions for external connections (`mcp/`) — academic papers, public statistics, and the **one-key** OpenRouter setup for search and image generation.
+- **Recommended move:** point your agent at the repo and *chat about it* — "read the course notes, look at what's set up on my computer, and tell me what's worth doing next" — and let it walk you through installation and setup.
 
 ## Wrapping up the course
 
-- The real outcome isn't any single capability — it's that **you can go out and figure it out**. When you don't know how to do something, you know the agent can teach you. When the computer says no, talk back.
-- Iterate on everything: skills won't be right the first time; review outputs and improve them as you go. It's never one-and-done.
-- **Office hours** continue — bring your stuck routines and broken setups.
-- **Referrals:** share the course with someone and they get the group price.
-- **Going further:** Dragonfly's AI-native services — a four-week hands-on sprint building custom skills and workflows inside your organisation, tailored to your actual tools — with a discount for course participants. Reach out if that sounds useful.
+- The line that captures it: **augmentation, not automation.** When the electric motor arrived, productivity barely moved for decades — people slotted it into the existing process instead of redesigning around it. Don't just streamline your current workflow; **reinvent it** around what agents can now do.
+- The real outcome isn't any single capability — it's that **you can go and figure it out**. When you don't know how to do something, the agent can teach you. When the computer says no, talk back.
+- It's a fast-moving space and it can feel like a lot. Don't chase every new tool: **keep using Claude and Codex, reflect on how you're using them**, and you'll stay well ahead — you never know when you'll stumble on the workflow that makes you an order of magnitude more effective.
+- **Office hours** continue — bring your stuck routines and broken setups. **Referrals:** share the course and they get a discount. **Going further:** Dragonfly's **AI-Native Sprints** operationalise all of this inside your organisation, tailored to your actual tools — with a graduate rate for course alumni.
+
+## Homework (for the road)
+
+- **Set up one routine** that saves you real time (a morning brief, a news digest, an important-email flag) and let it run.
+- **Try VS Code** on a folder you already work in — install the Claude or Codex extension, draft something in a Markdown file, and edit alongside your agent.
+- **Ask your agent to convert** a real document between formats, and — if you can — get **one external connection** (email, calendar, or one of the `mcp/` guides) going.
+- Above all: **keep practising.**

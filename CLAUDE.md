@@ -1,7 +1,7 @@
 # Fluency Agents and Skills
 
 This repo is the **Fluency Agents and Skills** kit from the Dragonfly Thinking AI Fluency
-course — 6 specialist subagents, 15 skills, MCP setup guides, and the course notes. The
+course — 6 specialist subagents, 17 skills, MCP setup guides, plain-English how-to guides (`guides/`), and the course notes. The
 user took (or is taking) the course; this kit is what they walk away with.
 
 ## Key resources — know your way around

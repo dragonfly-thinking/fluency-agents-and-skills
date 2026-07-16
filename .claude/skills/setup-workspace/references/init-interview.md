@@ -78,7 +78,7 @@ After writing, **tell the user exactly which files you created and where** (full
 
 ## STRUCTURE OF EACH FILE
 
-### The router file (CLAUDE.md or AGENTS.md) — SHORT, under 25 lines
+### The router file (CLAUDE.md or AGENTS.md) — SHORT, under 30 lines
 
 Template:
 
@@ -112,6 +112,15 @@ Detail lives in `context/` (about me) and `projects/` (about what I'm working on
 - Default to terse responses.
 
 Adapt to what the user told you about guardrails. **Always include the safety floor: no auto-send, confirm destructive.**]
+
+## How I want you to work
+
+[2-4 short lines that make the workspace self-documenting and self-improving. Seed these for everyone — they're what makes a setup get *better* with use. Examples:
+- Leave durable artefacts, not just chat — real work gets a folder with an overview and a running progress log, so it survives a new session.
+- After running a skill, suggest how it could be improved. If I repeat a task with no skill, propose one.
+- When something trips you up in here, write it into a `gotchas.md` so we don't relearn it next time.
+
+Adapt the wording, but keep this behaviour in by default.]
 ```
 
 ### context/bio.md

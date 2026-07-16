@@ -12,7 +12,7 @@ No GitHub account needed — this page is public. Copy this page's link, paste i
 
 > **"Read the AGENTS.md at this link and install the kit for me."**
 
-Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 15 skills into your setup (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
+Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 17 skills into your setup (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
 
 Already downloaded the kit (the green **Code → Download ZIP** button)? Same idea — tell your agent: *"I've downloaded the fluency kit to my Downloads folder — install it for me."* (Took the course earlier and still have last time's copy? Just paste the link above instead — your agent grabs the current version, since the kit keeps improving.)
 
@@ -65,6 +65,8 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 | **pdf-create** | Produces a polished PDF | — |
 | **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
 | **generate-image** | Generates an image from a prompt (Nano Banana via one OpenRouter key) | — |
+| **verify-work** | Checks finished work against what was actually asked, using fresh adversarial sub-agents | critical-friend + fact-checker |
+| **handoff** | Writes a handover file so a fresh session (or a colleague) picks up exactly where you left off | — |
 
 ## External connections (`mcp/`)
 
@@ -78,19 +80,33 @@ Agent-followable setup guides — point your agent at one and say *"follow this 
 
 Together these fill out all of the `web-searcher` agent's lanes — it routes queries to whichever source fits.
 
+## Plain-English guides (`guides/`)
+
+Short how-tos for the questions that came up most in the course — written so you can read them *or* point your agent at them and say *"set this up for me"*:
+
+| Guide | What it covers |
+|-------|----------------|
+| [`guides/file-conversion.md`](guides/file-conversion.md) | Converting PDFs, Word and PowerPoint to Markdown (and back) — including the high-fidelity Mistral OCR route |
+| [`guides/github-basics.md`](guides/github-basics.md) | What GitHub is, backup/sharing/version-history, agent-followable setup, second computers |
+| [`guides/interface-and-settings.md`](guides/interface-and-settings.md) | Where the context meter is (Claude *and* Codex), permission modes, a sane always-allow list |
+| [`guides/folder-guardrails.md`](guides/folder-guardrails.md) | Actually blocking your agent from sensitive folders — instructions, deny rules, OS-level locks |
+| [`guides/on-the-go.md`](guides/on-the-go.md) | Talking to your agent from your phone (Claude Dispatch, the Codex app) |
+| [`guides/vscode-setup.md`](guides/vscode-setup.md) | Setting up VS Code as your shared workspace, with the recommended extensions |
+
 ## What's inside
 
 ```
 .
 ├── .claude/                   # Claude Code kit
 │   ├── agents/                #   6 subagents (.md)
-│   └── skills/                #   15 skills (SKILL.md per folder)
+│   └── skills/                #   17 skills (SKILL.md per folder)
 ├── .codex/                    # Codex kit (same capabilities, Codex-native)
 │   ├── AGENTS.md
 │   ├── config.toml            #   registers the agent roles (multi_agent = true)
 │   ├── agents/                #   6 agent-role personas (.toml, via config_file)
-│   └── skills/                #   the same 15 skills, SKILL.md format
+│   └── skills/                #   the same 17 skills, SKILL.md format
 ├── course-notes/              # Key points from the 4 sessions + put-into-action prompts
+├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
 └── mcp/                       # Setup guides for external connections (paper-search, …)
 ```
 

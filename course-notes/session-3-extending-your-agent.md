@@ -22,6 +22,7 @@ We extended our agent's capabilities in two directions: with **skills** (reusabl
   2. **Specialise behaviour.** Give the agent a focused role, tone, or set of tools different from the main agent.
 - **Invocation**: Claude usually picks the right sub-agent automatically based on its description. Codex needs you to name it explicitly. Either way, you can always be explicit: *"use the writing-editor subagent to..."*
 - **Never write these by hand.** Tell the agent what kind of specialist you want and it'll write the file for you.
+- **Get sub-agents to document their work.** You can't easily watch a sub-agent run — so tell it to leave a trail: a folder with an `overview.md` (what it's doing and why) and a `progress.md` (a running log). The folder is concrete and *persistent* — it survives the chat, and any future session (or a recovery after a crash) can be pointed straight at it. Worth a standing line in your router file: *"when you invoke a sub-agent, tell it to document its work in a folder."* (More on this pattern in [Self-Documenting Workspaces](self-documenting-workspaces.md).)
 
 ## Skills — the new evolution of prompts
 
@@ -31,6 +32,7 @@ We extended our agent's capabilities in two directions: with **skills** (reusabl
 - Skills can also **dispatch sub-agents** as part of their instructions (e.g. the `proofread` skill hands off to the `writing-editor` sub-agent). And sub-agents can in turn invoke skills.
 - **Why this matters**: skills are a way to *codify your expertise* — the way you like a task done, the conventions you follow, the format of the output. They make your agent meaningfully better at the specific work you do.
 - Invoked by typing `/` in the chat and choosing the skill, or by mentioning it by name. You can add extra context inline (e.g. `/visual-explainer make it pirate-themed`).
+- **Making your own**: the simplest way is to just ask — *"turn what we just did into a skill; write the SKILL.md for me"* — and the agent writes the folder. There's also a **`skill-creator`** skill that interviews you and packages things up properly: it's a one-line install from the public catalogs (ask your agent to *"install skill-creator from Anthropic's skills repo"* — Codex users have an equivalent in OpenAI's skills catalog).
 
 ## Where Skills and Sub-agents Live: Global vs Project
 
@@ -50,6 +52,8 @@ A small but high-leverage habit:
 - **Concrete examples** raised in the room:
   - A formatting skill: give it 2–3 examples of the documents you typically produce, then run it on new content to apply the template.
   - A skill that knows your brand colours and logos, so visual outputs come out on-brand instead of randomly themed.
+- **Give a skill a memory of its own.** Add a `gotchas.md` (or `tips.md`) file inside the skill's folder — somewhere the agent jots notes to itself as it runs, so the next run avoids whatever tripped up the last one.
+- **The bigger idea — a self-improving, evolving workspace.** This isn't just for skills. The move is to *bake proactive self-improvement in* so you don't have to remember to do it: decide what upkeep you'd like the agent doing in the background (suggesting fixes, keeping notes, flagging repeated tasks) and put it in your router file once. The workspace then gets better as you use it — see [Self-Documenting Workspaces](self-documenting-workspaces.md).
 
 ## The Demo — Polish → Visualise → Publish
 
@@ -96,6 +100,7 @@ In Codex: **Plugins** menu. Similar experience, called "plugins" instead of "con
   - **"Can't find the folder"** — the `.claude` folder is hidden; ask the agent to open it for you.
   - **Cowork limitations** — Cowork (Claude Desktop's safer mode) has some restrictions Claude Code doesn't. If something doesn't work in Cowork, try switching to the Code tab in the same app.
   - **New session** — after installing new skills or sub-agents, start a New Session so the agent picks them up.
+  - **Skill not showing when you type `/`?** The most common cause (it hit several of us live): the skills were installed into a *project's* `.claude/skills/` folder instead of the *global* `~/.claude/skills/` one — so they only exist inside that one folder. Ask your agent: *"check whether the kit's skills are installed globally or just locally, and move them to global."* Then start a new session. (Same logic for Codex with `~/.codex/skills/`.)
 - **Auto mode** — at the bottom of Claude Code, you can switch from "Ask permission" to "Auto" mode so it doesn't pause on every action. Recommended once you've built up trust.
 - **Security** — APIs and external connections introduce some risk (notably *prompt injection*: malicious instructions embedded in a page the agent reads). For highly sensitive data (health records, HIPAA-protected info, etc.), don't expose it to coding agents yet. Backup your computer regardless — **Backblaze** was recommended as a simple full-machine backup service.
 
@@ -145,5 +150,6 @@ Paste this link into your agent and ask it to install — it'll set up the right
 - **Take a real piece of writing** — a memo, a report, a draft — and walk it through the same arc: `/proofread`, then `/visual-explainer`, then `/here-now`. Get a URL. Share it.
 - **Try one of the other skills** — `canvas-design` for a polished PDF, `premortem` for a project you're about to start, or `discovery-interview` for a project that needs scoping.
 - **Add a self-improvement line** to your AGENTS.md or CLAUDE.md file: *"After running any skill, suggest improvements. If you notice a repeated task, propose a new skill."*
+- **Add a "leave a trail" line** too: *"When you do real work — especially anything you hand to a sub-agent — document it in a folder (an overview + a running progress log) so it survives the chat."*
 - **Stuck?** Office-hours and 15-minute one-on-one slots are bookable through the Resources hub.
 - **For Microsoft Copilot / Cowork users**: your environment differs in real ways (OneDrive workspace, restricted installs) — reach out if Cowork is blocking you.

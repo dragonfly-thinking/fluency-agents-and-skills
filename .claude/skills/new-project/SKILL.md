@@ -44,6 +44,11 @@ A "project" here is nothing technical: **a folder that keeps its own notes** abo
 the work is, how it'll get done, and where it's up to. Say so, in roughly those words, if
 the user seems unsure what they're making.
 
+The same instinct scales past tracking: when the work throws up a recurring gotcha, offer
+to drop a `gotchas.md` in the project folder for the agent to keep notes in. Tracking *and*
+self-improvement — the folder should get a little smarter each session, not just record what
+happened.
+
 The default output is **three files**, populated from the interview. The fuller structure
 is *offered*, never imposed.
 
