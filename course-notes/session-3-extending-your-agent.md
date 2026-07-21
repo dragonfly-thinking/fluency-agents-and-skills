@@ -20,7 +20,9 @@ We extended our agent's capabilities in two directions: with **skills** (reusabl
 - **Two main reasons to use them**:
   1. **Conserve context.** Offload exploratory work (big searches, file reads, reasoning steps) so the main thread doesn't fill up.
   2. **Specialise behaviour.** Give the agent a focused role, tone, or set of tools different from the main agent.
-- **Invocation**: Claude usually picks the right sub-agent automatically based on its description. Codex needs you to name it explicitly. Either way, you can always be explicit: *"use the writing-editor subagent to..."*
+- **Why not just open a new main agent instead?** Because your main agent is *general-purpose by design* — every fresh session only loads your top-level AGENTS.md / CLAUDE.md, so it stays deliberately broad. A new chat is just another general-purpose agent reading the same generic map. A sub-agent is where you put the *tailored*, job-specific instructions — a role, a tone, a narrow toolset — that you'd never want cluttering your everyday agent.
+- **The highest-leverage use — a fresh-eyes red-team review.** Because a sub-agent starts from a blank context with its own instructions, it isn't invested in whatever your main agent just produced — so it reliably catches gaps. Point a deliberately critical reviewer (or hand the job across to Codex) at a plan or a draft and it *nearly always* comes back with a real issue. This holds even when you're on the most powerful model: a clean-context adversarial pass still finds things. Great practice on any plan before you act on it. *(The kit ships `critical-friend` and `critical-review` for exactly this — try: "use the critical-review skill to red-team this plan.")*
+- **Invocation**: Claude usually picks the right sub-agent automatically based on its description. Codex needs you to name it explicitly *(sub-agent invocation in Codex is changing fast — ask your agent what's current)*. Either way, you can always be explicit: *"use the writing-editor subagent to..."*
 - **Never write these by hand.** Tell the agent what kind of specialist you want and it'll write the file for you.
 - **Get sub-agents to document their work.** You can't easily watch a sub-agent run — so tell it to leave a trail: a folder with an `overview.md` (what it's doing and why) and a `progress.md` (a running log). The folder is concrete and *persistent* — it survives the chat, and any future session (or a recovery after a crash) can be pointed straight at it. Worth a standing line in your router file: *"when you invoke a sub-agent, tell it to document its work in a folder."* (More on this pattern in [Self-Documenting Workspaces](self-documenting-workspaces.md).)
 
@@ -60,10 +62,13 @@ A small but high-leverage habit:
 Three skills in sequence, on whatever piece of content participants brought (or pulled from a blog post link):
 
 1. **`/proofread`** → invokes the **writing-editor** sub-agent. Returns grammar/clarity/structure suggestions plus a cleaned version. Notice the layering: a skill (the verb) handing off to a sub-agent (the specialist).
-2. **`/visual-explainer`** → turns the cleaned-up text into a self-contained HTML one-pager with diagrams (e.g. mermaid flowcharts). Single file, opens in any browser.
-3. **`/here-now`** → publishes the HTML page to a live URL at `{slug}.here.now`. Free tier keeps the page live for 24 hours; create an account for longer-lived links.
+2. **`/visual-explainer`** → turns the cleaned-up text into a self-contained HTML one-pager with diagrams (e.g. mermaid flowcharts). **What's an HTML file?** Just *code* — the scaffolding everything on the web is built from. The agent writes the code; your browser reads it and renders the page you see. And because it's real code, these pages can be genuinely *interactive* (flowcharts, toggles, tabs — the course slides themselves are HTML files). One striking example: a 1,300-word text-only magazine article, with no charts of its own, that the agent rendered into charts and timelines purely from the data buried in the prose.
+3. **`/here-now`** → publishes the HTML page to a live URL at `{slug}.here.now`. **Why this step exists:** up to now your page is a *file on your own computer* — opening it looks like a web page and even shows a file address, but it isn't on the internet; email that link and no one else can open it. `here.now` takes the local file and puts it on a real, shareable web address. Free tier keeps the page live for 24 hours; a free account keeps it longer. You can also **pin/password-gate** a page — a code you hand to specific recipients, effectively a proxy for email — and, on a paid account, **attach your own domain** so links look professional (`insights.yourcompany.com`) instead of a random subdomain.
 
 The arc: **a real piece of work, walked from messy draft to a polished page anyone can open — without leaving the chat.** That's the payoff of skills + connections together.
+
+- **Watch the AI "tells."** Generated visuals have a recognisable default look — everything in shades of blue, an "oatmeal" beige aesthetic, and the giveaway title-then-*italicised-coloured-emphasis* pattern. Name it, then steer it: point the agent at your brand colours and logo, or ask for a specific style (e.g. brown da Vinci-style line drawings instead of blue). A skill that knows your brand keeps this consistent — see *Self-improving skills* above.
+- **Replacing a confidential Word/PDF workflow.** Text-heavy, confidential documents can move to gated HTML: publish behind a pin, attach your own domain, and convert **HTML → PDF** whenever you need the document form. Build and iterate as HTML first, export to PDF at the end (see [`../guides/file-conversion.md`](../guides/file-conversion.md)). A strong first-draft combo: use **NotebookLM** for a fast first pass (a deck or visual), then hand it to your agent to iterate — NotebookLM is great at the first pass but weak at iterating.
 
 ## APIs, API Keys, and MCPs
 
@@ -72,6 +77,8 @@ The conceptual core of the "connections" half of the session:
 - **API** = the way one piece of software talks to another. Like a restaurant with two doors: humans walk in and order at the counter; software calls the kitchen directly through the side window.
 - **API key** = your account identifier. Tells the service who's calling, what they're allowed to access, and who to bill. Many services require one; some don't.
 - **MCP (Model Context Protocol)** = a newer standard *on top of* APIs that makes it easier for agents specifically to discover and use external tools. You'll see this acronym a lot. You don't need to understand the protocol — your agent does.
+- **Finding a connector.** To hook up a tool, search *"[tool name] MCP"* (or *"[tool name] API"*). The API is the plumbing underneath; the MCP sits on top and is the agent-friendly path — prefer it where it exists.
+- **Connections compose into skills** (just like sub-agents do). A general research skill can bake in *"when researching, pull from these data sources I've already connected"* — so the connection fires automatically as part of the recipe.
 - **Don't be intimidated by either.** When you want to connect to something, just tell your agent *"set this up for me"* and it'll walk you through it.
 
 ## Connecting Your Agent to External Tools
@@ -102,6 +109,7 @@ In Codex: **Plugins** menu. Similar experience, called "plugins" instead of "con
   - **New session** — after installing new skills or sub-agents, start a New Session so the agent picks them up.
   - **Skill not showing when you type `/`?** The most common cause (it hit several of us live): the skills were installed into a *project's* `.claude/skills/` folder instead of the *global* `~/.claude/skills/` one — so they only exist inside that one folder. Ask your agent: *"check whether the kit's skills are installed globally or just locally, and move them to global."* Then start a new session. (Same logic for Codex with `~/.codex/skills/`.)
 - **Auto mode** — at the bottom of Claude Code, you can switch from "Ask permission" to "Auto" mode so it doesn't pause on every action. Recommended once you've built up trust.
+- **You don't need the terminal.** The terminal (Terminal on Mac, PowerShell on Windows) is a window "under the hood" of your computer — it's how coding agents actually do their work, a throwback to how computers ran in the 80s. For everyday use you can live entirely in the chat/session view. It only surfaces occasionally: when the agent is *blocked* (e.g. it isn't allowed to delete a folder and asks you to run the command yourself), or to wire up a tool with no first-class connector.
 - **Security** — APIs and external connections introduce some risk (notably *prompt injection*: malicious instructions embedded in a page the agent reads). For highly sensitive data (health records, HIPAA-protected info, etc.), don't expose it to coding agents yet. Backup your computer regardless — **Backblaze** was recommended as a simple full-machine backup service.
 
 ## The Session 3 Kit
@@ -143,6 +151,8 @@ Paste this link into your agent and ask it to install — it'll set up the right
 | Session | Focus |
 |---|---|
 | **4** | Working Well — consolidation: projects set up properly, planning mode, progress logs, and **routines** (background scheduled tasks, so you wake up and the work is already done). |
+
+One thread that opens here and lands next session: because your agent runs on your computer (or in the cloud), you can direct it from your phone and review results on the move — and set work running in the background while you're away from the desk.
 
 ## Next Steps
 
