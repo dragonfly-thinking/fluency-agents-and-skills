@@ -11,7 +11,7 @@ If you don't know which runtime you're in: you're **Claude Code** if you read `C
 - **6 agents** (specialists a skill can delegate to): `critical-friend`, `fact-checker`, `writing-editor`, `project-planner`, `vault-librarian`, `web-searcher`
 - **19 skills** (verbs the user invokes): `setup-workspace`, `new-project`, `proofread`, `critical-review`, `research-brief`, `discovery-interview`, `premortem`, `weekly-review`, `daily-brief`, `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`, `generate-image`, `verify-work`, `handoff`, `skill-creator`, `browser-agent`
 
-The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format). Install the one matching the runtime. The repo also carries `course-notes/` (session key points) and `mcp/` (external-connection setup guides) — these stay in the repo rather than being installed; see the wrap-up step.
+The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format). Install the one matching the runtime. The repo also carries `course-notes/` (session key points), `guides/` (plain-English how-tos: GitHub, file conversion, folder guardrails, phone, VS Code, browser automation), and `mcp/` (external-connection setup guides) — these stay in the repo rather than being installed; see the wrap-up step.
 
 ---
 
@@ -103,14 +103,16 @@ Tell the user it's done and give them something to try:
 
 Then two more things:
 
-1. **Point at the course notes.** Tell the user where the repo lives on their machine (normally `~/fluency-agents-and-skills` — see Step 0) and that `course-notes/` there holds the key points from the four course sessions, with `mcp/` holding the external-connection setup guides. Offer: *"Want me to read the course notes and suggest what's worth putting into action first?"*
-2. **Tell them the kit is theirs to shape.** One line is enough: *"If a skill ever gets something wrong, just tell me — I can update the skill so it doesn't happen again. And if you notice a task you repeat, I can turn it into a new skill."*
+1. **Point at the course notes.** Tell the user where the repo lives on their machine (normally `~/fluency-agents-and-skills` — see Step 0) and that `course-notes/` there holds the key points from the four course sessions, `guides/` the plain-English how-tos, and `mcp/` the external-connection setup guides. Offer: *"Want me to read the course notes and suggest what's worth putting into action first?"*
+2. **Offer the folder guard.** Ask: *"Is there anything on this computer — client files, HR records, personal folders — you'd want me hard-blocked from ever touching? There's a guard in the kit that makes those folders genuinely off-limits to agents, not just politely avoided."* If yes, follow [`guides/guard-folders/README.md`](guides/guard-folders/README.md) to install it for their runtime, then have them verify in a fresh session (ask the agent to read something inside a protected folder — the correct result is a refusal naming guard-folders).
+3. **Tell them the kit is theirs to shape.** One line is enough: *"If a skill ever gets something wrong, just tell me — I can update the skill so it doesn't happen again. And if you notice a task you repeat, I can turn it into a new skill."*
 
 ## Runtime dependencies to mention
 
 - **Web search** must be enabled for `fact-checker`, `web-searcher`, `research-brief`, and `daily-brief` to verify/retrieve from the web. If it's off, they'll say so rather than invent.
 - **here-now** needs `curl`, `file`, and `jq` on PATH (standard on macOS/Linux).
 - **pdf-create** uses an already-installed Chrome/Edge; if none is found it falls back to "open the HTML and Cmd/Ctrl+P → Save as PDF" — no installs.
+- **browser-agent** needs Node.js plus a one-time browser download on first use — the skill (and `guides/browser-agent.md`) walks through it; nothing to do at install time.
 
 ---
 

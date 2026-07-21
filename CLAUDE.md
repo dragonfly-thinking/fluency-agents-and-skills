@@ -10,6 +10,7 @@ user took (or is taking) the course; this kit is what they walk away with.
 |---|---|
 | `.claude/agents/` + `.claude/skills/` | The kit itself, Claude Code format (`.codex/` mirrors it for Codex) |
 | `course-notes/` | Key points from the four course sessions, plus ready-to-paste prompts for putting them into action — start here when the user doesn't know what to do next |
+| `guides/` | Plain-English how-tos (GitHub, file conversion, interface & settings, folder guardrails incl. the ready-made `guard-folders/` hook, phone, VS Code, browser automation) — written to be read by the user *or* followed by you on their behalf |
 | `mcp/` | Setup guides for external connections (e.g. `paper-search.md`) — written to be followed step-by-step by an agent on the user's behalf |
 | `README.md` | The human-facing orientation — what everything is |
 | `AGENTS.md` | The install playbook — follow it when asked to set the kit up |
@@ -41,5 +42,8 @@ this repo (or with the installed copies), actively help the user tailor it:
   to their work, add their examples to a skill's folder.
 - **When they're unsure what to do next**, read `course-notes/` and suggest something from
   the course worth putting into action — then walk them through it.
+- **If they ever mention sensitive folders or worry about what you can touch**, offer the
+  folder guard (`guides/guard-folders/README.md`) — install it, then have them verify in a
+  fresh session.
 
 Make the offer; don't force it. Small, concrete improvements beat grand reorganisations.

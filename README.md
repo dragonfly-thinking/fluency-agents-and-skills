@@ -91,7 +91,7 @@ Short how-tos for the questions that came up most in the course — written so y
 | [`guides/file-conversion.md`](guides/file-conversion.md) | Converting PDFs, Word and PowerPoint to Markdown (and back) — free via your OpenRouter key, or Mistral OCR for scans |
 | [`guides/github-basics.md`](guides/github-basics.md) | What GitHub is, backup/sharing/version-history, agent-followable setup, second computers |
 | [`guides/interface-and-settings.md`](guides/interface-and-settings.md) | Where the context meter is (Claude *and* Codex), permission modes, a sane always-allow list |
-| [`guides/folder-guardrails.md`](guides/folder-guardrails.md) | Actually blocking your agent from sensitive folders — instructions, deny rules, OS-level locks |
+| [`guides/folder-guardrails.md`](guides/folder-guardrails.md) | Actually blocking your agent from sensitive folders — includes **`guard-folders/`**, a ready-made, tested guard your agent installs in a minute |
 | [`guides/on-the-go.md`](guides/on-the-go.md) | Talking to your agent from your phone (Claude Dispatch, the Codex app) |
 | [`guides/vscode-setup.md`](guides/vscode-setup.md) | Setting up VS Code as your shared workspace, with the recommended extensions |
 | [`guides/browser-agent.md`](guides/browser-agent.md) | Your agent driving a real browser — install, the separate-profile safety rule, form-filling |
@@ -133,6 +133,7 @@ Once the kit is installed (see [Install](#install-let-your-agent-do-it) above), 
 - **Starting something new — or not sure what to start?** Run **`new-project`**. It opens by asking what you'd like to work on, helps you find the project if you want ideas, then scaffolds it as a tracked project (`overview.md` / `plan.md` / `progress.md`) so a future session can pick up exactly where you left off.
 - **Have an idea you can't quite write down?** Run **`discovery-interview`**. It asks the non-obvious questions until the shape of what you want is clear, then writes the spec.
 - **Working on something concrete?** Invoke any skill on the real work — *"proofread this draft"*, *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*, *"publish this with here-now"*.
+- **Anything on your computer agents should never touch?** Client files, HR records, personal folders — say *"read `guides/guard-folders/README.md` and set up the folder guard for me"* and those folders become hard-off-limits, not just politely avoided.
 - **Not sure what to do with any of this?** Paste this into your agent:
 
 > *Read the course notes in `course-notes/`, then look at what's actually set up on my computer. What from the course am I not using yet? Suggest three things worth putting into action this week — and walk me through the first one.*
