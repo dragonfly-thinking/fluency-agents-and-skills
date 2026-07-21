@@ -103,7 +103,7 @@ The earlier notes cover [getting started](session-1-from-assistants-to-agents.md
 
 ## Using this pack
 
-- Point your agent at this repo and *chat about it* — *"read the course notes, look at what's set up on my computer, and tell me what's worth doing next"* — and let it walk you through setup. The kit holds the sub-agents, skills (`new-project`, `verify-work`, `handoff` and more), these notes, the plain-English [`../guides/`](../guides/), and external-connection setups under [`../mcp/`](../mcp/).
+- Point your agent at this repo and *chat about it* — *"read the course notes, look at what's set up on my computer, and tell me what's worth doing next"* — and let it walk you through setup. The kit holds the sub-agents, skills (`new-project`, `verify-work` and more), these notes, the plain-English [`../guides/`](../guides/), and external-connection setups under [`../mcp/`](../mcp/).
 
 ## The bigger picture — augmentation, not automation
 

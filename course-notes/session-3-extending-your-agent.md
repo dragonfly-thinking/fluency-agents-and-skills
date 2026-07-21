@@ -91,7 +91,6 @@ In Codex: **Plugins** menu. Similar experience, called "plugins" instead of "con
 - **`canvas-design`** — creates a polished PDF or image from content (good for posters, one-page summaries, branded outputs).
 - **`premortem`** — before kicking off a project, anticipates what could go wrong and how to mitigate.
 - **`slides`** — creates HTML slide decks.
-- **`discovery-interview`** — interviews you to surface assumptions and context before you start a new project.
 
 ## Practical Notes / Troubleshooting
 
@@ -107,7 +106,7 @@ In Codex: **Plugins** menu. Similar experience, called "plugins" instead of "con
 
 ## The kit
 
-You're reading this from inside the kit: sub-agents (`writing-editor`, `critical-friend`, `fact-checker`, `project-planner`, `vault-librarian`, `web-searcher`) plus a library of skills (`proofread`, `visual-explainer`, `here-now`, `critical-review`, `premortem`, `discovery-interview`, `slides`, `canvas-design`, and more — see the repo README for the full list), in both `.claude/` and `.codex/` variants. Repo: **[github.com/dragonfly-thinking/fluency-agents-and-skills](https://github.com/dragonfly-thinking/fluency-agents-and-skills)**.
+You're reading this from inside the kit: sub-agents (`writing-editor`, `critical-friend`, `fact-checker`, `project-planner`, `vault-librarian`, `web-searcher`) plus a library of skills (`proofread`, `visual-explainer`, `here-now`, `critical-review`, `premortem`, `slides`, `canvas-design`, and more — see the repo README for the full list), in both `.claude/` and `.codex/` variants. Repo: **[github.com/dragonfly-thinking/fluency-agents-and-skills](https://github.com/dragonfly-thinking/fluency-agents-and-skills)**.
 
 ## Resources
 
@@ -138,6 +137,6 @@ You're reading this from inside the kit: sub-agents (`writing-editor`, `critical
 ## Put this into action
 
 - **Take a real piece of writing** — a memo, a report, a draft — and walk it through the workflow above: `/proofread`, then `/visual-explainer`, then `/here-now`. Get a URL.
-- **Try another skill** — `canvas-design` for a polished PDF, `premortem` for a project you're about to start, or `discovery-interview` for a project that needs scoping.
+- **Try another skill** — `canvas-design` for a polished PDF, `premortem` for a project you're about to start, or `new-project` to scope and scaffold something new.
 - **Add a self-improvement line** to your AGENTS.md / CLAUDE.md file: *"After running any skill, suggest improvements. If you notice a repeated task, propose a new skill."*
 - **Add a "leave a trail" line** too: *"When you do real work — especially anything you hand to a sub-agent — document it in a folder (an overview + a running progress log) so it survives the chat."*

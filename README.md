@@ -12,7 +12,7 @@ No GitHub account needed — this page is public. Copy this page's link, paste i
 
 > **"Read the AGENTS.md at this link and install the kit for me."**
 
-Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 19 skills into your setup (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
+Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 15 skills into your setup (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
 
 Already downloaded the kit (the green **Code → Download ZIP** button)? Same idea — tell your agent: *"I've downloaded the fluency kit to my Downloads folder — install it for me."* (Took the course earlier and still have last time's copy? Just paste the link above instead — your agent grabs the current version, since the kit keeps improving.)
 
@@ -50,23 +50,19 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 
 | Skill | What it does | Delegates to |
 |-------|--------------|--------------|
-| **setup-workspace** | Sets up your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`, writing the files for you. Smart-detects what you've got: builds from scratch if there's nothing, fills the gaps if your setup is half-done, or adds a project / refreshes context / adds a guardrail if it's complete. | new-project / discovery-interview |
-| **new-project** | Interviews you to find and shape your next project — offers ideas if you're not sure what to work on — then scaffolds it as a tracked project: `overview.md` + `plan.md` + `progress.md` + a router entry. | discovery-interview / project-planner |
+| **setup-workspace** | Sets up your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/`, writing the files for you. Smart-detects what you've got: builds from scratch if there's nothing, fills the gaps if your setup is half-done, or adds a project / refreshes context / adds a guardrail if it's complete. | new-project |
+| **new-project** | Interviews you to find and shape your next project — offers ideas if you're not sure what to work on — then scaffolds it as a tracked project: `overview.md` + `plan.md` + `progress.md` + a router entry. | project-planner |
 | **proofread** | Clarity / grammar / structure / tone pass | writing-editor |
 | **critical-review** | Stress-test an argument and fact-check its claims, in parallel | critical-friend + fact-checker |
 | **research-brief** | Sourced briefing on a topic | web-searcher |
-| **discovery-interview** | Interviews you to turn a vague idea into a spec | project-planner |
 | **premortem** | Surfaces how a plan could fail before you commit | project-planner |
-| **weekly-review** | Pulls the week together into a review | vault-librarian + project-planner |
 | **daily-brief** | A morning brief from your notes and the web | vault-librarian + web-searcher |
 | **visual-explainer** | Turns content into a shareable HTML one-pager | — |
 | **slides** | Builds an HTML slide deck | — |
 | **canvas-design** | Designs canvas/poster-style visual layouts | — |
 | **pdf-create** | Produces a polished PDF | — |
 | **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
-| **generate-image** | Generates an image from a prompt (Nano Banana via one OpenRouter key) | — |
 | **verify-work** | Checks finished work against what was actually asked, using fresh adversarial sub-agents | critical-friend + fact-checker |
-| **handoff** | Writes a handover file so a fresh session (or a colleague) picks up exactly where you left off | — |
 | **skill-creator** | Interviews you and packages a repeatable workflow as a new skill (adapted from Anthropic’s public skill-creator) | — |
 | **browser-agent** | Drives a real browser — fills web forms, clicks through flows, extracts page content (agent-browser CLI) | — |
 
@@ -78,7 +74,7 @@ Agent-followable setup guides — point your agent at one and say *"follow this 
 |-------|-----------------|------|
 | [`mcp/paper-search.md`](mcp/paper-search.md) | Academic literature — arXiv, PubMed, Semantic Scholar and ~20 more | None |
 | [`mcp/data-commons.md`](mcp/data-commons.md) | Public statistics — World Bank, WHO, UN, ABS and ~240 datasets | Free key |
-| [`mcp/openrouter.md`](mcp/openrouter.md) | Image generation (`generate-image`), live cited search, X/social search, PDF→Markdown conversion | One paid key (~$10 credit) |
+| [`mcp/openrouter.md`](mcp/openrouter.md) | Live cited search, X/social search, image generation, PDF→Markdown conversion | One paid key (~$10 credit) |
 
 Together these fill out all of the `web-searcher` agent's lanes — it routes queries to whichever source fits.
 
@@ -102,12 +98,12 @@ Short how-tos for the questions that came up most in the course — written so y
 .
 ├── .claude/                   # Claude Code kit
 │   ├── agents/                #   6 subagents (.md)
-│   └── skills/                #   19 skills (SKILL.md per folder)
+│   └── skills/                #   15 skills (SKILL.md per folder)
 ├── .codex/                    # Codex kit (same capabilities, Codex-native)
 │   ├── AGENTS.md
 │   ├── config.toml            #   registers the agent roles (multi_agent = true)
 │   ├── agents/                #   6 agent-role personas (.toml, via config_file)
-│   └── skills/                #   the same 19 skills, SKILL.md format
+│   └── skills/                #   the same 15 skills, SKILL.md format
 ├── course-notes/              # Key points from the 4 sessions + put-into-action prompts
 ├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
 └── mcp/                       # Setup guides for external connections (paper-search, …)
@@ -131,7 +127,6 @@ Once the kit is installed (see [Install](#install-let-your-agent-do-it) above), 
 
 - **First time?** Run **`setup-workspace`**. It'll interview you for ~5 minutes and create your personalised `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` *for you* — nothing to copy or save by hand. **Coming back after the course?** Run it again — it'll check what you've already got, fill in anything missing, and leave the rest alone. (If your workspace is already complete, it offers to add a project, refresh context, or add a guardrail instead.)
 - **Starting something new — or not sure what to start?** Run **`new-project`**. It opens by asking what you'd like to work on, helps you find the project if you want ideas, then scaffolds it as a tracked project (`overview.md` / `plan.md` / `progress.md`) so a future session can pick up exactly where you left off.
-- **Have an idea you can't quite write down?** Run **`discovery-interview`**. It asks the non-obvious questions until the shape of what you want is clear, then writes the spec.
 - **Working on something concrete?** Invoke any skill on the real work — *"proofread this draft"*, *"build me slides on X"*, *"research-brief on Y"*, *"run a premortem on this plan"*, *"publish this with here-now"*.
 - **Anything on your computer agents should never touch?** Client files, HR records, personal folders — say *"read `guides/guard-folders/README.md` and set up the folder guard for me"* and those folders become hard-off-limits, not just politely avoided.
 - **Not sure what to do with any of this?** Paste this into your agent:

@@ -108,7 +108,6 @@ A router file is there, but expected pieces are missing. Fill **only the holes**
 ## Composition notes
 
 - **To scaffold a project**, hand off to `new-project` — it writes the overview/plan/progress structure and updates the router.
-- **For deep scoping of a vague idea** before scaffolding, hand off to `discovery-interview`.
 - **For project planning** after a project is scoped, suggest the user run `project-planner` (subagent) on the new `overview.md` / `plan.md`.
 - **Never run multiple modes in one invocation.** One mode per session — keep it focused.
 

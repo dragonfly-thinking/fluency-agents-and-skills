@@ -2,7 +2,7 @@
 
 **You are an AI coding agent (Claude Code or Codex). The user wants to set up
 OpenRouter — one API key that unlocks capabilities this kit can't do on its own:
-image generation (the `generate-image` skill), live web search with real
+image generation, live web search with real
 citations, X/social search (the premium lanes of the `web-searcher` agent), and
 PDF→Markdown conversion — including true OCR for scanned documents (see
 [`../guides/file-conversion.md`](../guides/file-conversion.md)).**
@@ -35,17 +35,14 @@ copy it. It starts with `sk-or-`. Tell the user to treat it like a password.
 ## Step 4 — Install the engine and save the key (you)
 
 The kit's OpenRouter capabilities run through one small, pre-tested engine script
-that ships inside the `generate-image` skill. Put it in place:
+that ships in this repo at `mcp/scripts/openrouter.py`. Put it in place:
 
 ```bash
 mkdir -p ~/.fluency/bin
-[ -f ~/.fluency/bin/openrouter.py ] || cp ~/.claude/skills/generate-image/scripts/openrouter.py ~/.fluency/bin/openrouter.py 2>/dev/null \
-  || cp ~/.codex/skills/generate-image/scripts/openrouter.py ~/.fluency/bin/openrouter.py
+[ -f ~/.fluency/bin/openrouter.py ] || cp mcp/scripts/openrouter.py ~/.fluency/bin/openrouter.py
 ```
 
-(If neither path exists, the kit isn't installed globally yet — install it first
-per [`AGENTS.md`](../AGENTS.md), or copy `scripts/openrouter.py` from this repo's
-`generate-image` skill folder.)
+(If neither path exists, copy `mcp/scripts/openrouter.py` from this repo.)
 
 Then save the key the user gives you — and **never echo it back afterwards**:
 
@@ -70,8 +67,9 @@ taste — run:
 python3 ~/.fluency/bin/openrouter.py image "a single dragonfly over still water at dawn, soft blue palette" -o dragonfly.png --aspect 16:9
 ```
 
-…and open the result for them. From now on the `generate-image` skill and the
-`web-searcher` agent's premium/social lanes work automatically.
+…and open the result for them. From now on image generation and the
+`web-searcher` agent's premium/social lanes work automatically — just ask your
+agent to "generate an image of …" and it runs the engine directly.
 
 ---
 

@@ -104,10 +104,10 @@ The skill applies the saved brand (blue accent, the right font pairing, logo on 
 ### Combined folder
 
 ```
-"PDF the whole weekly-review/ folder"
+"PDF the whole project-notes/ folder"
 ```
 
-Combines all the markdown files in `weekly-review/` (in filename order) into one PDF with a TOC. Useful for handing someone a quarter's worth of reviews.
+Combines all the markdown files in `project-notes/` (in filename order) into one PDF with a TOC. Useful for handing someone a quarter's worth of reviews.
 
 ---
 

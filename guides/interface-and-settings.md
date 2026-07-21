@@ -36,9 +36,10 @@ Code extension, use the same `/context` command in the session panel.
 **Codex** — type **`/status`** for the session's context and token usage, and
 **`/statusline`** to add a persistent footer showing context as you work.
 
-**When the meter runs low**, don't push through — capture and restart: run the
-kit's **`handoff`** skill (writes a pick-up-here file), then start a fresh session
-and point it at the handoff. Fresh context beats compressed context.
+**When the meter runs low**, don't push through — capture and restart: ask the agent
+to *write a handover note* (a short file: what this session did, decided, and is up
+to — there's a copy-able prompt in the session-2 course notes), then start a fresh
+session and point it at that file. Fresh context beats compressed context.
 
 ## 3. Always-allow — ending the thirty-clicks problem
 

@@ -90,7 +90,7 @@ Then branch on what comes back:
      workspace (recent files, folders, notes, half-started things) and propose 2–3
      concrete candidates, one line each, with a recommendation.
 - **The idea is genuinely big and foggy** (they can feel it but can't say it) → offer the
-  **`discovery-interview`** skill: *"This sounds like it deserves a proper interview —
+  deeper interview: *"This sounds like it deserves a proper interview —
   want me to interview you thoroughly first, then set the project up from what we find?"*
   Hand off, then return here with its spec.
 
@@ -115,7 +115,7 @@ mushy answers, and mushy answers make mushy projects.
    goals.
 
 If the answers stay mushy and the person clearly hasn't figured the idea out, offer the
-off-ramp again: *interview me properly first* → **`discovery-interview`**, then return
+off-ramp again: *interview me properly first* — a longer question-led scoping pass — then return
 here; or *push on and scaffold what we have*.
 
 ## Step 4 — Propose the structure, then wait
@@ -177,7 +177,7 @@ to put in them. Mention they exist; don't pre-create them.
 
 ## Composition
 
-- **Before** (idea still vague): `discovery-interview` → a spec → scaffold from it.
+- **Before** (idea still vague): a proper scoping interview → a spec → scaffold from it.
 - **After** (need a real plan): `project-planner` subagent → milestones, tasks, estimates.
 - **No workspace yet:** `setup-workspace` → creates the router + `projects/`.
 
@@ -200,8 +200,8 @@ after it.
   the shape already in `projects/`.
 - **Don't overwrite an existing project.** If `projects/<slug>/` already exists, stop and
   ask (rename, or resume the existing one) — never clobber it.
-- **Don't batch the interview**, and **don't duplicate `discovery-interview`.** If you're
-  asking ten questions, you're in the wrong skill — hand off.
+- **Don't batch the interview.** If you're asking ten questions at once, you've turned
+  a conversation into a form — keep it to a few at a time.
 - **Don't invent answers.** Missing info gets a `<TODO: ...>` marker or a follow-up
   question, never a confident guess.
 - **Don't pre-bloat.** Three populated files beat seven empty ones. The extras are opt-in.
