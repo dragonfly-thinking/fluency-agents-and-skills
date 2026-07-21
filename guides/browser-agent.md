@@ -82,6 +82,7 @@ Two rules the whole thing hinges on:
 | `Unsupported token "@e1"` | You skipped `snapshot` — snapshot first, then act |
 | Element not found after clicking around | Refs went stale — re-snapshot |
 | A login wall | Stop and ask the user — don't have the agent handle credentials; log in yourself in the agent's browser window, then let it continue |
+| Codex: browser won't launch | Codex's sandbox must allow writes — normal interactive sessions do; a `read-only` sandbox (some scripted runs) blocks the launch |
 | CAPTCHA | That's the site saying "humans only" — respect it; do that step yourself |
 
 **Where it doesn't belong:** sites you're logged into with real money or real
