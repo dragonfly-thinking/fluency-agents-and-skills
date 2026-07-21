@@ -1,0 +1,4 @@
+# Folders your agent must never touch — one per line, ~ is fine
+# Examples:
+# ~/Private
+# ~/Documents/Client-NDA

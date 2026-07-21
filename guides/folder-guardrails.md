@@ -63,15 +63,22 @@ Notes for the agent doing the setup:
   protected folder. The correct outcome is a **permission refusal**. If it reads
   the file, the rule isn't matching — check the path syntax.
 
-### Going further (Claude) — a hook
+### Going further — the `guard-folders` hook (shipped in this kit)
 
-For belt-and-braces, Claude Code also supports **hooks**: tiny programs that run
-*before* each tool call and can veto it (a `PreToolUse` hook whose matcher checks
-whether the target path is inside a protected folder, exiting with a block). Hooks
-catch edge cases pattern rules miss, but they're a step up in complexity — start
-with deny rules, and if you want the hook version, ask your agent to *"write a
-PreToolUse hook that blocks any tool call touching `~/Private`, following the
-official hooks docs at code.claude.com/docs"* and test it the same way.
+For belt-and-braces, both runtimes support **hooks**: tiny programs that run
+*before* each tool call and can veto it. This kit ships a worked v1 —
+[`guard-folders/`](guard-folders/) — a small Python script that blocks any
+Read/Edit/Write/Glob/Grep/Bash call touching folders you list in a plain
+`protected-folders.txt`. Point your agent at
+[`guard-folders/README.md`](guard-folders/README.md) and say *"install this for
+me"*; it wires the hook, then you verify in a fresh session by asking the agent to
+read something inside a protected folder (correct answer: a refusal naming
+guard-folders). It fails open on errors, so a broken guard never bricks your agent.
+
+**Related tool, different axis:** [destructive_command_guard](https://github.com/Dicklesworthstone/destructive_command_guard)
+pattern-checks *dangerous shell commands* (`rm -rf`, forced pushes…) before they run —
+it guards destructive **actions** anywhere, where guard-folders guards **places**.
+They stack nicely.
 
 ## Layer 2 (Codex) — the sandbox (and yes, Codex has hooks too)
 
