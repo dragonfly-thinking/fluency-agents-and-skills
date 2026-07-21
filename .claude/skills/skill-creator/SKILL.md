@@ -1,6 +1,7 @@
 ---
 name: skill-creator
 description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. Also use when the user says "make a skill", "turn this into a skill", "create a skill for X", "skill for Y", or wants to package a repeatable workflow.
+version: 1.1.0
 ---
 
 # Skill Creator
@@ -51,7 +52,7 @@ Tell Claude what files exist in the skill folder and when to read them. It will 
 
 ### Don't State the Obvious
 
-Claude knows a lot about coding and your codebase. Focus on information that pushes Claude **out of its normal way of thinking** — the non-obvious stuff. If Claude would do it correctly without the skill, don't waste tokens on it.
+Claude knows a lot about coding and the codebase. Focus on information that pushes Claude **out of its normal way of thinking** — the non-obvious stuff. If Claude would do it correctly without the skill, don't waste tokens on it.
 
 ### Build a Gotchas Section
 
@@ -81,7 +82,7 @@ attack patterns that bypass simple escaping.
 
 ### Avoid Railroading
 
-Skills are reusable across many situations. Give Claude the information it needs but the flexibility to adapt. Overly specific instructions that work for your three test cases will break on the fourth.
+Skills are reusable across many situations. Give Claude the information it needs but the flexibility to adapt. Overly specific instructions that work for three test cases will break on the fourth.
 
 ### Think Through Setup
 
@@ -135,25 +136,12 @@ data-analysis/
 
 Claude can then generate scripts on the fly that import and compose these helpers for complex queries.
 
-### Memory & Persistent Data
+### Advanced topics
 
-Skills can maintain state across invocations. Use `${CLAUDE_PLUGIN_DATA}` for a stable per-plugin data directory that survives skill upgrades (data stored in the skill directory itself may be deleted on upgrade).
-
-```markdown
-## Logging
-
-After each standup post, append an entry to `${CLAUDE_PLUGIN_DATA}/standups.log`.
-Next run, read the log to identify what changed since yesterday.
-```
-
-Options range from simple (append-only text log, JSON file) to advanced (SQLite database).
-
-### On-Demand Hooks
-
-Skills can register hooks that activate only when the skill is called and last for the session. Use this for opinionated guardrails that would be annoying if always-on:
-
-- `/careful` — blocks `rm -rf`, `DROP TABLE`, force-push via PreToolUse matcher. Only want this when touching prod.
-- `/freeze` — blocks Edit/Write outside a specific directory. Useful when debugging: "add logs but don't accidentally 'fix' unrelated code."
+Persistent memory (`${CLAUDE_PLUGIN_DATA}`), on-demand guardrail hooks, distribution
+(repo vs. marketplace), and measuring skill usage live in
+[`references/advanced.md`](references/advanced.md) — read it when a skill needs to
+persist state across runs, register session-scoped hooks, or ship beyond a single repo.
 
 ### Composing Skills
 
@@ -249,24 +237,9 @@ The best skills start as a few lines and a single gotcha, then improve as Claude
 
 When improving: keep the prompt lean (remove what isn't pulling its weight), read transcripts (not just outputs) to spot unproductive loops, and generalize from feedback rather than overfitting to test cases.
 
-## Distribution
-
-Two paths for sharing skills:
-
-| Method | Best For | Tradeoff |
-|--------|----------|----------|
-| **Check into repo** (`.claude/skills/`) | Small teams, few repos | Every skill adds to context scan; doesn't scale |
-| **Plugin marketplace** | Larger orgs, many repos | Users choose what to install; needs curation |
-
-For marketplaces: let skills emerge organically. Sandbox folder → traction → PR to marketplace. Curation before release matters — bad or redundant skills degrade the experience.
-
-## Measuring Skills
-
-Track skill usage with a PreToolUse hook that logs when skills trigger. This reveals:
-- Popular skills (invest in improving them)
-- Under-triggering skills (fix the description)
-- Unused skills (retire or rework them)
+> **Distribution & measurement** (repo vs. marketplace, usage tracking) are covered in
+> [`references/advanced.md`](references/advanced.md).
 
 ---
 
-*Adapted from Anthropic's public [skill-creator](https://github.com/anthropics/skills) (Apache-2.0 — see `LICENSE.txt`). Works in both Claude Code and Codex; where the text says "Claude", read "your agent".*
+*Adapted from Anthropic's public [skill-creator](https://github.com/anthropics/skills) (Apache-2.0 — see `LICENSE.txt`). Claude Code version — Codex users: Codex ships its own first-party skill-creator.*

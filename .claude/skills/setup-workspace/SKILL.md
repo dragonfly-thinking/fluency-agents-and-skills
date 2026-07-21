@@ -1,11 +1,21 @@
 ---
 name: setup-workspace
-description: Sets up the user's agentic workspace — a router file (CLAUDE.md or AGENTS.md) plus context/ and projects/ subfolders. Smart-detects current state: if nothing is set up anywhere, runs the full init interview to create the workspace from scratch. If a workspace already exists, helps scope a new project, refresh the context files, or update guardrails. Use when the user says any of "set me up", "init my workspace", "create my agents.md", "set up claude for me", "add a new project to my setup", "refresh my context files", or similar.
+description: >-
+  Sets up the user's agentic workspace — a router file (CLAUDE.md or AGENTS.md)
+  plus context/ and projects/ subfolders. Smart-detects current state: if nothing
+  is set up anywhere, runs the full init interview to create the workspace from
+  scratch. If a workspace already exists, helps scope a new project, refresh the
+  context files, or update guardrails. Use when the user says any of "set me up",
+  "init my workspace", "create my agents.md", "set up claude for me", "add a new
+  project to my setup", "refresh my context files", or similar.
+version: 1.1.0
 ---
 
 # Setup Workspace
 
 Detect whether the user has an agentic workspace, then route to the right mode.
+
+**Two rules hold across every mode.** First, **this skill writes the files itself** — you have file tools, so use them; never hand the user a code block to paste. Second, **run exactly one mode per invocation** — pick the mode, complete it, stop. Don't chain INIT into ADD-PROJECT into REFRESH in a single run.
 
 ## Step 1 — Detect the user's current state
 
@@ -44,6 +54,8 @@ Based on what you found:
 | Router exists but pieces are missing (`bio.md` / `work.md` absent) | **GAP-FILL** (Mode E) — create just what's missing |
 | Complete workspace, no explicit user direction | **ASK** the user which mode they want |
 | Workspace exists, user named a mode (e.g. "add a project for X") | Run that mode |
+
+Pick one row and run only that mode — the modes are mutually exclusive within a single invocation.
 
 When you need to ASK, use this exact prompt:
 
@@ -111,10 +123,11 @@ A router file is there, but expected pieces are missing. Fill **only the holes**
 - **For project planning** after a project is scoped, suggest the user run `project-planner` (subagent) on the new `overview.md` / `plan.md`.
 - **Never run multiple modes in one invocation.** One mode per session — keep it focused.
 
-## Anti-patterns
+## Gotchas
 
 - **Don't assume the workspace doesn't exist.** Always check first. Overwriting a real workspace is destructive.
 - **Don't batch questions.** One at a time, always — same rule as the init interview.
 - **Don't invent answers.** If you don't have info, ask or leave it blank with a `<TODO: ...>` marker.
 - **Don't move files between scopes silently.** If a file already exists at global scope and the user wants project scope, ask before duplicating or moving.
 - **Don't auto-detect "the user is on Claude vs Codex" by guessing.** If unclear, ask: *"Are you using Claude Code, Claude Desktop / Cowork, or Codex?"*
+- **Don't run two modes in one go.** If you find yourself refreshing context *and* adding a project *and* rebuilding the router in a single invocation, stop — finish one, then let the user re-invoke for the next.

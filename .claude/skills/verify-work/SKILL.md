@@ -2,10 +2,11 @@
 name: verify-work
 description: >-
   Check a finished piece of agent (or human) work against what was actually
-  asked for, using fresh adversarial sub-agents that had no part in producing
-  it. Use after a task completes — "verify this", "check the agent did what I
-  asked", "did this meet the brief?" — before you rely on or send the result.
-version: 1.0.0
+  asked for, using fresh adversarial reviewers (one to three, sized to the work)
+  that had no part in producing it. Use after a task completes — "verify this",
+  "check the agent did what I asked", "did this meet the brief?" — before you
+  rely on or send the result.
+version: 1.1.0
 ---
 
 # Verify Work
@@ -46,7 +47,9 @@ That checklist is the contract the reviewers verify against.
 
 ### Step 2 — Send in the adversarial reviewers
 
-Spin up **one to three fresh sub-agents** depending on the size of the work. Each
+Spin up **one to three fresh sub-agents** depending on the size of the work. If the
+runtime can't spawn sub-agents, run each lens as a separate clean-context pass
+instead — the point is *fresh eyes*, not parallelism. Each reviewer
 gets: the requirements checklist, the finished work (or paths to it), and an
 explicitly adversarial brief:
 
@@ -61,7 +64,7 @@ Useful reviewer lenses when running more than one:
 | Lens | What it hunts for |
 |------|-------------------|
 | **Completeness** | Requirements skipped or half-done; the item quietly dropped from a list of ten |
-| **Correctness** | Claims that don't match the source; numbers, names and quotes that don't check out (delegates well to the **fact-checker** agent) |
+| **Correctness** | Claims that don't match the source; numbers, names and quotes that don't check out (delegates well to the **fact-checker** agent, bundled in this kit under `agents/`) |
 | **Fitness** | It's complete and accurate — but is it actually what was *asked for*? Right format, right audience, right length? |
 
 ### Step 3 — The verdict
@@ -104,8 +107,9 @@ or *needs a redo* — and offer to fix the gaps.
 
 ## Pairs well with
 
-- **critical-friend** — for pressure-testing the *argument* in a piece of work, not
-  just its compliance with the brief
-- **fact-checker** — the correctness lens for factual/statistical claims
+- **critical-friend** (bundled in this kit under `agents/`) — for pressure-testing the
+  *argument* in a piece of work, not just its compliance with the brief
+- **fact-checker** (bundled in this kit under `agents/`) — the correctness lens for
+  factual/statistical claims
 - **new-project** — task files written by `new-project` make ideal requirement
   checklists to verify against

@@ -1,17 +1,17 @@
 ---
 name: new-project
-description: Interviews the user to find and shape their next project, then scaffolds
-  it as a properly-tracked piece of work. Kicks off the interview the moment
-  it's invoked — opening with "what would you like to work on?" — and guides
-  the user from there: offering example project types or scanning the workspace
-  for candidates if they want ideas, then shaping the goal, constraints, and
-  scope. Scaffolds the chosen project — its own folder under projects/ with
-  overview.md, plan.md, and progress.md, plus a one-line entry in the router
-  file (CLAUDE.md / AGENTS.md) — writing files only once the user approves. Use
-  when the user invokes /new-project (with or without any other text), says
-  "start a new project", "set this up as a project", "set up my work on Y
-  properly", or "I don't know what to work on next".
-version: 2.0.0
+description: >-
+  Interviews the user to find and shape their next project, then scaffolds it as a
+  properly-tracked piece of work. Kicks off the interview the moment it's invoked —
+  opening with "what would you like to work on?" — and guides the user from there:
+  offering example project types or scanning the workspace for candidates if they
+  want ideas, then shaping the goal, constraints, and scope. Scaffolds the chosen
+  project — its own folder under projects/ with overview.md, plan.md, and
+  progress.md, plus a one-line entry in the router file (CLAUDE.md / AGENTS.md) —
+  writing files only once the user approves. Use when the user invokes /new-project
+  (with or without any other text), says "start a new project", "set this up as a
+  project", "set up my work on Y properly", or "I don't know what to work on next".
+version: 2.1.0
 ---
 
 # New Project
@@ -25,6 +25,10 @@ nothing yet — and guides them through fleshing out the workspace for it.
 instruction, don't list the workspace contents, don't ask "what would you like me to do?"
 — ask the first interview question. If the invocation already carries an idea
 ("/new-project for my Q3 report"), skip the exploration and go straight to shaping it.
+
+**Where this sits:** `setup-workspace` routes here once a workspace exists and the user wants
+to scope new work. This skill owns *project scaffolding*; it does not create the workspace
+itself — that's `setup-workspace`. Keep the boundary so the two never re-implement each other.
 
 **Don't use it when:**
 - The user just needs a one-off answer or a single file → don't make a project; just do
@@ -77,29 +81,17 @@ Open the conversation here. One warm question:
 Then branch on what comes back:
 
 - **They have an answer** → go to Step 3 and shape it.
-- **They're not sure, or ask what a project could be** → help them find one. Two moves,
-  in this order:
-  1. **Offer the shapes projects usually take** — present these as a clear choice (use
-     the AskUserQuestion tool if available, otherwise a short list):
-     *something to produce* (a report, a deck, a piece of writing), *something to
-     organise* (an event, a trip, a move), *a recurring headache to systematise* (the
-     admin task they redo every month), *something to research or learn*, or *a process
-     to hand to an agent* (a workflow they'd love to stop doing by hand).
-  2. **Offer to look for candidates:** *"Want me to look at what's already in this
-     workspace and suggest two or three projects hiding in it?"* If yes, scan the
-     workspace (recent files, folders, notes, half-started things) and propose 2–3
-     concrete candidates, one line each, with a recommendation.
-- **The idea is genuinely big and foggy** (they can feel it but can't say it) → offer the
-  deeper interview: *"This sounds like it deserves a proper interview —
-  want me to interview you thoroughly first, then set the project up from what we find?"*
-  Hand off, then return here with its spec.
+- **They're not sure, want ideas, or the idea is big and foggy** → don't push straight to
+  scaffolding. Read [`references/finding-a-project.md`](references/finding-a-project.md) and
+  follow it — it covers offering the shapes a project takes, scanning the workspace for
+  candidates, and the off-ramp to a deeper scoping interview.
 
 Don't rush this step, and don't over-stay either — the moment there's a nameable piece of
 work, move on.
 
 ## Step 3 — Shape it, lightly (one question at a time)
 
-This is **not** the deep discovery interview. Ask only what's needed to scaffold well —
+This is **not** a deep scoping interview. Ask only what's needed to scaffold well —
 about three or four questions, **one at a time, never batched.** Batched questions get
 mushy answers, and mushy answers make mushy projects.
 
@@ -205,3 +197,5 @@ after it.
 - **Don't invent answers.** Missing info gets a `<TODO: ...>` marker or a follow-up
   question, never a confident guess.
 - **Don't pre-bloat.** Three populated files beat seven empty ones. The extras are opt-in.
+- **`date` reads the shell's timezone.** If `progress.md`'s first entry looks a day off from
+  the user's local date, that's the shell clock, not a bug — don't hand-correct it.

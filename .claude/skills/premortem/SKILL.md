@@ -3,8 +3,11 @@ name: premortem
 description: >-
   Identify failure modes before committing to a plan. Structured risk analysis
   that surfaces what could go wrong, what's a real threat vs. a paper threat,
-  and what nobody wants to say out loud. Use before you commit, not after.
-version: 1.0.0
+  and what nobody wants to say out loud. Use when the user says "premortem this",
+  "what could go wrong?", "run a risk check", "stress-test this plan", or is
+  about to commit to a big decision, hire, launch, contract, or project kickoff.
+  Run it before the commitment, not after.
+version: 1.1.0
 ---
 
 # Premortem
@@ -13,79 +16,63 @@ version: 1.0.0
 
 A premortem is the cheapest insurance policy in decision-making. Five to ten minutes of structured "what could go wrong" before committing saves weeks of "why did this go wrong" afterwards.
 
-**When to use this skill:**
-- "Premortem on this plan"
-- "Before I commit to this, what could go wrong?"
-- "Run a risk check on this"
-- Before a big decision, hire, launch, contract, or project kickoff
-
-Based on Gary Klein's research and popularised by Shreyas Doshi (Stripe).
+Run the premortem *with* the user — this is a guided conversation, not a report generated at them. Based on Gary Klein's research and popularised by Shreyas Doshi (Stripe).
 
 ---
 
-## The technique
+## The four risk categories
 
-The skill walks you through four risk categories:
+Sort every risk into one of these. The categories are the whole point — they force a conscious decision instead of a vague worry.
 
 | Category | What it is | Why it matters |
 |----------|-----------|----------------|
-| **Tiger** | A clear threat that will bite if you don't address it | These need mitigations *now* |
-| **Paper Tiger** | Looks threatening but is actually fine | Calling these out reduces noise |
+| **Tiger** | A clear threat that will bite if unaddressed | Needs a mitigation *now* |
+| **Paper Tiger** | Looks threatening but is actually fine | Naming it reduces noise |
 | **Elephant** | The thing nobody wants to talk about | Often the real risk |
-| **Accepted Risk** | Real but you've chosen to carry it | Worth naming so it doesn't surprise you |
+| **Accepted Risk** | Real, but consciously chosen to carry | Name it so it doesn't surprise anyone later |
 
-The point isn't paranoia. It's making the implicit explicit, so you decide consciously.
+The point isn't paranoia. It's making the implicit explicit, so the user decides consciously.
 
 ---
 
-## How a session runs
+## How to run a session
 
 ### Step 1 — Set the context
 
-You tell the skill what you're committing to. A plan doc, a decision, a hire, a launch. The skill asks:
+Ask the user what they're committing to (a plan doc, a decision, a hire, a launch), then establish:
 
 - What's the goal?
 - What's the timeline?
 - What's already locked in vs. still negotiable?
 
-### Step 2 — The "3 months later" question
+### Step 2 — Ask the "3 months later" question
 
-The skill asks you to imagine the project has failed. Why? You brainstorm. The skill prompts in five risk areas:
+Have the user imagine the project has already failed, and ask *why*. Prompt across five risk areas so blind spots surface:
 
 - **Technical / capability** — what skills, tools, or resources might fall short?
 - **People** — who needs to do what; what if they can't or won't?
 - **Dependencies** — what's external; what if it slips or breaks?
-- **Assumptions** — what are we taking for granted that might be wrong?
+- **Assumptions** — what's being taken for granted that might be wrong?
 - **The thing nobody wants to say** — what's the elephant?
 
 ### Step 3 — Triage
 
-Each risk gets sorted: Tiger, Paper Tiger, Elephant, or Accepted. The skill challenges you on the easy "accepted" calls — are you really fine with it, or are you ducking?
+Sort each risk into Tiger, Paper Tiger, Elephant, or Accepted. Challenge the easy "accepted" calls — push on whether the user is genuinely fine with the risk or just ducking it.
 
 ### Step 4 — Mitigations
 
-For each Tiger and Elephant:
+For each Tiger and Elephant, work out:
 
 - What would have to be true for this to actually bite?
 - What's the cheapest mitigation that meaningfully reduces the risk?
 - Who owns it?
 - When does it need to be in place by?
 
-Mitigations get added to your plan. Not as a separate doc that gets forgotten — folded into the work.
+Fold the mitigations into the actual plan — not a separate doc that gets forgotten.
 
 ---
 
-## Calibration
-
-The skill is opinionated about two things:
-
-**False positives are real.** "Pattern matching for risks" without checking the actual plan produces noise. The skill insists on evidence — *where* in the plan is the risk, *what mitigation isn't there*, *what would actually fail*.
-
-**Elephants are usually the real risk.** If everyone agrees on the Tigers, the Tigers probably aren't what kills you. The skill spends extra time hunting for what people aren't saying.
-
----
-
-## Examples
+## Example output
 
 ### Premortem on a hire
 
@@ -103,35 +90,37 @@ PAPER TIGERS:
 
 ELEPHANTS:
   · Nobody's said it but the team is sceptical of more headcount.
-    Need to address in the kickoff, not pretend the doubt isn't there.
+    Address in the kickoff, don't pretend the doubt isn't there.
 
 ACCEPTED:
-  · 4 weeks is tight for ramp-up. We're carrying that risk because
+  · 4 weeks is tight for ramp-up. Carrying that risk because
     the launch can't wait.
 ```
 
-### Premortem on a product launch
-
-The skill works through technical readiness, marketing readiness, support readiness, dependencies (vendors, contracts, integrations), and the "what would Shreyas Doshi say is the elephant?" question.
-
-### Premortem on a personal decision
-
-Yes, this works for big personal calls too — a job change, a move, taking on a big commitment. The framework is the same. The elephants are different.
+A product launch works the same way through technical, marketing, and support readiness, plus dependencies (vendors, contracts, integrations). Big personal calls — a job change, a move, a major commitment — use the identical framework; only the elephants differ.
 
 ---
 
-## What it does *not* do
+## What this does *not* do
 
-- Doesn't pretend to predict the future — it surfaces what *could* go wrong, not what will
-- Doesn't make the decision for you
+- Doesn't predict the future — it surfaces what *could* go wrong, not what will
+- Doesn't make the decision for the user
 - Doesn't generate exhaustive lists — quality of risks, not quantity
-- Doesn't replace expertise — if you need domain knowledge to assess a risk properly, the skill says so
+- Doesn't replace domain expertise — if assessing a risk properly needs knowledge nobody in the room has, say so
+
+---
+
+## Gotchas
+
+- **No pattern-matched risks.** A generic "the timeline might slip" is noise. Every risk must point at *where* in the plan it lives, *what* mitigation is missing, and *what* would actually fail. If you can't ground it in the specific plan, drop it.
+- **Elephants are usually the real risk.** If everyone agrees on the Tigers, the Tigers probably aren't what kills the project. Spend the extra minute hunting for what people aren't saying — that's where the value is.
+- **Don't let "Accepted" become a dumping ground.** It's easy to mark a scary risk "accepted" to avoid dealing with it. Pressure-test each one: is this a conscious choice with a reason, or an evasion?
+- **Five good risks beat twenty shallow ones.** Resist the urge to pad the list.
 
 ---
 
 ## Pairs well with
 
-- **Discovery Interview** — run the interview first to make the plan, then premortem on it
-- **Research Brief** — when premortem surfaces "we don't actually know X", brief it
-- **Weekly Review** — slipping patterns often reveal Tigers your premortem missed
-- **Project Planner subagent** — fold mitigations into the actual plan, don't keep them in a separate doc
+- **Research Brief** — when the premortem surfaces "we don't actually know X", brief it before deciding
+- **Project Planner** (subagent) — fold the mitigations into the real plan, don't keep them in a separate doc
+- **Critical Friend** (subagent) — hand it the plan to pressure-test the assumptions the premortem exposed

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Document</title>
+<style>
+  /* Page geometry. A4 by default; swap to `letter` if the doc is US-bound. */
+  @page {
+    size: A4;
+    margin: 22mm 20mm 20mm 20mm;
+    /* Branded footer page number. Headless Chrome renders margin boxes
+       inconsistently — verify the number appears, or drop --no-pdf-header-footer
+       and let Chrome print its own footer instead. */
+    @bottom-center {
+      content: counter(page);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+
+  :root {
+    /* Swap these three for the brand's tokens when a tools.md brand spec exists. */
+    --ink: #1a1a1a;
+    --accent: #0563FA;
+    --muted: #666;
+  }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+    color: var(--ink);
+    page-break-after: avoid;
+  }
+  h1 { font-size: 22pt; margin: 0 0 0.4em; }
+  h2 { font-size: 16pt; margin: 1.4em 0 0.4em; border-bottom: 1px solid #ddd; padding-bottom: 0.2em; }
+  h3 { font-size: 13pt; margin: 1.2em 0 0.3em; }
+
+  p, ul, ol { margin: 0 0 0.8em; }
+  li { margin: 0.2em 0; }
+
+  a { color: var(--accent); text-decoration: none; }
+
+  code, pre {
+    font-family: "SF Mono", "Consolas", monospace;
+    font-size: 9.5pt;
+  }
+  pre {
+    background: #f5f5f5;
+    padding: 0.8em 1em;
+    border-radius: 4px;
+    overflow-x: auto;
+    page-break-inside: avoid;
+  }
+
+  img { max-width: 100%; }
+
+  table { border-collapse: collapse; width: 100%; margin: 0 0 1em; page-break-inside: avoid; }
+  th, td { border: 1px solid #ddd; padding: 0.4em 0.6em; text-align: left; }
+  th { background: #f0f4ff; }
+
+  blockquote {
+    margin: 0 0 1em;
+    padding-left: 1em;
+    border-left: 3px solid var(--accent);
+    color: var(--muted);
+  }
+
+  /* Optional cover page — keep or delete the .cover block below. */
+  .cover { text-align: center; padding-top: 30vh; page-break-after: always; }
+  .cover h1 { font-size: 30pt; border: none; }
+  .cover .subtitle { font-size: 13pt; color: var(--muted); }
+</style>
+</head>
+<body>
+<!-- CONTENT -->
+</body>
+</html>

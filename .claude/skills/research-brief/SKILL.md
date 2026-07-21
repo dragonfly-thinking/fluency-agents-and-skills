@@ -1,93 +1,89 @@
 ---
 name: research-brief
 description: >-
-  Structured brief on a topic. Orchestrates web search, source assessment, and
-  synthesis. The "now synthesise it" follow-up to a raw Web Searcher run. Use
-  when you want a real briefing, not just a list of links.
-version: 1.0.0
+  Turns a topic or question into a synthesised, structured, cited brief — not a
+  list of links. Orchestrates the web-searcher subagent, tiers each source by
+  credibility, then writes the brief itself. Use for "brief me on X", "research X
+  and give me the picture", "what do I need to know about [company / market /
+  person] before my call", or "synthesise these sources for me". NOT for a raw
+  link dump (delegate to web-searcher directly) or checking one specific claim
+  (use critical-review).
+version: 1.1.0
 ---
 
 # Research Brief
 
-Turn a topic or question into a brief you can actually use. Not "here are 10 links" — a synthesised, structured read.
+Turn a topic or question into a brief the user can act on: a synthesised, structured, cited
+read — not "here are 10 links". The searching is delegated; the **synthesis is yours**.
 
-**When to use this skill:**
-- "Brief me on [topic]"
-- "Research X and give me the picture"
-- "What do I need to know about [company / market / person]?"
-- "Synthesise these sources for me"
+## How to invoke
 
----
+Run three stages. Don't jump straight to searching — the plan step is what saves wasted briefs.
 
-## What you get
-
-A structured brief, typically 1-2 pages, with:
-
-1. **The question** — restated in plain terms so we're aligned
-2. **Bottom line** — the answer in three sentences if you only read the top
-3. **Key findings** — 4-7 points with evidence
-4. **What's contested** — where sources disagree, and why
-5. **What's missing** — what wasn't findable, what would need primary research
-6. **Sources** — every claim tied to a citation
-
-Designed to read top-down: stop after the bottom line if that's all you need.
-
----
-
-## How it works
-
-Three stages:
-
-1. **Plan** — the skill asks one or two clarifying questions ("how deep?", "any sources to anchor on?"), then sketches what it'll search for. You approve before it runs.
-2. **Search** — delegates to **Web Searcher** for multiple parallel queries, then evaluates each source for credibility (publication, date, primary vs secondary).
-3. **Synthesise** — the skill itself does the writing. It doesn't paste in summaries — it weighs sources, finds the tensions, and writes a coherent brief.
-
-Total time: 3-8 minutes for a real topic. Faster than you doing it yourself; slower than asking ChatGPT a vague question and getting a shallow answer.
-
----
-
-## When it asks clarifying questions
-
-The skill won't just dive in if the question is ambiguous. Common asks before it starts:
+**Stage 1 — Plan (ask, then get a nod).** If the question is ambiguous, ask one or two
+clarifying questions before searching — scope, depth, source type. Common asks:
 
 - "When you say 'AI safety regulation' — global, US, or EU specifically?"
-- "Do you want academic literature or industry/press sources?"
+- "Academic literature, or industry/press sources?"
 - "Is this for a decision you're about to make, or background reading?"
 
-This matters because "research on X" can mean six different things. Two questions up front saves you a wasted brief.
+Then sketch the handful of queries you'll run and get the user's nod before spending the time.
 
----
+**Stage 2 — Search (delegate).** Delegate gathering to the **web-searcher** subagent (Task
+tool) — hand it the planned queries; it can run several in parallel. For every source it
+returns, tag a credibility tier:
 
-## Source discipline
+- **Primary** — original studies, official documents, on-record statements.
+- **Reputable secondary** — established journalism, peer-reviewed reviews, analyst reports.
+- **Weaker** — blog posts, opinion pieces, AI-generated summaries.
 
-The skill flags sources by tier:
+If a strand comes back thin, send web-searcher back for deeper or different sources rather than
+synthesising from weak material.
 
-- **Primary** — original studies, official documents, on-record statements
-- **Reputable secondary** — established journalism, peer-reviewed reviews, analyst reports
-- **Weaker** — blog posts, opinion pieces, AI-generated summaries
+**Stage 3 — Synthesise (yours, not the subagent's).** Do **not** paste web-searcher's
+summaries. Weigh the sources against each other, surface where they disagree, and write the
+brief in the structure below. Every claim carries a citation.
 
-A brief that's mostly tier-3 sources gets flagged at the top. You decide whether to send the skill back for better sources or accept what's available.
+## Output
 
----
+Write the brief with these exact sections, top-down so the user can stop after the bottom line:
 
-## Examples
+```
+## The question
+[restated in plain terms so you're aligned]
 
-### "Brief me on Australia's critical minerals strategy"
+## Bottom line
+[the answer in <=3 sentences]
 
-The skill asks: "Recent (last 12 months) or historical context too?" You say recent. Off it goes — 4 minutes later you have a brief with the 2023 update, key minerals on the list, partnerships with Japan/US/EU, and the unresolved tensions around lithium processing.
+## Key findings
+[4-7 points, each with its evidence and citation]
 
-### "What's the deal with this company before my call?"
+## What's contested
+[where sources disagree, and why]
 
-Faster mode: company name + LinkedIn → one-page brief on what they do, recent news, who's investing, where the friction is. A fast way to prep before a call.
+## What's missing
+[what wasn't findable; what would need primary research]
 
-### "Just give me the sources, I'll read them"
+## Sources
+[every source, with its credibility tier]
+```
 
-You can ask for the sources-only mode. Skips the synthesis step. Returns a curated, ranked list with one-line annotations.
+**Hard rule:** if the brief rests mostly on *weaker* (tier-3) sources, say so in one line at
+the very top, above the bottom line — before anything else. The user decides whether to send
+you back for better sources or accept what's available. Never bury a thin evidence base.
 
----
+## Gotchas
+
+- **Don't paste the subagent's output.** web-searcher gathers and cites; the synthesis — the
+  weighing, the tensions, the structure — is this skill's whole job. A brief that's just
+  pasted search results has failed.
+- **Cite every claim.** An uncited assertion in a brief is indistinguishable from a guess.
+- **Flag a thin evidence base at the top, not in a footnote.** The tier-3 warning is
+  load-bearing; it changes whether the user trusts the brief.
+- **Sources-only mode is a different ask.** If the user just wants ranked links with one-line
+  annotations, skip Stage 3 and return web-searcher's list — don't force a full synthesis.
 
 ## Pairs well with
 
-- **Daily Brief** — the "worth knowing" item often becomes a Research Brief
-- **Visual Explainer** — turn the brief into a one-page explainer for someone else
-- **Web Searcher subagent** — the specialist this skill leans on to gather and cite sources
+- **web-searcher subagent** — the specialist this skill leans on to gather and cite sources.
+- **visual-explainer** — turn the finished brief into a one-page explainer for someone else.

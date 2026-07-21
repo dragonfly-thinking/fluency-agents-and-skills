@@ -1,16 +1,17 @@
 ---
 name: slides
 description: >-
-  Create stunning HTML slide presentations. Two modes - `/slides new` discovers
-  your brand through visual previews and saves it, `/slides` reuses a saved
-  brand for fast generation. Use when you need a presentation, pitch deck, or
-  slide deck.
-version: 1.0.0
+  Create a stunning HTML slide presentation. Two modes — `/slides new` discovers
+  the user's brand through visual previews and saves it, `/slides` reuses a saved
+  brand for fast generation. Use when the user needs a presentation, pitch deck, or
+  slide deck they page through. For a single scrollable explanatory page use Visual
+  Explainer; for a print-ready PDF document use PDF Create.
+version: 1.1.0
 ---
 
 # Slides
 
-Create beautiful, animation-rich slide presentations as single HTML files. No PowerPoint needed — just open in any browser.
+Create a beautiful, animation-rich slide presentation as a single HTML file. No PowerPoint needed — it opens in any browser.
 
 **When to use this skill:**
 - "Create a presentation about..."
@@ -20,42 +21,40 @@ Create beautiful, animation-rich slide presentations as single HTML files. No Po
 
 ---
 
-## Two Modes
+## Two modes
 
-### `/slides new` — Brand Discovery
+### `/slides new` — brand discovery
 
-For your **first presentation** or when you want a **new visual style**.
+Use for the user's **first presentation**, or when they want a **new visual style**. Walk them through:
 
-I'll guide you through:
-1. **What's it for?** — Purpose, audience, how many slides
-2. **What mood?** — Professional? Bold? Minimal? Warm?
-3. **Pick a style** — I'll show you 3 visual previews, you choose
-4. **Save your brand** — So next time is instant
-5. **Generate** — Your full deck, ready to present
+1. **What's it for?** — purpose, audience, roughly how many slides
+2. **What mood?** — professional, bold, minimal, warm?
+3. **Pick a style** — show three visual previews and let the user choose
+4. **Save the brand** — persist the chosen style so next time is instant (see *Saving a brand* below)
+5. **Generate** — the full deck, ready to present
 
-### `/slides` — From Saved Brand
+### `/slides` — from a saved brand
 
-For **repeat presentations** using a style you've already established.
+Use for **repeat presentations** in an already-established style:
 
-I'll:
-1. List your saved brands (e.g., "Company Pitch", "Team Updates")
-2. You pick one (or I'll suggest based on context)
-3. You give me the content
-4. I generate the deck in your established style
+1. Read the saved brands from `config.json` and list them (e.g. "Company Pitch", "Team Updates")
+2. Let the user pick one, or suggest one based on context
+3. Take the content
+4. Generate the deck in that established style
 
-**First time with no saved brands?** I'll automatically start brand discovery.
+If no saved brands exist yet, start brand discovery automatically.
 
 ---
 
-## What You Get
+## What you produce
 
 A single `.html` file that:
-- **Works anywhere** — Open in Chrome, Safari, Firefox, Edge
-- **Looks professional** — Custom typography, smooth animations, polished design
-- **Needs no internet** — Everything is self-contained (except fonts)
-- **Is easy to share** — Email the file, upload to Drive, or publish with Here.now
+- **Works anywhere** — Chrome, Safari, Firefox, Edge
+- **Looks professional** — custom typography, smooth animations, polished design
+- **Needs no internet** — self-contained except fonts (see Gotchas)
+- **Is easy to share** — email the file, upload to Drive, or publish with Here.now
 
-### Navigation
+### Navigation to build in
 
 | Key | Action |
 |-----|--------|
@@ -68,13 +67,13 @@ A single `.html` file that:
 
 ---
 
-## Slide Types
+## Slide types
 
-I'll use the right type for each piece of content:
+Use the right type for each piece of content:
 
-| Type | Best For |
+| Type | Best for |
 |------|----------|
-| **Title** | Opening slide, your headline |
+| **Title** | Opening slide, the headline |
 | **Section Divider** | Breaking into new topics |
 | **Content** | Bullet points, key messages |
 | **Split** | Before/after, comparisons, two perspectives |
@@ -86,85 +85,58 @@ I'll use the right type for each piece of content:
 
 ---
 
-## Tips for Best Results
+## Saving a brand
 
-### Tell me about the presentation
+After `/slides new`, persist the chosen style so the user can reuse it. Save to `config.json` in this skill directory, keyed by brand name:
 
-- **Who's the audience?** Investors? Team? Clients? Board?
-- **What's the goal?** Inform? Persuade? Update? Celebrate?
-- **How long?** Quick 5-slider or comprehensive 25-slide deep-dive?
+```json
+{
+  "brands": {
+    "Company Pitch": {
+      "colors":     { "primary": "#0E2233", "accent": "#C06B4A", "background": "#FBFAF7" },
+      "typography": { "headings": "Big Shoulders", "body": "Instrument Sans" },
+      "animation":  "subtle-fade",
+      "layout":     "generous-whitespace"
+    }
+  }
+}
+```
 
-### Give me the content
+On `/slides`, read this file, list `brands` by key, and generate in the selected brand's system. When the user says "make slides using my Company Pitch style" or "in the Team Updates brand", match the key. Add a new top-level key each time discovery runs; never overwrite an existing brand unless the user asks.
 
-You can provide:
-- Bullet points or rough notes
-- A document to convert
-- A PowerPoint file to redesign (I'll extract and rebuild beautifully)
-- Just a topic (I'll help structure it)
+---
 
-### Be specific about constraints
+## Tips to pull from the user
 
-- "Keep it under 10 slides"
-- "We always use blue and white"
-- "This is for a big screen, not laptops"
-- "Include our logo" (provide the image)
+- **Audience?** Investors, team, clients, board?
+- **Goal?** Inform, persuade, update, celebrate?
+- **Length?** A quick 5-slider or a 25-slide deep-dive?
+- **Content?** Bullet points, a document to convert, a `.pptx` to redesign (extract and rebuild), or just a topic (help structure it).
+- **Constraints?** "Under 10 slides", "we always use blue and white", "this is for a big screen", "include our logo" (get the image).
 
 ---
 
 ## Examples
 
-### "Create a pitch deck for my startup"
-
-I'll ask about your company, audience (investors?), key points to cover, then generate a compelling narrative arc:
-- Hook → Problem → Solution → Market → Traction → Team → Ask
-
-### "Turn these meeting notes into slides"
-
-Paste your notes. I'll extract the key points and structure them into:
-- Context → Decisions → Action Items → Next Steps
-
-### "Make a quarterly review presentation"
-
-Tell me the metrics, highlights, and challenges. I'll create:
-- Executive Summary → KPIs Dashboard → Highlights → Challenges → Next Quarter
-
-### "I have a PowerPoint but it's ugly"
-
-Send me the `.pptx` file. I'll extract the content and rebuild it with professional design, smooth animations, and consistent styling.
+- **"Create a pitch deck for my startup"** → ask about company, audience, key points, then build a narrative arc: Hook → Problem → Solution → Market → Traction → Team → Ask.
+- **"Turn these meeting notes into slides"** → extract and structure: Context → Decisions → Action Items → Next Steps.
+- **"Make a quarterly review"** → Executive Summary → KPIs Dashboard → Highlights → Challenges → Next Quarter.
+- **"I have a PowerPoint but it's ugly"** → extract the content from the `.pptx` and rebuild it with professional design and consistent styling.
 
 ---
 
-## Saving Your Brand
+## Gotchas
 
-After `/slides new`, I save your chosen style. Next time you can just say:
-
-- "Make slides using my Company Pitch style"
-- "Create a deck in the Team Updates brand"
-
-Your brand includes:
-- Colors (primary, accent, background)
-- Typography (headings, body text)
-- Animation style
-- Layout preferences
+- **Fonts are the one external dependency.** Everything else must be inline and self-contained. If the deck may be shown offline, embed the fonts as `@font-face` data URIs or fall back to a system font stack — a deck that loads its fonts from a CDN will render in Times New Roman on a plane.
+- **Persist the brand, don't just claim to.** The two-mode value depends on `config.json` actually being written on `/slides new` and read on `/slides`. If you skip the write, "reuse my brand" silently does nothing.
+- **Commit to the brand's system.** Pulling in off-brand colours or a second heading font on a saved-brand deck defeats the point. Read the brand's `colors`/`typography` and stay inside them.
+- **Right tool check.** A single scrollable page is Visual Explainer's job, and a print-ready document is PDF Create's — only build a paged deck here.
+- **Don't over-animate.** Animation should support the content, not distract from it. One considered transition style beats a different effect on every slide.
 
 ---
 
-## Sharing Your Slides
+## Pairs well with
 
-**Open locally**: Double-click the `.html` file
-
-**Present**: Open in browser → Press F for fullscreen
-
-**Share via email**: Attach the `.html` file (it's self-contained)
-
-**Publish online**: Use the **Here.now** skill to get a shareable URL instantly
-
-**Print**: Open in browser → Ctrl/Cmd+P (each slide becomes a page)
-
----
-
-## Pairs Well With
-
-- **Here.now** — Publish your slides to a shareable URL
-- **Visual Explainer** — For single-page explanations instead of presentations
-- **PDF Create** — Convert to PDF for formal distribution
+- **Here.now** — publish the slides to a shareable URL
+- **Visual Explainer** — for a single-page explanation instead of a presentation
+- **PDF Create** — convert the deck to PDF for formal distribution

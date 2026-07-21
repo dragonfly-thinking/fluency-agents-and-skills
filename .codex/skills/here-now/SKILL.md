@@ -1,5 +1,6 @@
 ---
 name: here-now
+version: 1.16.0
 description: >
   here.now lets agents publish websites and store private files in cloud
   Drives. Use Sites to publish HTML, documents, images, PDFs, videos, and
@@ -15,7 +16,7 @@ description: >
 
 # here.now
 
-**Skill version: 1.15.5**
+**Skill version: 1.16.0**
 
 here.now lets agents publish websites and store private files in cloud Drives.
 
@@ -124,72 +125,15 @@ Pass `--client` so here.now can track reliability by agent:
 This sends `X-HereNow-Client: cursor/publish-sh` on publish API calls.
 If omitted, the script sends a fallback value.
 
-## API key storage
+## Signing in, credentials & state
 
-The publish script reads the API key from these sources (first match wins):
+Anonymous sites (no API key) expire in 24 hours; a saved API key makes sites permanent.
+For the full sign-in flow (one-time email code), where the script reads the API key
+from, and the `.herenow/state.json` schema, see **[`references/api.md`](references/api.md)**.
 
-1. `--api-key {key}` flag (CI/scripting only — avoid in interactive use)
-2. `$HERENOW_API_KEY` environment variable
-3. `~/.herenow/credentials` file (recommended for agents)
-
-To store a key, write it to the credentials file:
-
-```bash
-mkdir -p ~/.herenow && echo "{API_KEY}" > ~/.herenow/credentials && chmod 600 ~/.herenow/credentials
-```
-
-**IMPORTANT**: After receiving an API key, save it immediately — run the command above yourself. Do not ask the user to run it manually. Avoid passing the key via CLI flags (e.g. `--api-key`) in interactive sessions; the credentials file is the preferred storage method.
-
-Never commit credentials or local state files (`~/.herenow/credentials`, `.herenow/state.json`) to source control.
-
-## Getting an API key
-
-To upgrade from anonymous (24h) to permanent sites:
-
-1. Ask the user for their email address.
-2. Request a one-time sign-in code:
-
-```bash
-curl -sS https://here.now/api/auth/agent/request-code \
-  -H "content-type: application/json" \
-  -d '{"email": "user@example.com"}'
-```
-
-3. Tell the user: "Check your inbox for a sign-in code from here.now and paste it here."
-4. Verify the code and get the API key:
-
-```bash
-curl -sS https://here.now/api/auth/agent/verify-code \
-  -H "content-type: application/json" \
-  -d '{"email":"user@example.com","code":"ABCD-2345"}'
-```
-
-5. Save the returned `apiKey` yourself (do not ask the user to do this):
-
-```bash
-mkdir -p ~/.herenow && echo "{API_KEY}" > ~/.herenow/credentials && chmod 600 ~/.herenow/credentials
-```
-
-## State file
-
-After every site create/update, the script writes to `.herenow/state.json` in the working directory:
-
-```json
-{
-  "publishes": {
-    "bright-canvas-a7k2": {
-      "siteUrl": "https://bright-canvas-a7k2.here.now/",
-      "claimToken": "abc123",
-      "claimUrl": "https://here.now/claim?slug=bright-canvas-a7k2&token=abc123",
-      "expiresAt": "2026-02-18T01:00:00.000Z"
-    }
-  }
-}
-```
-
-Before creating or updating sites, you may check this file to find prior slugs.
-Treat `.herenow/state.json` as internal cache only.
-Never present this local file path as a URL, and never use it as source of truth for auth mode, expiry, or claim URL.
+The one thing to internalise now: after you obtain an API key, save it yourself with
+`mkdir -p ~/.herenow && echo "{API_KEY}" > ~/.herenow/credentials && chmod 600 ~/.herenow/credentials`
+— never ask the user to run that, and never pass the key via `--api-key` interactively.
 
 ## What to tell the user
 
@@ -207,20 +151,19 @@ For Drives:
 - Tell the user Drive contents are private unless shared with a scoped token.
 - When sharing access with another agent, prefer a scoped token with a narrow `pathPrefix` and short TTL.
 
+## Gotchas
+
+- **Finalize is what makes a site live.** Publishing is create/update → upload → finalize; a site is not live until finalize succeeds. Don't report a URL as live until the script confirms it.
+- **Claim tokens are shown once.** For anonymous sites, the claim URL is returned a single time and cannot be recovered. Surface it to the user immediately so they can keep the site.
+- **`state.json` is a cache, not truth.** Never present the local `.herenow/state.json` path as a URL, and never read auth mode / expiry / claim URL from it — use the `publish_result.*` lines from the current run.
+- **Never commit secrets.** Keep `~/.herenow/credentials` and `.herenow/state.json` out of source control.
+- **Drives are private.** Don't describe Drive files as public URLs; share access only via a scoped token with a narrow `pathPrefix` and short TTL.
+- **Live API wins over docs.** If the fetched docs and observed API behaviour disagree, trust the API.
+
 ## publish.sh options
 
-| Flag                   | Description                                  |
-| ---------------------- | -------------------------------------------- |
-| `--slug {slug}`        | Update an existing site instead of creating |
-| `--claim-token {token}`| Override claim token for anonymous updates    |
-| `--title {text}`       | Viewer title (non-HTML sites)             |
-| `--description {text}` | Viewer description                            |
-| `--ttl {seconds}`      | Set expiry (authenticated only)               |
-| `--client {name}`      | Agent name for attribution (e.g. `cursor`)    |
-| `--base-url {url}`     | API base URL (default: `https://here.now`)    |
-| `--allow-nonherenow-base-url` | Allow sending auth to non-default `--base-url` |
-| `--api-key {key}`      | API key override (prefer credentials file)    |
-| `--spa`                | Enable SPA routing (serve index.html for unknown paths) |
+For the full flag list (`--slug`, `--ttl`, `--client`, `--spa`, and the rest), see
+**[`references/api.md`](references/api.md)**.
 
 ## Beyond publish.sh
 

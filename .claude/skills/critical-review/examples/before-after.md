@@ -40,7 +40,7 @@ A short worked example so you can see the shape of what the skill returns.
 >   **Why unverifiable:** Sweeping comparative claim with no single authoritative source to check against. Web search surfaces mixed assessments — Germany's Kurzarbeit is widely cited as effective (OECD), but US Paycheck Protection and Spain's ERTE produced more contested outcomes. "Every developed economy" is not supportable.
 >   **Suggestion:** Replace with named programmes and named outcomes (e.g. "Germany's Kurzarbeit reduced unemployment volatility during 2008–2010 per OECD analysis; outcomes elsewhere have been more mixed").
 
-## Synthesised summary the skill produced
+## Summary (the synthesised block the skill produces)
 
 > - **Strongest pushback:** "Every developed economy" is unsupportable — the evidence is mixed across countries. Narrow the claim.
 > - **Most significant factual issue:** The unemployment figure is wrong — 5.1% claimed; actual is 4.2% per ABS (March 2026).

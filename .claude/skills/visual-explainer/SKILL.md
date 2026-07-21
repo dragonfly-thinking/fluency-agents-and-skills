@@ -1,16 +1,18 @@
 ---
 name: visual-explainer
 description: >-
-  Generate beautiful, self-contained HTML pages that visually explain ideas,
-  processes, comparisons, and data. Use when the user wants to explain something
-  visually, create a comparison, build a timeline, or turn dense information
-  into something scannable and shareable.
-version: 1.0.0
+  Generate a beautiful, self-contained HTML page that visually explains an idea,
+  process, comparison, timeline, or dataset. Use when the user wants to explain
+  something visually, create a comparison, build a timeline, or turn dense
+  information into something scannable and shareable. Produces a single scrollable
+  HTML page — for a multi-slide deck use the Slides skill; for a print-ready PDF
+  document use PDF Create; for a static PNG/PDF art object use Canvas Design.
+version: 1.1.0
 ---
 
 # Visual Explainer
 
-Generate self-contained HTML files that turn ideas, processes, and information into visual pages. The output is a single `.html` file you can open in any browser, share via email, or publish online.
+Generate a self-contained HTML file that turns an idea, process, or dataset into a visual page. The output is a single `.html` file the user can open in any browser, email, or publish.
 
 **When to use this skill:**
 - "Explain this process visually"
@@ -20,133 +22,85 @@ Generate self-contained HTML files that turn ideas, processes, and information i
 - "Visualize this data as a table"
 - "Help me explain this concept to my team"
 
-## What You Can Create
+## What you can create
 
-### Process Flows
-Visualize how things move through stages — approval workflows, sales funnels, onboarding journeys, decision trees.
-
-### Comparisons
-Side-by-side analysis of options — vendor comparisons, pros/cons, approach options, tool evaluations.
-
-### Data Tables
-Structured information that's easy to scan — feature matrices, checklists, audit results, requirement tracking.
-
-### Timelines & Roadmaps
-Show progression over time — project phases, historical events, planning horizons, milestones.
-
-### Concept Explanations
-Break down ideas into digestible pieces — org structures, frameworks, mental models, how-things-work.
-
-### One-Pagers
-Condense complex information into a single visual page — executive summaries, project overviews, proposals.
+- **Process flows** — approval workflows, sales funnels, onboarding journeys, decision trees
+- **Comparisons** — vendor evaluations, pros/cons, approach options, side-by-side analysis
+- **Data tables** — feature matrices, checklists, audit results, requirement tracking
+- **Timelines & roadmaps** — project phases, historical events, planning horizons, milestones
+- **Concept explanations** — org structures, frameworks, mental models, how-things-work
+- **One-pagers** — executive summaries, project overviews, proposals
 
 ---
 
-## How It Works
+## How to build one
 
-### 1. Tell me what you want to explain
+### 1. Get the inputs
 
-Be specific about:
-- **The content**: What information needs to be visualized?
-- **The audience**: Who will see this? (team, executives, clients, general public)
-- **The purpose**: Inform? Persuade? Compare? Explain?
+Before writing anything, pin down three things (ask if the user hasn't said):
 
-### 2. I'll create a visual page
+- **Content** — what information needs to be visualized? Get the raw notes/data.
+- **Audience** — team, executives, clients, general public? A page for a CEO looks different from one for new hires.
+- **Purpose** — inform, persuade, compare, or explain?
 
-The output is a single HTML file with:
-- Clean, professional styling
-- Interactive diagrams where appropriate
-- Responsive design (works on desktop and mobile)
-- Dark/light mode support
-- No external dependencies — works offline
+### 2. Pick a style and commit to it
 
-### 3. Open and share
-
-- **View**: Double-click the file or drag it into your browser
-- **Share**: Email the file, upload to shared drives, or use the Here.now skill to publish online
-- **Edit**: It's just HTML — you can tweak text in any code editor
-
----
-
-## Visual Styles
-
-Each page uses a carefully chosen aesthetic. I'll pick one that fits your content, or you can request a specific style:
+Choose the style that fits the content, or use the one the user requests. **Read `references/styles.md`** for the concrete palette, type, spacing, and detailing of each — and for the anti-AI-tells checklist that keeps the output from looking generated. Don't half-apply a style; commit to its whole system.
 
 | Style | Best for | Feel |
 |-------|----------|------|
 | **Editorial** | Reports, proposals, thought pieces | Refined, generous whitespace, serif headings |
-| **Blueprint** | Processes, technical flows, systems | Precise, technical drawing feel, monospace labels |
+| **Blueprint** | Processes, technical flows, systems | Precise, technical-drawing feel, monospace labels |
 | **Paper/Ink** | Friendly explanations, informal content | Warm, approachable, cream backgrounds |
-| **Clean** | Data tables, comparisons, matrices | Minimal, focused on content |
+| **Clean** | Data tables, comparisons, matrices | Minimal, content-forward |
 | **Dashboard** | Metrics, KPIs, status overviews | Data-dense, cards and numbers |
+
+### 3. Generate the page
+
+Produce a single HTML file:
+- Styled per the chosen style's system (palette, type scale, spacing scale from `references/styles.md`)
+- Interactive diagrams where they genuinely help
+- Responsive — works on desktop and mobile
+- Dark/light mode via `prefers-color-scheme`
+- **Fully self-contained** — inline all CSS, embed images as data URIs, no external dependencies. It must work offline.
+
+### 4. Save and hand off
+
+Save to the user's workspace and tell them the exact path. They can open it (double-click / drag into a browser), share it (email the file, or use the Here.now skill to publish), or edit the HTML directly.
 
 ---
 
 ## Examples
 
-### "Explain our hiring process"
-
-Creates a flowchart showing:
-- Application received → Screening → Phone interview → On-site → Offer → Onboarding
-- With decision points, typical timelines, and who's responsible at each stage
-
-### "Compare these three vendors"
-
-Creates a comparison table with:
-- Feature matrix across all three options
-- Pricing comparison
-- Pros/cons for each
-- Recommendation summary
-
-### "Visualize our Q2 roadmap"
-
-Creates a timeline showing:
-- Monthly milestones
-- Key deliverables
-- Dependencies between workstreams
-- Current status indicators
-
-### "Turn this meeting notes into a visual summary"
-
-Creates a one-pager with:
-- Key decisions (highlighted)
-- Action items (with owners)
-- Discussion points (summarized)
-- Next steps
-
-### "Explain how our sales funnel works"
-
-Creates a funnel diagram showing:
-- Stages (Awareness → Interest → Consideration → Purchase → Loyalty)
-- Conversion rates between stages
-- Key activities at each stage
-- Metrics to track
+- **"Explain our hiring process"** → a flowchart: Application → Screening → Phone → On-site → Offer → Onboarding, with decision points, typical timelines, and owners at each stage.
+- **"Compare these three vendors"** → a feature matrix, pricing row, pros/cons per option, and a recommendation summary.
+- **"Visualize our Q2 roadmap"** → a timeline with monthly milestones, key deliverables, cross-workstream dependencies, and status indicators.
+- **"Turn these meeting notes into a visual summary"** → a one-pager: decisions highlighted, action items with owners, discussion points summarised, next steps.
 
 ---
 
-## Tips for Best Results
+## Tips to pass on to the user
 
-**Be specific about what to include.** "Visualize our product" is vague. "Show the three pricing tiers with features and target customer for each" gives me what I need.
-
-**Tell me who's looking.** An explanation for your CEO looks different from one for new team members.
-
-**Mention if it needs to fit a format.** "Make it work as a single page I can print" or "This will be shown on a big screen in a meeting."
-
-**Provide the raw information.** Paste your notes, bullet points, or rough data. I'll structure and visualize it.
+- **Be specific about what to include.** "Show the three pricing tiers with features and target customer for each" beats "visualize our product".
+- **Say who's looking.** The audience changes the design.
+- **Flag format constraints.** "Make it print as a single page" or "this is for a big screen in a meeting."
+- **Provide the raw information.** Notes, bullets, or rough data — structure and visualize from there.
 
 ---
 
-## Output Location
+## Gotchas
 
-Files are saved to your workspace. I'll tell you the exact path so you can find and share the file.
-
-Typical: `~/Documents/visuals/[descriptive-name].html`
+- **Self-contained or it breaks.** Inline every stylesheet, embed images as data URIs, and use system font stacks (or `@font-face` with embedded data). A `<link>` to a CDN or Google Font makes the file fail the moment it's opened offline or emailed.
+- **Always include `<meta charset="utf-8">`.** Without it, em-dashes, curly quotes, and arrows render as mojibake — a common and ugly failure.
+- **The default look is the enemy.** All-blue palettes, oatmeal beige, and title-then-italic-subtitle are the tells that scream "AI made this". `references/styles.md` has the full avoid-list — apply it.
+- **One accent, from a real scale.** Pulling arbitrary hex values and three competing accents is what makes a page look loose. Commit to one style's palette and its type/spacing scales.
+- **Match density to audience.** An exec one-pager and a team explainer are not the same page — don't ship a wall of text as a "visual" explainer.
 
 ---
 
-## Pairs Well With
+## Pairs well with
 
-- **Here.now** — Publish your visual to a shareable URL instantly
-- **Slides** — When you need a presentation instead of a single page
-- **PDF Create** — Convert the HTML to a PDF for formal sharing
-- **Research Brief** — Get the information first, then visualize it
+- **Here.now** — publish the visual to a shareable URL instantly
+- **Slides** — when the user needs a multi-slide presentation instead of a single page
+- **PDF Create** — convert the HTML to a print-ready PDF for formal sharing
+- **Research Brief** — get the information first, then visualize it

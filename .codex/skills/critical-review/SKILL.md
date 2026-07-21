@@ -1,6 +1,15 @@
 ---
 name: critical-review
-description: Stress-tests a draft argument or position by spawning two subagents in parallel — one that challenges the thinking (the critical-friend brief) and one that verifies statistical and factual claims via web search against authoritative sources (the fact-checker brief). Use when the user is about to commit to an argument, publish a policy memo, send a briefing note, or otherwise wants their reasoning and evidence pressure-tested before it goes out. Returns a synthesised review — pushbacks, counter-position, what would have to be true to be wrong, and per-claim fact-check verdicts.
+description: >-
+  Stress-tests a draft argument or position by spawning two subagents in parallel
+  — one that challenges the thinking (the critical-friend brief) and one that
+  verifies statistical and factual claims via web search against authoritative
+  sources (the fact-checker brief). Use when the user is about to commit to an
+  argument, publish a policy memo, send a briefing note, or otherwise wants their
+  reasoning and evidence pressure-tested before it goes out. Returns a synthesised
+  review — pushbacks, counter-position, what would have to be true to be wrong, and
+  per-claim fact-check verdicts.
+version: 1.1.0
 metadata:
   short-description: Pressure-test an argument and fact-check its claims
 ---
@@ -20,7 +29,7 @@ Running them in parallel halves the wall-clock time and keeps each subagent's co
 
 ```
 Step 1 — Confirm scope with the user (one question if needed):
-  "What's the audience and stakes for this draft? Internal note, public memo, ministerial briefing?"
+  "What's the audience and stakes for this draft? An internal note, something you're publishing, or a high-stakes email?"
 
 Step 2 — Spawn both subagents in parallel (spawn_agent, two calls in one go):
 
@@ -61,6 +70,12 @@ Present the two subagent outputs side-by-side under clear headings. Do **not** c
 ```
 
 The summary at the bottom is short — two lines and a recommendation. Don't bury the headline.
+
+## Gotchas
+
+- **Zero factual claims → fact-checker returns nothing.** That's fine — note it in the summary and don't treat the empty section as a failure or block on it.
+- **fact-checker does live web search; it can be slow or rate-limited.** If it stalls, deliver critical-friend's findings and mark the fact-check as pending rather than holding the whole review.
+- **Keep the two lenses separate.** Pass each subagent only the draft (plus audience/stakes for critical-friend) — don't leak one lens's conclusions into the other, or you lose the independent read.
 
 ## What this skill is for
 
