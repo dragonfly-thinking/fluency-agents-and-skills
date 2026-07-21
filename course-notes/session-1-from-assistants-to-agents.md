@@ -1,8 +1,8 @@
-# AI Fluency Session 1 — Key Points
+# From Assistants to Agents
 
-**Session 1: From Assistants to Agents**
+*Part 1 of the AI Fluency course notes.*
 
-This session introduced the shift from chat-based AI assistants to AI agents — tools that can take action on your computer, not just respond to questions. We covered why this moment matters (an industrial revolution for cognition), how large language models actually work (tokens, context windows, why "context is king"), the nuance in the energy/water debate, and what makes a *coding agent* different from a chatbot — then got hands-on with Claude Code or OpenAI Codex, pointing it at a folder and having it read files and make something. The key takeaway: you don't need to know how to code — the agent handles that — but you do need to develop taste and judgment as a "director" of AI work.
+The shift from chat-based AI assistants to AI **agents** — tools that take action on your computer, not just answer questions — is the foundation everything else builds on. This note covers why the moment matters, how large language models actually work (tokens, context windows, why "context is king"), the nuance in the energy/water debate, and what makes a *coding agent* different from a chatbot. The through-line: you don't need to know how to code — the agent handles that — but you do need taste and judgment as the **director** of the work.
 
 ---
 
@@ -20,7 +20,7 @@ This session introduced the shift from chat-based AI assistants to AI agents —
 - There's a **second training stage** on top of this: humans give feedback on the model's responses to shape its behaviour — making it more helpful, and refusing genuinely harmful requests.
 - **Tokens** are the unit of processing — roughly ¾ of a word (1,000 tokens ≈ 750 words). Everything becomes tokens: your instructions, the conversation history, PDFs, images. Tokens are also how usage is priced and how context is measured.
 - **Context window** = how much the model can hold in its "working memory" at once, measured in tokens. It has grown from ~3,000 words at ChatGPT's launch to **1,000,000+ tokens (~750,000 words, ~10 books)** today. If your work is mostly text, your life's work might fit inside a single context window.
-- **"Context is king" — what you put in front of the model shifts what comes out.** A live example: the word *"Java"* predicts *language / script / developer* — but add a system instruction *"you are a barista taking an order"* and *coffee* becomes the likely next word. Same word, different context, different output. Persona-priming ("you are an expert in X") still helps, but giving the *right information* — your organisation, your preferences, British vs. American spelling — matters more. (Full session on this next time.)
+- **"Context is king" — what you put in front of the model shifts what comes out.** A live example: the word *"Java"* predicts *language / script / developer* — but add a system instruction *"you are a barista taking an order"* and *coffee* becomes the likely next word. Same word, different context, different output. Persona-priming ("you are an expert in X") still helps, but giving the *right information* — your organisation, your preferences, British vs. American spelling — matters more. (See [Setting Up Your Agent's Workspace](session-2-setting-up-your-agentic-environment.md).)
 - **Models come in tiers.** Cheaper/faster ones (e.g. Claude Haiku) trade capability for speed and cost; more capable ones (Sonnet, then Opus) reason better but cost more, with a powerful new tier — **Fable / Mythos** — above them. Which tier you pick has real cost consequences (see Practical Notes).
 
 ## Energy & Water — the nuance
@@ -33,7 +33,7 @@ The concern is legitimate — data centres do use real energy and water — but 
 
 ## Speech-to-Text — the five-minute win
 
-The fastest productivity unlock in the whole course, and you can set it up in five minutes.
+One of the fastest productivity unlocks in the whole toolkit — and you can set it up in five minutes.
 
 - People type ~40–50 words per minute but speak far faster. Modern speech-to-text is accurate enough to dictate straight into any app, and it handles punctuation and capitalisation for you. Most AI chat tools already have a mic button built in.
 - **The real power is briefing an agent.** Instead of carefully typing a prompt, hit record and give a 5–10 minute **"brain dump"** of context and what you're trying to achieve. Typing friction is what stops people briefing agents properly — and these tools pick up intent well, so you don't need to be precise.
@@ -46,7 +46,7 @@ The fastest productivity unlock in the whole course, and you can set it up in fi
 - Four properties distinguish an agent:
   - **Goal-directed** — you hand it an outcome ("clean up my bibliography"), not a click-path.
   - **Self-organising** — it finds the context it needs, makes a plan, tracks and ticks off tasks, and picks its own tools (search, creating or deleting files, and more).
-  - **Context-aware** — rather than a blank slate each time, its environment can be set up so it starts from a lot of pre-loaded knowledge (next session's focus).
+  - **Context-aware** — rather than a blank slate each time, its environment can be set up so it starts from a lot of pre-loaded knowledge (see [Setting Up Your Agent's Workspace](session-2-setting-up-your-agentic-environment.md)).
   - **Adaptive** — it works *around* roadblocks rather than stopping at "computer says no." (That same trait is part of why AI safety is hard.)
 - **What matters now is often less the model than the "harness"** — the scaffolding of tools and structure built around the model that lets it run on its own. A well-harnessed weaker model can beat a bare stronger one.
 - **The role shift: from doer to director.** The celebrated roles used to be the actor, the athlete, the writer — the individual contributor. Working with agents (often several at once, running concurrently) you become the **director / manager**: setting the vision, intervening with feedback, coaching the output toward what you actually want. This makes your **taste and expertise** the valuable thing — the ability to spot the wrong 1% and correct it. And it's **more cognitively demanding, not less**: you're context-switching across agents and constantly evaluating outputs. This is not cognitive offloading.
@@ -69,21 +69,23 @@ The fastest productivity unlock in the whole course, and you can set it up in fi
 
 - The old reflex was "computer says no → I'm stuck." Because agents are intelligent, have web access, and run *on your machine*, a blocker is rarely the end of the road — **ask the agent.** It can explain a concept at any level until it clicks, or do the setup you're stuck on for you.
 - A Dragonfly story we tell: one co-founder was stuck with her agent and asked the other how to fix it — whose reply was simply, *"have you asked your agent?"* She hadn't; it sorted it out.
-- This matters for the course itself: when something we cover doesn't quite match your setup, don't stop — ask your agent to bridge the gap. Develop **learned agency** rather than learned helplessness.
+- This applies to these notes too: when something here doesn't quite match your setup, don't stop — ask your agent to bridge the gap. Develop **learned agency** rather than learned helplessness.
 
-## Tools We're Using
+## Tools
 
-- We teach **Claude Code** (the **Code** tab in the Claude desktop app) and **OpenAI Codex**. They're functionally equivalent — point either at a folder and it works with your files — and we move between them across the sessions. Codex is often slightly smoother to get started; Claude Code is a touch more developer-flavoured. Either is fine.
-- Claude's desktop app also has a **Cowork** mode — simpler and friendlier — but it's finickier and adds friction for what we do, so **it's not what we use in this course.** Stay in the Code tab.
+- These notes use **Claude Code** (the **Code** tab in the Claude desktop app) and **OpenAI Codex**. They're functionally equivalent — point either at a folder and it works with your files. Codex is often slightly smoother to get started; Claude Code is a touch more developer-flavoured. Either is fine.
+- Claude's desktop app also has a **Cowork** mode — simpler and friendlier — but it's finickier and adds friction, so **it's not the mode used here.** Stay in the Code tab.
 - Claude *chat* (on the web) is separate: it doesn't share a workspace with Code or Cowork. Code and Codex work on files on your computer; chat sends requests to the web.
 - Worth having a subscription to at least one; some people keep both (one for work, one for personal). Interface and settings walkthrough: [`../guides/interface-and-settings.md`](../guides/interface-and-settings.md).
 
-## The Demo
+## A First Task — Point It at a Folder
 
-- Pointed an agent at a folder of PDFs (submissions on AI guidelines) and asked "what's in here?" — it listed and read the files and answered from context, no uploading required.
-- Asked it to compare them — "where do they converge, and what do they disagree on?" — and it produced a comparison table, then a synthesised **board-style brief** as an **HTML file** (a web page you can open in your browser), in a few minutes.
-- The pattern: **the agent reads, reasons, and produces — you just describe what you want.** It can also *create* files and folders, not only read them: ask it to make a `reports/` folder and move the output there, or to reorganise a messy folder and build an index, and it will.
-- One aside worth knowing: Markdown supports **Mermaid**, a way to write diagrams as plain text — so agents are good at generating flowcharts and mind-maps directly, no drawing tool needed.
+The clearest way to feel the difference from a chatbot: put some documents in a folder, point an agent at it, and ask.
+
+- **Ask "what's in here?"** — it lists and reads the files and answers from context, with nothing to upload.
+- **Ask it to compare** — "where do these converge, and where do they disagree?" — and it can produce a comparison table, then a synthesised **board-style brief** as an **HTML file** (a web page you open in your browser), in minutes.
+- The pattern is **read → reason → produce**: you describe what you want, and the agent does the reading and the making. It can *create* files and folders too, not just read them — ask it to make a `reports/` folder and move the output there, or to reorganise a messy folder and build an index.
+- Markdown supports **Mermaid**, a way to write diagrams as plain text — so agents generate flowcharts and mind-maps directly, no drawing tool needed.
 
 ## Practical Notes
 
@@ -94,12 +96,12 @@ The fastest productivity unlock in the whole course, and you can set it up in fi
 - **Hallucinations** are much less common now, especially with web access and self-checking (which you can configure) — but still verify important outputs.
 - **Safety** — these agents can modify and delete files, so be mindful of which folders you point them at.
 
-## Resources Mentioned
+## Resources
 
-### Tools used in the demo
-- **[Claude Code / Cowork / desktop app](https://claude.com/download)** — Anthropic's desktop app. **Code** is the tab we use; Cowork is the simpler mode we don't. Chat (web) is separate.
-- **[OpenAI Codex CLI](https://developers.openai.com/codex/cli)** — OpenAI's coding agent; the Codex equivalent of Claude Code. The tool Sam demoed live.
-- **[here.now](https://here.now)** — Free hosting that lets an agent publish files/HTML to a live `{slug}.here.now` URL. Mentioned in passing as a way to share what your agent makes; see the Session 3 notes for the full walkthrough.
+### Agent tools
+- **[Claude Code / Cowork / desktop app](https://claude.com/download)** — Anthropic's desktop app. **Code** is the tab to use; Cowork is the simpler mode to skip. Chat (web) is separate.
+- **[OpenAI Codex CLI](https://developers.openai.com/codex/cli)** — OpenAI's coding agent; the Codex equivalent of Claude Code.
+- **[here.now](https://here.now)** — Free hosting that lets an agent publish files/HTML to a live `{slug}.here.now` URL. Mentioned in passing as a way to share what your agent makes; see [Extending Your Agent](session-3-extending-your-agent.md) for the full walkthrough.
 
 ### Speech-to-text tools
 - **[Wispr Flow](https://wisprflow.ai/)** — Cloud-based voice-to-text that pastes polished text wherever your cursor is. Sam's daily driver.
@@ -113,33 +115,18 @@ The fastest productivity unlock in the whole course, and you can set it up in fi
 - **[Learning Agency: Two Processes, Not Just One](https://www.dragonflythinking.com/insights/learning-agency)** — Same AI, two divergent outcomes: amplified agency vs atrophied agency. Choose deliberately.
 
 ### Also worth knowing
-- **[METR — Measuring AI Ability to Complete Long Tasks](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)** — The "agent autonomy is climbing" graph shown on the slide. ~7-month doubling time in how long an AI can work alone.
+- **[METR — Measuring AI Ability to Complete Long Tasks](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)** — The source behind the autonomy trend above: ~7-month doubling time in how long an AI can work alone.
 - **[NotebookLM](https://notebooklm.google/)** — Google's tool for working with very long documents and generating podcast/video overviews. A strong, free **vector-retrieval** tool for research-heavy tasks — complementary to agents (see "retrieval vs. agentic search" above).
 - **[Landing.AI](https://landing.ai/)** — Agentic document extraction. The tool Sam uses for pulling structured data out of messy PDFs (e.g. door schedules).
-- **[Mike — open-source legal AI](https://mikeoss.com/)** — A free, self-hostable open-source alternative to Harvey/Legora. Bring your own model API key. Useful for the lawyers in the room.
-- **[Cursor](https://cursor.com/)** — An AI-native code editor some participants use to see their workspace files with a visible file tree. Mentioned in passing.
+- **[Mike — open-source legal AI](https://mikeoss.com/)** — A free, self-hostable open-source alternative to Harvey/Legora. Bring your own model API key. Useful if you work in law.
+- **[Cursor](https://cursor.com/)** — An AI-native code editor that shows your workspace files with a visible file tree.
 - **[Mistral OCR](https://mistral.ai/)** — Sam's recommended PDF→Markdown converter: you pay cents per document, high fidelity, keeps the images.
-- **[Andy Masley — AI energy & water blog](https://blog.andymasley.com/)** — Source for the "AI prompts vs charging your phone / driving / flying" comparison on the Energy & Water slide. Argues the AI environmental panic is overstated by ~10× to 1000×.
+- **[Andy Masley — AI energy & water blog](https://blog.andymasley.com/)** — Source for the "AI prompts vs charging your phone / driving / flying" comparison in the Energy & Water section above. Argues the AI environmental panic is overstated by ~10× to 1000×.
 - **[*Empire of AI* by Karen Hao](https://www.penguinrandomhouse.com/books/743569/empire-of-ai-by-karen-hao/)** — Cited as the book that overstated AI water consumption by a factor of ~1,000. Sam's view: read it, but read the corrections too.
 
-## How the Course Unfolded
+## Put This Into Action
 
-| Session | Focus |
-|---------|-------|
-| **2** | Setting up your agent's environment — default instructions, context files, so it knows who you are and how you work; plus sub-agents |
-| **3** | Extending capabilities — skills, sub-agents, and connecting to external tools (MCP, APIs); publishing to the web |
-| **4** | Working Well — consolidation: projects set up properly, planning mode, progress logs, and background routines |
-
-## Next Steps
-
-Experiment with Claude Code or Codex as your first hands-on exercise:
-- Point it at a folder with some documents
-- Ask it to summarize, compare, organize, or convert files
-- Get a feel for what it can do — and ask it what it can do that ChatGPT can't
-
-**Homework — put up the guardrails.** Now that an agent lives on your computer, decide
-what it must never touch (client files, HR records, personal folders) and make that a
-hard rule, not a hope: say *"read `guides/guard-folders/README.md` in the course kit
-and set up the folder guard for me"*, then verify in a fresh session by asking the
-agent to read something inside a protected folder — the right answer is a refusal.
-Five minutes, and it settles the "is this thing safe on my machine?" question for good.
+- Point an agent at a folder of real documents and ask it to summarise, compare, organise, or convert them — the fastest way to feel what it can do that a chatbot can't.
+- Set up speech-to-text and brief your next task by voice instead of typing it.
+- Once an agent lives on your computer, decide what it must never touch (client files, HR records, personal folders) and make that a hard rule, not a hope — set a guardrail that actually blocks access, then verify by asking a fresh agent to read something inside a protected folder (the right answer is a refusal). Setup: [`../guides/folder-guardrails.md`](../guides/folder-guardrails.md).
+- When you're ready to make the agent truly *yours*, move on to [Setting Up Your Agent's Workspace](session-2-setting-up-your-agentic-environment.md).

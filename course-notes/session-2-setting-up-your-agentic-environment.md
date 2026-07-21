@@ -1,8 +1,8 @@
-# AI Fluency Session 2 — Key Points
+# Setting Up Your Agent's Workspace
 
-**Session 2: Setting Up Your Agent's Workspace**
+*Part 2 of the AI Fluency course notes.*
 
-Last week we installed our agents (Claude / Codex). This week was about *configuring the environment* they work in, so they can accomplish tasks with as little hand-holding as possible. The core shift: from **prompt engineering** (crafting clever instructions) to **context engineering** (building the workspace — files, folders, and an orientation file — so the agent can find what it needs itself). The centrepiece is the `AGENTS.md` / `CLAUDE.md` orientation file, plus a first look at **sub-agents**. This session traded some content time for a hands-on activity and an open Q&A.
+Once an agent is installed and pointed at a folder, the next lever is the *environment* it works in. This note covers **context engineering** — building a workspace (files, folders, and an orientation file) so an agent can find what it needs on its own, instead of being told everything each time. The centrepiece is the `AGENTS.md` / `CLAUDE.md` orientation file. It also covers managing the context window, permissions, and **sub-agents** — specialists a main agent can delegate work to.
 
 ---
 
@@ -14,7 +14,7 @@ Last week we installed our agents (Claude / Codex). This week was about *configu
 - **Why the lever moved.** The models now understand what you *mean*, so cleverly-worded prompts buy you less. The bottleneck isn't comprehension any more — it's **access**. Prompt engineering was learning to talk to a genius cleverly; context engineering is handing that genius the keys to your filing cabinet.
 - **The failure it fixes: ungrounded guessing.** Think of an agent as a world-class consultant with total amnesia about you — brilliant, has read everything, but has never met *you*, doesn't know your standards. What you get back is capped by how well you brief it. With nothing to anchor on, it does the one thing these models always do — predict a **plausible continuation** — and a plausible continuation with no grounding is a guess. (That's all "hallucination" really is: plausible-sounding filler where a fact should be, not lying.) Context is the briefing that makes it swap guessing for reading. Ask *"what do you think of my analysis?"* with no file attached and a well-set-up agent will go hunting through your workspace, find *a* previous analysis, and confidently comment on it — impressive reach, but maybe the wrong file. Point it at the right one and the guessing stops.
 
-## Context & Tokens (Recap + Extension)
+## Context & Tokens
 
 - Context = the agent's "working memory." Once the bucket is full, anything outside it is simply not referenced.
 - Measured in **tokens** (~¾ of a word). Everything — text, images, audio, video, files, and the whole conversation history — gets converted to tokens.
@@ -45,15 +45,17 @@ This is one instance of a bigger habit: leave a durable trail in files instead o
 
 ### Why this is the hard part
 
-Writing the orientation file is harder than it sounds, because so much of how you work is **tacit** — never written down, just in your head. The agent can't guess what you never say. The fix is to not write it cold: let the agent **interview you** (*"interview me, then draft my `CLAUDE.md`"*). A good reverse-questionnaire pulls the tacit stuff out of you and onto the page — which is exactly what the setup activity below does.
+Writing the orientation file is harder than it sounds, because so much of how you work is **tacit** — never written down, just in your head. The agent can't guess what you never say. The fix is to not write it cold: let the agent **interview you** (*"interview me, then draft my `CLAUDE.md`"*). A good reverse-questionnaire pulls the tacit stuff out of you and onto the page — which is exactly what the interview approach below does.
 
-## Hands-On Activity
+## Build It by Interview
 
-- Paste the provided **setup prompt** into Claude Cowork or Codex. It runs a short interview (~10 min) and generates your `AGENTS.md`/`CLAUDE.md` plus starter background-context files.
-- Helpful to have your LinkedIn, company website, etc. handy to feed it.
-- The agent **creates the files for you** — no manual saving. Just confirm: *"please make sure you've created the file in our workspace."*
-- "Workspace" = just a folder on your computer. Files land either in the folder you opened, or in the hidden `.claude` / `.codex` config folder (the dot = hidden).
-- **Tip:** on Mac, right-click a file → *Copy as Pathname* to get its address; in Windows, copy from the address bar. Or just ask the agent to open/locate things for you.
+Don't hand-write the orientation file — have the agent interview you and write it. The kit's **`setup-workspace`** skill packages exactly this: run it and it interviews you (~10 min), then generates your `AGENTS.md` / `CLAUDE.md` plus starter background-context files and a `user.md` profile.
+
+- **A copy-able prompt** if you'd rather not use the skill: *"Interview me for about ten minutes, then write an `AGENTS.md` (or `CLAUDE.md`) and a `user.md` for this workspace. Ask about who I am, how I work, what I'm working on, and where my key files live."*
+- Have your LinkedIn, company website, and a few writing samples handy to feed it.
+- The agent **creates the files for you** — no manual saving. Confirm with *"make sure you've created the file in our workspace."*
+- "Workspace" = just a folder on your computer. Files land in the folder you opened, or in the hidden `.claude` / `.codex` config folder (the leading dot = hidden).
+- **Finding a file's address:** on Mac, right-click → *Copy as Pathname*; on Windows, copy from the address bar. Or just ask the agent to open/locate things for you.
 
 ## Best Practices for the Orientation File
 
@@ -81,7 +83,7 @@ The moment you do real work, the agent asks permission a lot — every web fetch
 ## Meeting Recordings (High-Leverage Tip)
 
 - Record your meetings and export the transcripts into your workspace — transcription is now very accurate and there's "so much gold" in meetings.
-- Then ask the agent to extract action items, write notes, or turn a transcript into a branded presentation. Tools mentioned: **Zoom built-in**, **Otter.ai**, and other note-takers.
+- Then ask the agent to extract action items, write notes, or turn a transcript into a branded presentation. Common tools: **Zoom built-in**, **Otter.ai**, and other note-takers.
 - **Voice is context too.** You don't need a meeting to feed it your thinking. Voice notes on the go, or a voice *call* with your agent, get transcribed into text it can use — and a call has the bonus that the agent can ask clarifying questions and push back while you talk it out. A low-friction way to get what's in your head into the workspace.
 
 ## Sub-Agents
@@ -96,8 +98,8 @@ The moment you do real work, the agent asks permission a lot — every web fetch
 - **Claude vs Codex behaviour:** Claude will often invoke sub-agents automatically (based on their descriptions); **Codex only uses them when you explicitly ask.** Either way, saying *"use a sub-agent for this"* is the reliable move.
 - **"Fan out."** In Claude, *"fan out sub-agents to…"* is a keyword that spins up a whole swarm at once — e.g. *"fan out sub-agents to read these 10 PDFs, one each."* You don't hand-write them: the main agent creates them with tailored instructions, and you review what comes back. You also never talk to a sub-agent directly — you brief the main agent; it spawns, instructs, and collects. That's why sub-agents suit *bounded* jobs with a clear result to hand back, not tasks that need lots of back-and-forth.
 - **Cowork caveat:** custom sub-agents may not run in Cowork mode at all — only in **Claude Code** (the Code tab of the same app). If your installed sub-agents aren't being invoked in Cowork, switch to Code.
-- A **starter pack** of generally-useful sub-agents was provided (Claude zip / Codex zip) — e.g. web researcher, writing editor, critical friend. Install by dragging the folder into your workspace and asking the agent to set it up. Scope them **globally** (available everywhere) or **per-project** as appropriate.
-- *(Microsoft Copilot "Cowork" users — e.g. WWF — already have a suite of built-in sub-agents and tenant context, so may not need the pack.)*
+- The kit ships a **starter pack** of generally-useful sub-agents — e.g. web researcher, writing editor, critical friend. Install by pointing the agent at the kit and asking it to set them up. Scope them **globally** (available everywhere) or **per-project** as appropriate.
+- *(Microsoft Copilot "Cowork" users may already have a suite of built-in sub-agents and tenant context, so may not need the pack.)*
 
 ## Sub-Agents vs Running Parallel Sessions
 
@@ -106,31 +108,31 @@ There are **two** different ways to run work in parallel, and they're easy to bl
 - **Sub-agents** are spawned *by your main agent* and run **inside one session**, each in its own fresh context window. You don't open windows for them or talk to them — the main agent does.
 - **Multiple sessions** are separate chats *you* open and manage yourself. Handy for, say, running the same fact-checker over the same material in two sessions and comparing the outputs to surface hallucinations or inconsistencies.
 - **The one hard rule for multiple sessions:** don't let two of them edit the **same file** at once. That's the single thing that reliably causes confusion — otherwise, parallel sessions are fine.
-- **Sequencing turns this into a workflow.** Chain agents and sub-agents in a set order — research, then draft, then critique — and you've built a *workflow*. That's the seed of routines and scheduled tasks (Session 4). You can even keep one session running as an **orchestrator** that watches for files written elsewhere in your workspace and synthesises them as they land.
+- **Sequencing turns this into a workflow.** Chain agents and sub-agents in a set order — research, then draft, then critique — and you've built a *workflow*. That's the seed of routines and scheduled tasks (see [Working Well](session-4-working-well.md)). You can even keep one session running as an **orchestrator** that watches for files written elsewhere in your workspace and synthesises them as they land.
 
-## Other Q&A Worth Noting
+## Other Things Worth Knowing
 
-- **Org-wide context?** No one-click sync for local tools like Cowork (they live on your machine). For fairly stable material, have one person create the **canonical context folder** and distribute it; teams like Dragonfly use **GitHub** to sync docs across computers. We're partly "regressing" from cloud-synced apps back to local — possibly temporary, but worth learning now.
+- **Org-wide context?** There's no one-click sync for local tools like Cowork (they live on your machine). For fairly stable material, have one person create the **canonical context folder** and distribute it; teams commonly use **GitHub** to sync docs across computers. This is partly a "regression" from cloud-synced apps back to local — possibly temporary, but worth understanding now.
 - **Which model?** Default to a mid-tier model (**Sonnet**) for nearly everything — the top tier is pricier and burns usage limits faster. There's a wrinkle that interacts with permissions (Haiku has no Auto mode) — see *Permissions & Modes* above.
 - **Can you trust the agent's description of what it's doing?** Partly. For Claude, the *extended thinking* you can switch on is the model's real reasoning, not a story told after the fact. But an agent's running prose — *"now I'm reviewing the file…"* — is generated text, and it is **not** a reliable audit trail of what actually happened. The trustworthy record is the **tool calls it made and the files that actually changed.** Judge by outputs and diffs, not by the narration.
-- **Agent vs Skill?** Teased for next week — an agent is the "person"; skills are recipes/SOPs that the agent can run.
+- **Agent vs Skill?** An agent is the "person"; skills are recipes/SOPs the agent can run — see [Extending Your Agent](session-3-extending-your-agent.md).
 
-## Resources Mentioned
+## Resources
 
-### Tools used in the session
+### Core tools
 - **[Claude Desktop / Cowork / Claude Code](https://claude.com/download)** — Anthropic's desktop app. Cowork is the simpler tab; Code is more powerful. Same app, two modes.
-- **[OpenAI Codex CLI](https://developers.openai.com/codex/cli)** — OpenAI's terminal-based coding agent; the Codex equivalent used by participants on the OpenAI side.
+- **[OpenAI Codex CLI](https://developers.openai.com/codex/cli)** — OpenAI's terminal-based coding agent; the Codex equivalent for those on the OpenAI side.
 
 ### The orientation-file standard
 - **[AGENTS.md](https://agents.md)** — The cross-tool convention for the agent orientation file. Works across Codex, Cursor, Aider, GitHub Copilot and others. `CLAUDE.md` is Claude's near-identical equivalent.
 - **[Claude Code — Subagents](https://code.claude.com/docs/en/sub-agents)** — Official docs on how subagents work, where they live, and how to dispatch them.
 
-### Session 2 starter kit
-- **[`setup-workspace` skill](https://github.com/dragonfly-thinking/fluency-agents-and-skills/tree/main/.claude/skills/setup-workspace)** — the setup-interview, now packaged as a skill in the kit. Install the kit, then run `setup-workspace` — it'll detect whether you already have a workspace and route to init, add-project, refresh-context, or add-guardrail mode.
-- **[Session 2 Practical Resources (Notion)](https://dragonflythinking.notion.site/Session-2-Practical-Resources-364e541fefe3806e825bc5affb7e5951)** — the live page Sam shared in-session. Still hosts the original paste-prompt version of the interview.
-- **[github.com/dragonfly-thinking/fluency-agents-and-skills](https://github.com/dragonfly-thinking/fluency-agents-and-skills)** — The same starter pack as a public repo: six subagents (writing-editor, critical-friend, fact-checker, project-planner, vault-librarian, web-searcher) plus skills, in both `.claude/` and `.codex/` variants. Paste the link into your agent and ask it to install.
+### The starter kit
+- **[`setup-workspace` skill](https://github.com/dragonfly-thinking/fluency-agents-and-skills/tree/main/.claude/skills/setup-workspace)** — the setup-interview, packaged as a skill in the kit. Install the kit, then run `setup-workspace` — it detects whether you already have a workspace and routes to init, add-project, refresh-context, or add-guardrail mode.
+- **[Practical Resources (Notion)](https://dragonflythinking.notion.site/Session-2-Practical-Resources-364e541fefe3806e825bc5affb7e5951)** — the practical resources page; also hosts a paste-prompt version of the setup interview.
+- **[github.com/dragonfly-thinking/fluency-agents-and-skills](https://github.com/dragonfly-thinking/fluency-agents-and-skills)** — The starter pack as a public repo: six subagents (writing-editor, critical-friend, fact-checker, project-planner, vault-librarian, web-searcher) plus skills, in both `.claude/` and `.codex/` variants. Paste the link into your agent and ask it to install.
 
-### Meeting-recording / transcription tools (raised in the "meetings as context" tip)
+### Meeting-recording / transcription tools
 - **[Zoom](https://www.zoom.com)** — Built-in cloud recording + transcript (`.vtt` / `.txt`).
 - **Google Meet** — Captions and auto-transcript that lands in Google Docs (no single canonical URL beyond Workspace).
 - **Microsoft Teams** — Built-in transcription via the meeting controls.
@@ -138,24 +140,17 @@ There are **two** different ways to run work in parallel, and they're easy to bl
 - **[Granola](https://www.granola.ai)** — Mac-only meeting note-taker that captures everything automatically.
 - **[Fireflies.ai](https://fireflies.ai)** — Team-oriented AI note-taker with CRM integrations.
 
-### Also surfaced in Q&A
-- **[Cursor](https://www.cursor.com)** — AI-first code editor; mentioned by a participant as the interface he uses to see his `.claude/` folder and run Claude Code with a file tree visible.
+### Also worth knowing
+- **[Cursor](https://www.cursor.com)** — AI-first code editor; an alternative interface for seeing your `.claude/` folder and running Claude Code with a file tree visible.
 
-## How the Course Unfolded
+## Put This Into Action
 
-| Session | Focus |
-|---------|-------|
-| **3** | **Skills** (standard operating procedures the agent can invoke) + extending capabilities — connecting to external tools and publishing to the web |
-| **4** | Working Well — consolidation: projects set up properly, planning mode, progress logs, and background routines |
+Setting up the workspace matters more than sub-agents — start there:
 
-The running metaphor: Session 1 *planted the seed* (created the agent), Session 2 *built the house and gave it a map* (the workspace + orientation file), Session 3 gives it *recipes and a phone line* (skills + tool connections).
+- Create a folder and use the interview approach to generate your `CLAUDE.md` / `AGENTS.md`.
+- Seed it with context files/folders: writing-style guide, company overview, key people, reference docs — let the agent create them.
+- Build in instructions that make it an **evolving workspace**, so it updates itself as things change and when you give feedback.
+- Create your own sub-agents for repeatable tasks where you want a specific *perspective* — but never hand-write them; ask the agent to draft, then tweak.
+- Above all: **an agent is only as useful as the information it can access.** Focus there.
 
-## Next Steps
-
-Go away and actually **set up your workspace environment** — this matters more than sub-agents:
-
-- Create a folder and run the setup prompt to generate your `CLAUDE.md` / `AGENTS.md`.
-- Seed it with context files/folders: writing-style guide, company overview, key people/birthdays (for personal use), reference docs, etc. — let the agent create them.
-- Build in instructions that make it an **evolving workspace** (so it updates itself as things change and when you give feedback).
-- Optionally, create your own sub-agents for repeatable tasks where you want a specific *perspective* — but never hand-write them; ask Claude/Codex to draft, then tweak.
-- Above all: **the agent is only as useful as the information it can access.** Focus there.
+The next note, [Extending Your Agent](session-3-extending-your-agent.md), gives the agent skills and connections to external tools.

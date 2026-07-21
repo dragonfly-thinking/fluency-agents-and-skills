@@ -1,17 +1,10 @@
-# AI Fluency Session 3 — Key Points
+# Extending Your Agent — Skills & Connections
 
-**Session 3: Extending Your Agent**
+*Part 3 of the AI Fluency course notes.*
 
-We extended our agent's capabilities in two directions: with **skills** (reusable instructions the agent can run on demand) and with **connections** to external tools (APIs, MCPs). The big shift compared to earlier sessions: more of the work happens *outside* the chat window — your agent runs procedures, talks to other software, and at the end of this session, publishes the result to the live web. The teaching arc was a hands-on journey: take a real piece of writing → proofread it via a skill that delegates to a subagent → turn it into a visual one-pager via another skill → publish it on the web with a third skill. By the end, most participants had a shareable URL with their own polished page on it.
+Your agent becomes far more useful in two directions: with **skills** (reusable instructions it runs on demand — packaged standard operating procedures) and with **connections** to external tools (APIs, MCPs) that let it reach the software and data you already use. Both push more of the work *outside* the chat window: the agent runs procedures, talks to other services, and can publish the result to the live web. This note covers sub-agents, skills, connections, and a worked workflow that ties them together — so you or your agent can pull the concepts and put them into action. Sibling notes: [Setting Up Your Agent's Workspace](session-2-setting-up-your-agentic-environment.md) and [Going AI-Native — Working Well](session-4-working-well.md).
 
 ---
-
-## The Story So Far
-
-- **Session 1** — got an agent installed and pointed at a folder.
-- **Session 2** — built its workspace and gave it a map (AGENTS.md / CLAUDE.md, context files, sub-agents).
-- **Session 3 (this one)** — gave the agent skills it can run, and connected it out to your other tools.
-- **Session 4** — Working Well: consolidating everything — projects set up properly, planning mode, progress logs, and background routines.
 
 ## Sub-agents — a closer look
 
@@ -51,28 +44,28 @@ A small but high-leverage habit:
 
 - Add an instruction to your AGENTS.md / CLAUDE.md file that says: *"whenever you execute a skill, suggest improvements; if you notice a repeated task, propose a new skill."*
 - This way your toolkit gets better automatically as you work — you don't have to remember to update things.
-- **Concrete examples** raised in the room:
+- **Concrete examples**:
   - A formatting skill: give it 2–3 examples of the documents you typically produce, then run it on new content to apply the template.
   - A skill that knows your brand colours and logos, so visual outputs come out on-brand instead of randomly themed.
 - **Give a skill a memory of its own.** Add a `gotchas.md` (or `tips.md`) file inside the skill's folder — somewhere the agent jots notes to itself as it runs, so the next run avoids whatever tripped up the last one.
 - **The bigger idea — a self-improving, evolving workspace.** This isn't just for skills. The move is to *bake proactive self-improvement in* so you don't have to remember to do it: decide what upkeep you'd like the agent doing in the background (suggesting fixes, keeping notes, flagging repeated tasks) and put it in your router file once. The workspace then gets better as you use it — see [Self-Documenting Workspaces](self-documenting-workspaces.md).
 
-## The Demo — Polish → Visualise → Publish
+## A worked workflow: polish → visualise → publish
 
-Three skills in sequence, on whatever piece of content participants brought (or pulled from a blog post link):
+A reusable recipe you (or your agent) can run today on any piece of content — something you've written, or text pulled from a link. Three skills in sequence:
 
 1. **`/proofread`** → invokes the **writing-editor** sub-agent. Returns grammar/clarity/structure suggestions plus a cleaned version. Notice the layering: a skill (the verb) handing off to a sub-agent (the specialist).
 2. **`/visual-explainer`** → turns the cleaned-up text into a self-contained HTML one-pager with diagrams (e.g. mermaid flowcharts). **What's an HTML file?** Just *code* — the scaffolding everything on the web is built from. The agent writes the code; your browser reads it and renders the page you see. And because it's real code, these pages can be genuinely *interactive* (flowcharts, toggles, tabs — the course slides themselves are HTML files). One striking example: a 1,300-word text-only magazine article, with no charts of its own, that the agent rendered into charts and timelines purely from the data buried in the prose.
 3. **`/here-now`** → publishes the HTML page to a live URL at `{slug}.here.now`. **Why this step exists:** up to now your page is a *file on your own computer* — opening it looks like a web page and even shows a file address, but it isn't on the internet; email that link and no one else can open it. `here.now` takes the local file and puts it on a real, shareable web address. Free tier keeps the page live for 24 hours; a free account keeps it longer. You can also **pin/password-gate** a page — a code you hand to specific recipients, effectively a proxy for email — and, on a paid account, **attach your own domain** so links look professional (`insights.yourcompany.com`) instead of a random subdomain.
 
-The arc: **a real piece of work, walked from messy draft to a polished page anyone can open — without leaving the chat.** That's the payoff of skills + connections together.
+Run end to end, this walks **a real piece of work from messy draft to a polished page anyone can open — without leaving the chat.** That's skills + connections working together.
 
 - **Watch the AI "tells."** Generated visuals have a recognisable default look — everything in shades of blue, an "oatmeal" beige aesthetic, and the giveaway title-then-*italicised-coloured-emphasis* pattern. Name it, then steer it: point the agent at your brand colours and logo, or ask for a specific style (e.g. brown da Vinci-style line drawings instead of blue). A skill that knows your brand keeps this consistent — see *Self-improving skills* above.
 - **Replacing a confidential Word/PDF workflow.** Text-heavy, confidential documents can move to gated HTML: publish behind a pin, attach your own domain, and convert **HTML → PDF** whenever you need the document form. Build and iterate as HTML first, export to PDF at the end (see [`../guides/file-conversion.md`](../guides/file-conversion.md)). A strong first-draft combo: use **NotebookLM** for a fast first pass (a deck or visual), then hand it to your agent to iterate — NotebookLM is great at the first pass but weak at iterating.
 
 ## APIs, API Keys, and MCPs
 
-The conceptual core of the "connections" half of the session:
+The conceptual core of connecting your agent to the outside world:
 
 - **API** = the way one piece of software talks to another. Like a restaurant with two doors: humans walk in and order at the counter; software calls the kitchen directly through the side window.
 - **API key** = your account identifier. Tells the service who's calling, what they're allowed to access, and who to bill. Many services require one; some don't.
@@ -102,27 +95,23 @@ In Codex: **Plugins** menu. Similar experience, called "plugins" instead of "con
 
 ## Practical Notes / Troubleshooting
 
-- **Installing the kit** — Sam shared a GitHub link with all skills and sub-agents. Most participants installed them by pasting the link into their agent and asking "install these for me." A few hit roadblocks:
+- **Installing the kit** — paste the repo link into your agent and ask it to install. Common roadblocks:
   - **"Provenance restriction" error** — some agents refuse to fetch raw files from URLs; falling back to a terminal command worked.
   - **"Can't find the folder"** — the `.claude` folder is hidden; ask the agent to open it for you.
   - **Cowork limitations** — Cowork (Claude Desktop's safer mode) has some restrictions Claude Code doesn't. If something doesn't work in Cowork, try switching to the Code tab in the same app.
   - **New session** — after installing new skills or sub-agents, start a New Session so the agent picks them up.
-  - **Skill not showing when you type `/`?** The most common cause (it hit several of us live): the skills were installed into a *project's* `.claude/skills/` folder instead of the *global* `~/.claude/skills/` one — so they only exist inside that one folder. Ask your agent: *"check whether the kit's skills are installed globally or just locally, and move them to global."* Then start a new session. (Same logic for Codex with `~/.codex/skills/`.)
+  - **Skill not showing when you type `/`?** The most common cause: the skills were installed into a *project's* `.claude/skills/` folder instead of the *global* `~/.claude/skills/` one — so they only exist inside that one folder. Ask your agent: *"check whether the kit's skills are installed globally or just locally, and move them to global."* Then start a new session. (Same logic for Codex with `~/.codex/skills/`.)
 - **Auto mode** — at the bottom of Claude Code, you can switch from "Ask permission" to "Auto" mode so it doesn't pause on every action. Recommended once you've built up trust.
 - **You don't need the terminal.** The terminal (Terminal on Mac, PowerShell on Windows) is a window "under the hood" of your computer — it's how coding agents actually do their work, a throwback to how computers ran in the 80s. For everyday use you can live entirely in the chat/session view. It only surfaces occasionally: when the agent is *blocked* (e.g. it isn't allowed to delete a folder and asks you to run the command yourself), or to wire up a tool with no first-class connector.
-- **Security** — APIs and external connections introduce some risk (notably *prompt injection*: malicious instructions embedded in a page the agent reads). For highly sensitive data (health records, HIPAA-protected info, etc.), don't expose it to coding agents yet. Backup your computer regardless — **Backblaze** was recommended as a simple full-machine backup service.
+- **Security** — APIs and external connections introduce some risk (notably *prompt injection*: malicious instructions embedded in a page the agent reads). For highly sensitive data (health records, HIPAA-protected info, etc.), don't expose it to coding agents yet. Back up your computer regardless — **Backblaze** is a simple full-machine backup service.
 
-## The Session 3 Kit
+## The kit
 
-The pack of subagents and skills shared in the session — six subagents (`writing-editor`, `critical-friend`, `fact-checker`, `project-planner`, `vault-librarian`, `web-searcher`) plus a full library of skills (`proofread`, `visual-explainer`, `here-now`, `critical-review`, `premortem`, `discovery-interview`, `slides`, `canvas-design`, and more — see the repo README for the complete list). Ships with both `.claude/` (for Claude Code / Desktop) and `.codex/` (for Codex) variants.
+You're reading this from inside the kit: sub-agents (`writing-editor`, `critical-friend`, `fact-checker`, `project-planner`, `vault-librarian`, `web-searcher`) plus a library of skills (`proofread`, `visual-explainer`, `here-now`, `critical-review`, `premortem`, `discovery-interview`, `slides`, `canvas-design`, and more — see the repo README for the full list), in both `.claude/` and `.codex/` variants. Repo: **[github.com/dragonfly-thinking/fluency-agents-and-skills](https://github.com/dragonfly-thinking/fluency-agents-and-skills)**.
 
-**[github.com/dragonfly-thinking/fluency-agents-and-skills](https://github.com/dragonfly-thinking/fluency-agents-and-skills)**
+## Resources
 
-Paste this link into your agent and ask it to install — it'll set up the right files in the right place.
-
-## Resources Mentioned
-
-### Tools used in the demo
+### Tools
 - **[Claude Desktop / Cowork / Claude Code](https://claude.com/download)** — Anthropic's desktop app. Cowork is the friendlier mode; Code is the more powerful tab.
 - **[OpenAI Codex CLI](https://developers.openai.com/codex/cli)** — OpenAI's coding agent; the Codex equivalent of Claude Code.
 - **[here.now](https://here.now)** — Free hosting that lets an agent publish files/HTML to a live `{slug}.here.now` URL. 24h free, longer with an account.
@@ -146,20 +135,9 @@ Paste this link into your agent and ask it to install — it'll set up the right
 - **[NotebookLM](https://notebooklm.google.com)** — Google's tool for working with very long documents and generating podcast/video overviews.
 - **[Backblaze](https://www.backblaze.com/cloud-backup)** — Cheap full-computer cloud backup. Worth having when letting agents touch your filesystem.
 
-## How the Course Ended
+## Put this into action
 
-| Session | Focus |
-|---|---|
-| **4** | Working Well — consolidation: projects set up properly, planning mode, progress logs, and **routines** (background scheduled tasks, so you wake up and the work is already done). |
-
-One thread that opens here and lands next session: because your agent runs on your computer (or in the cloud), you can direct it from your phone and review results on the move — and set work running in the background while you're away from the desk.
-
-## Next Steps
-
-- **Install the skills + sub-agents kit** if you didn't get it set up live — this repo is it; paste its link into your agent and ask it to install.
-- **Take a real piece of writing** — a memo, a report, a draft — and walk it through the same arc: `/proofread`, then `/visual-explainer`, then `/here-now`. Get a URL. Share it.
-- **Try one of the other skills** — `canvas-design` for a polished PDF, `premortem` for a project you're about to start, or `discovery-interview` for a project that needs scoping.
-- **Add a self-improvement line** to your AGENTS.md or CLAUDE.md file: *"After running any skill, suggest improvements. If you notice a repeated task, propose a new skill."*
+- **Take a real piece of writing** — a memo, a report, a draft — and walk it through the workflow above: `/proofread`, then `/visual-explainer`, then `/here-now`. Get a URL.
+- **Try another skill** — `canvas-design` for a polished PDF, `premortem` for a project you're about to start, or `discovery-interview` for a project that needs scoping.
+- **Add a self-improvement line** to your AGENTS.md / CLAUDE.md file: *"After running any skill, suggest improvements. If you notice a repeated task, propose a new skill."*
 - **Add a "leave a trail" line** too: *"When you do real work — especially anything you hand to a sub-agent — document it in a folder (an overview + a running progress log) so it survives the chat."*
-- **Stuck?** Office-hours and 15-minute one-on-one slots are bookable through the Resources hub.
-- **For Microsoft Copilot / Cowork users**: your environment differs in real ways (OneDrive workspace, restricted installs) — reach out if Cowork is blocking you.
