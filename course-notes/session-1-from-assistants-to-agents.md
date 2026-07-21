@@ -136,3 +136,10 @@ Experiment with Claude Code or Codex as your first hands-on exercise:
 - Point it at a folder with some documents
 - Ask it to summarize, compare, organize, or convert files
 - Get a feel for what it can do — and ask it what it can do that ChatGPT can't
+
+**Homework — put up the guardrails.** Now that an agent lives on your computer, decide
+what it must never touch (client files, HR records, personal folders) and make that a
+hard rule, not a hope: say *"read `guides/guard-folders/README.md` in the course kit
+and set up the folder guard for me"*, then verify in a fresh session by asking the
+agent to read something inside a protected folder — the right answer is a refusal.
+Five minutes, and it settles the "is this thing safe on my machine?" question for good.

@@ -104,8 +104,7 @@ Tell the user it's done and give them something to try:
 Then two more things:
 
 1. **Point at the course notes.** Tell the user where the repo lives on their machine (normally `~/fluency-agents-and-skills` — see Step 0) and that `course-notes/` there holds the key points from the four course sessions, `guides/` the plain-English how-tos, and `mcp/` the external-connection setup guides. Offer: *"Want me to read the course notes and suggest what's worth putting into action first?"*
-2. **Offer the folder guard.** Ask: *"Is there anything on this computer — client files, HR records, personal folders — you'd want me hard-blocked from ever touching? There's a guard in the kit that makes those folders genuinely off-limits to agents, not just politely avoided."* If yes, follow [`guides/guard-folders/README.md`](guides/guard-folders/README.md) to install it for their runtime, then have them verify in a fresh session (ask the agent to read something inside a protected folder — the correct result is a refusal naming guard-folders).
-3. **Tell them the kit is theirs to shape.** One line is enough: *"If a skill ever gets something wrong, just tell me — I can update the skill so it doesn't happen again. And if you notice a task you repeat, I can turn it into a new skill."*
+2. **Tell them the kit is theirs to shape.** One line is enough: *"If a skill ever gets something wrong, just tell me — I can update the skill so it doesn't happen again. And if you notice a task you repeat, I can turn it into a new skill."*
 
 ## Runtime dependencies to mention
 
