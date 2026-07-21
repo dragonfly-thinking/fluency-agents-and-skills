@@ -9,7 +9,7 @@ If you don't know which runtime you're in: you're **Claude Code** if you read `C
 ## What gets installed
 
 - **6 agents** (specialists a skill can delegate to): `critical-friend`, `fact-checker`, `writing-editor`, `project-planner`, `vault-librarian`, `web-searcher`
-- **15 skills** (verbs the user invokes): `setup-workspace`, `new-project`, `proofread`, `critical-review`, `research-brief`, `premortem`, `daily-brief`, `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`, `verify-work`, `skill-creator`, `browser-agent`
+- **15 skills** (verbs the user invokes): `setup-workspace`, `new-project`, `proofread`, `critical-review`, `research-brief`, `premortem`, `daily-brief`, `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`, `verify-work`, `skill-creator` *(Claude only — Codex has its own built in)*, `browser-agent`
 
 The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format). Install the one matching the runtime. The repo also carries `course-notes/` (session key points), `guides/` (plain-English how-tos: GitHub, file conversion, folder guardrails, phone, VS Code, browser automation), and `mcp/` (external-connection setup guides) — these stay in the repo rather than being installed; see the wrap-up step.
 

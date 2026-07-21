@@ -12,7 +12,7 @@ No GitHub account needed — this page is public. Copy this page's link, paste i
 
 > **"Read the AGENTS.md at this link and install the kit for me."**
 
-Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 15 skills into your setup (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
+Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 15 skills into your setup (14 on Codex — Codex ships its own first-party skill-creator, so the kit doesn’t duplicate it) (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
 
 Already downloaded the kit (the green **Code → Download ZIP** button)? Same idea — tell your agent: *"I've downloaded the fluency kit to my Downloads folder — install it for me."* (Took the course earlier and still have last time's copy? Just paste the link above instead — your agent grabs the current version, since the kit keeps improving.)
 
@@ -63,7 +63,7 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 | **pdf-create** | Produces a polished PDF | — |
 | **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
 | **verify-work** | Checks finished work against what was actually asked, using fresh adversarial sub-agents | critical-friend + fact-checker |
-| **skill-creator** | Interviews you and packages a repeatable workflow as a new skill (adapted from Anthropic’s public skill-creator) | — |
+| **skill-creator** | Interviews you and packages a repeatable workflow as a new skill (Claude Code only — Codex ships its own first-party skill-creator) | — |
 | **browser-agent** | Drives a real browser — fills web forms, clicks through flows, extracts page content (agent-browser CLI) | — |
 
 ## External connections (`mcp/`)
@@ -103,7 +103,7 @@ Short how-tos for the questions that came up most in the course — written so y
 │   ├── AGENTS.md
 │   ├── config.toml            #   registers the agent roles (multi_agent = true)
 │   ├── agents/                #   6 agent-role personas (.toml, via config_file)
-│   └── skills/                #   the same 15 skills, SKILL.md format
+│   └── skills/                #   14 skills (Codex ships its own skill-creator)
 ├── course-notes/              # Key points from the 4 sessions + put-into-action prompts
 ├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
 └── mcp/                       # Setup guides for external connections (paper-search, …)
