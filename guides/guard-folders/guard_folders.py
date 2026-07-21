@@ -78,21 +78,27 @@ def main():
 
     home = os.path.expanduser("~")
 
+    # Flatten every string in tool_input (Codex's shell passes argv as a LIST of
+    # strings, and tool schemas differ between runtimes — so inspect everything).
+    path_values, other_values = [], []
+    for key, value in tool_input.items():
+        values = value if isinstance(value, list) else [value]
+        for v in values:
+            if isinstance(v, str) and v:
+                (path_values if key in PATH_KEYS else other_values).append(v)
+
     for folder in protected:
-        # 1) explicit path arguments (Read, Edit, Write, Glob, Grep, ...)
-        for key in PATH_KEYS:
-            value = tool_input.get(key)
-            if not isinstance(value, str) or not value:
-                continue
+        # 1) known path arguments — resolved-prefix match (catches ../ and symlinks)
+        for value in path_values:
             resolved = os.path.realpath(os.path.expanduser(value))
             if resolved == folder or resolved.startswith(folder + os.sep):
                 block(folder, tool)
 
-        # 2) shell commands (Bash) — substring match on abs and ~ forms
-        command = tool_input.get("command")
-        if isinstance(command, str) and command:
-            tilde_form = folder.replace(home, "~", 1) if folder.startswith(home) else None
-            if folder in command or (tilde_form and tilde_form in command):
+        # 2) everything else (shell commands, argv items, unknown fields) —
+        #    substring match on absolute and ~ forms
+        tilde_form = folder.replace(home, "~", 1) if folder.startswith(home) else None
+        for value in other_values:
+            if folder in value or (tilde_form and tilde_form in value):
                 block(folder, tool)
 
     sys.exit(0)

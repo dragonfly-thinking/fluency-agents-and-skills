@@ -34,12 +34,25 @@ it runs. Concept and layered strategy: [`../folder-guardrails.md`](../folder-gua
    file inside a protected folder. Correct result: a refusal that names
    guard-folders. Also verify normal work still succeeds (fail-open check).
 
-**Codex:** Codex supports the same hook event schema (PreToolUse etc.), enabled via
-`features.hooks` and registered in `~/.codex/config.toml` — the script is identical
-(it also reads `~/.codex/protected-folders.txt`). Register it per the current Codex
-config reference (developers.openai.com/codex → configuration); ask your agent to
-adapt step 3 accordingly. Codex's built-in sandbox (`writable_roots`) remains the
-first line there — this hook adds the read-side veto.
+**Codex:** the script is identical (it also reads `~/.codex/protected-folders.txt` —
+create it, and copy the script to `~/.codex/hooks/`). Registration in
+`~/.codex/config.toml` (this exact shape parses on codex-cli 0.144; note the
+required `type` field):
+
+```toml
+[features]
+hooks = true
+
+[[hooks.PreToolUse]]
+matcher = ".*"
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = "python3 ~/.codex/hooks/guard_folders.py"
+```
+
+Restart Codex and run the same verify test. Codex's built-in sandbox
+(`writable_roots`) remains the first line there — this hook adds the read-side veto.
 
 **Honest limits (v1):** Bash commands are matched by path substring — a command
 using a *relative* path or a variable can slip past. That's why the guide teaches
