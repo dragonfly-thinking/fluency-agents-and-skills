@@ -21,7 +21,9 @@ The shift from chat-based AI assistants to AI **agents** — tools that take act
 - **Tokens** are the unit of processing — roughly ¾ of a word (1,000 tokens ≈ 750 words). Everything becomes tokens: your instructions, the conversation history, PDFs, images. Tokens are also how usage is priced and how context is measured.
 - **Context window** = how much the model can hold in its "working memory" at once, measured in tokens. It has grown from ~3,000 words at ChatGPT's launch to **1,000,000+ tokens (~750,000 words, ~10 books)** today. If your work is mostly text, your life's work might fit inside a single context window.
 - **"Context is king" — what you put in front of the model shifts what comes out.** A live example: the word *"Java"* predicts *language / script / developer* — but add a system instruction *"you are a barista taking an order"* and *coffee* becomes the likely next word. Same word, different context, different output. Persona-priming ("you are an expert in X") still helps, but giving the *right information* — your organisation, your preferences, British vs. American spelling — matters more. (See [Setting Up Your Agent's Workspace](session-2-setting-up-your-agentic-environment.md).)
-- **Models come in tiers.** Cheaper/faster ones (e.g. Claude Haiku) trade capability for speed and cost; more capable ones (Sonnet, then Opus) reason better but cost more, with a powerful new tier — **Fable / Mythos** — above them. Which tier you pick has real cost consequences (see Practical Notes).
+- **Models come in tiers.** Cheaper/faster ones (e.g. Claude Haiku) trade capability for speed and cost; more capable ones (Sonnet, then Opus) reason better but cost more, with a powerful new tier — **Fable / Mythos** — above them. The gap between tiers narrows with each release, so treat the ladder as directional, not fixed. Which tier you pick has real cost consequences (see Practical Notes).
+
+> **A note on specifics vs. principles.** The model names, prices, and the exact autonomy figures in these notes will date fast — there were several new frontier models in the months around this course, and each one reshuffles the picture. Don't lean on the specifics; lean on what doesn't move: tiers exist and cost real money, so **match the model to the job**; **effort / reasoning level is your main cost dial** — turn it down for easy work; **verify what matters** and **red-team important plans with fresh context**; and keep your working files in **markdown**. Those hold whichever model you're on.
 
 ## Energy & Water — the nuance
 
@@ -54,7 +56,7 @@ One of the fastest productivity unlocks in the whole toolkit — and you can set
 ## The Autonomy Trend (METR)
 
 - The METR graph tracks **how long an agent can work unsupervised** on a task it completes ~50% of the time (measured as how long the same task takes a human). It was flat for years, then went **near-vertical from 2025**.
-- Concretely: Opus can work autonomously for around **12 hours**; the top tier (Mythos) for **17–18 hours** — nearly a full day.
+- Concretely (at the time of writing): Opus can work autonomously for around **12 hours**; the top tier (Mythos) for **17–18 hours** — nearly a full day. The exact hours climb with each release — the point is the trend, not the number.
 - That's the model *alone*. With a well-built **harness**, people already run these systems for **days or weeks** on a single goal. The curve is still climbing, mostly through better harnesses — so expect agents working in the background for us, on both short and long tasks, to become normal.
 
 ## Coding Agents & Your Files
