@@ -25,6 +25,16 @@ Use here.now for two jobs:
 - **Sites**: publish websites and files at `{slug}.here.now`.
 - **Drives**: store private agent files in cloud folders.
 
+> ⚠️ **A Site is public. Check before you publish.** Anyone with the URL can read
+> it — there is no password, and a signed-in user's Sites can also appear on their
+> public here.now profile. Before publishing anything that came from the user's own
+> files, ask yourself whether it contains client material, personal data, unpublished
+> work or anything under NDA — and if there's any doubt, **ask the user first and say
+> plainly that the result will be publicly reachable**. Use a **Drive** instead when
+> the goal is storage rather than sharing. Publishing is easy to do and hard to
+> un-do: the URL may already have been copied, indexed or cached by the time anyone
+> notices.
+
 To install or update (recommended): `npx skills add heredotnow/skill --skill here-now -g`
 
 For repo-pinned/project-local installs, run the same command without `-g`.
