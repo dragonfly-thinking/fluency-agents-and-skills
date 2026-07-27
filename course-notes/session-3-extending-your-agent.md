@@ -84,7 +84,7 @@ In Codex: **Plugins** menu. Similar experience, called "plugins" instead of "con
 - **Paper Search** — searches 20+ academic sources (arXiv, Semantic Scholar, OpenAlex, Crossref, PubMed, SSRN). No API key to start. ⚠️ Read the warning at the top of `mcp/paper-search.md` before installing: the server includes Sci-Hub download tools reached automatically as a fallback, and the guide shows how to block them if that's a problem where you work.
 - **ABS Statistics** — Australian Bureau of Statistics data.
 - **World Bank Data360** — 1,000+ development indicators across 200+ countries.
-- **Data Commons** — Google's harmonised aggregator across ~240 public datasets (World Bank, WHO, UN, OECD, US Census, ABS, NOAA). Free API key required.
+- **Data Commons** — Google's harmonised aggregator across 180+ public datasets from 85+ official sources (World Bank, WHO, UN, OECD, US Census, ABS, NOAA). Free API key required.
 
 ## Other Skills Worth Exploring (from the kit)
 
@@ -119,7 +119,7 @@ You're reading this from inside the kit: sub-agents (`writing-editor`, `critical
 - **[Paper Search MCP](https://github.com/openags/paper-search-mcp)** — Searches 20+ academic sources. No API key to start. See the Sci-Hub warning in `mcp/paper-search.md` before installing.
 - **[ABS Statistics MCP](https://github.com/seansoreilly/mcp-server-abs)** — Australian Bureau of Statistics: CPI, unemployment, GDP, etc. No API key.
 - **[World Bank Data360 MCP](https://github.com/worldbank/data360-mcp)** — Official World Bank MCP. 1,000+ development indicators across 200+ countries. No API key.
-- **[Data Commons MCP](https://github.com/datacommonsorg/agent-toolkit)** — Google's index of ~240 public datasets. Free API key required.
+- **[Data Commons MCP](https://github.com/datacommonsorg/agent-toolkit)** — Google's index of 180+ public datasets from 85+ official sources. Free API key required.
 - **[Smithery](https://smithery.ai)** — The MCP installer; one-line install for most MCP servers.
 - **[Model Context Protocol (MCP) spec](https://modelcontextprotocol.io)** — The open standard MCPs are built on.
 
