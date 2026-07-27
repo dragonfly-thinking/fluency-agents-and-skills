@@ -18,20 +18,22 @@ You have more than one way to search; the right one depends on the query. Don't 
 Step 1 — see what's available:
 
 ```bash
-[ -f ~/.fluency/bin/openrouter.py ] && python3 ~/.fluency/bin/openrouter.py check 2>/dev/null && echo "OpenRouter: available" || echo "OpenRouter: not set up"
+[ -f ~/.fluency/bin/openrouter.py ] && python3 ~/.fluency/bin/openrouter.py check && echo "OpenRouter: available" || echo "OpenRouter: NOT USABLE — read the error above"
 ```
 
-Also note whether Paper Search or Data Commons MCP tools are connected. Built-in web search is always available.
+Also note whether Data Commons MCP tools are connected. Built-in web search is always available.
 
 Step 2 — route by query type:
 
 - General fact / current state, want citations → `python3 ~/.fluency/bin/openrouter.py search "..." --max-results 4` (Perplexity Sonar, cited); fall back to built-in search.
 - "What are people saying" / live social / breaking → `python3 ~/.fluency/bin/openrouter.py xsearch "..." --from 2026-05-01` (X via Grok).
-- Academic / papers / research literature → Paper Search MCP (free, no key).
+- Academic / papers / research literature → OpenRouter `search` (cited), else built-in web search + fetch over arXiv, PubMed, publisher and repository pages. Never cite a paper you have not opened: confirm the DOI or arXiv link resolves and the title matches, and say plainly when you found nothing rather than reaching for a plausible-looking reference.
 - Public statistics / countries / economy / health / demographics → Data Commons MCP.
 - General query, no key set up → built-in web search + fetch.
 
-Step 3 — degrade gracefully. If OpenRouter isn't set up and the MCPs aren't connected, just use the built-in web search — it answers most queries well. Never refuse a query because a premium lane is missing; fall back silently. The premium lanes are an upgrade, not a requirement.
+Step 3 — degrade gracefully, but never silently. If OpenRouter isn't set up and the MCPs aren't connected, use the built-in web search — it answers most queries well, and a missing premium lane is never a reason to refuse a query. But say ONE line about it in your answer, e.g. "(used built-in search — OpenRouter isn't reachable)". A user who has paid for a key needs to know it isn't being used; a user who hasn't lost nothing by being told.
+
+If the Step 1 check printed a network error rather than a missing-key error, say so explicitly — on Codex that usually means the sandbox is blocking outbound network, which is fixed by setting `network_access = true` under `[sandbox_workspace_write]` in `~/.codex/config.toml`, not by re-doing the key setup.
 
 ## Strategy
 

@@ -14,6 +14,18 @@
 [features]
 multi_agent = true
 
+# ─── Sandbox network access ──────────────────────────────────────────
+#
+# Codex's `workspace-write` sandbox blocks OUTBOUND NETWORK by default. The
+# web-searcher agent runs in that sandbox and calls out to OpenRouter, so this
+# line is required for its premium lanes to work at all. Without it the calls
+# fail as network errors, which is easy to mistake for a key problem.
+#
+# Measured on codex-cli 0.144.1: workspace-write alone → connection fails;
+# with the line below → succeeds. Keep it.
+[sandbox_workspace_write]
+network_access = true
+
 # ─── Subagent registry ──────────────────────────────────────────────
 
 [agents.critical_friend]
