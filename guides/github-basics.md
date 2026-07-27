@@ -51,6 +51,13 @@ recognise the words.
   even in a private repo. Keep them where the setup guides in `mcp/` put them
   (config files outside the repo, or environment variables).
 
+  **And if one slips through: rotate it, don't just delete it.** Git keeps every
+  version forever — that's the feature. Deleting a key from a file in a later
+  commit leaves it sitting in the history, still readable. The fix is to go to
+  wherever the key came from, delete it there, and issue a new one. Takes a
+  minute and costs nothing. Ask your agent to scan the folder for anything
+  key-shaped *before* the first push, when it's still easy.
+
 ---
 
 ## Setup — point your agent at this section
@@ -68,7 +75,10 @@ ask them to approve commands. Adapt to what's already installed.
 3. **Install and authenticate the GitHub CLI** — easiest path for non-developers:
    `gh` from [cli.github.com](https://cli.github.com) (`brew install gh` /
    `winget install GitHub.cli`), then `gh auth login` — the user follows the
-   browser prompts.
+   browser prompts. Afterwards run `gh auth status` and check it names the
+   account they expect: if they have both a personal and a work GitHub login,
+   `gh` can be signed into the wrong one, and the only symptom later is a
+   confusing "repository not found".
 4. **Turn the workspace into a repo and push it.** From the workspace folder:
    initialise (`git init`), write a sensible `.gitignore` first (exclude `.DS_Store`,
    any folders of huge binary files, and anything containing keys), commit, then

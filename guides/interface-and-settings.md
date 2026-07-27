@@ -9,18 +9,38 @@ something is a command, just type it into the chat.
 
 ## 1. Permission modes — how much rope to give the agent
 
-Both tools have a mode selector (bottom of the chat in Claude Code; shift-tab /
-settings in Codex). The ladder, from cautious to trusting:
+In Claude Code, press **Shift+Tab** to cycle modes (the CLI shows the current one
+in the status bar); in VS Code, the desktop app and claude.ai there's a mode
+selector instead. Codex has its own approval settings — see its `/status`.
 
-| Mode | What it means | When |
+The ladder, from cautious to trusting:
+
+| Mode | What runs **without** asking | When |
 |---|---|---|
-| **Plan mode** | The agent *cannot act at all* — it discusses, plans, and asks before switching to a mode where it can | Starting anything non-trivial; staying the director |
-| **Ask each time** | Approves every action with you | Your first week, or unfamiliar territory |
-| **Accept edits / Auto** | File edits (and pre-approved actions) run without asking; unusual actions still prompt | The sensible everyday setting once trust is built |
-| **Bypass / full access** | Nothing prompts | Rarely. Only in a workspace where nothing can be damaged — and never on folders with sensitive material (see [`folder-guardrails.md`](folder-guardrails.md)) |
+| **Manual** *(the config name is `default`)* | Reads only | Your first week, or unfamiliar territory |
+| **Plan mode** | Reads, searches, and shell commands that *explore* — but it will not edit your files until you approve the plan | Starting anything non-trivial; staying the director |
+| **Accept edits** | Reads, file edits, and everyday file commands (`mkdir`, `mv`, `cp`…) | Iterating on something you're actively reviewing |
+| **Auto** | **Everything**, with an automated safety check reviewing actions as they go | Long tasks, once you trust the direction |
+| **Bypass / full access** | Everything, with nothing reviewing it | Rarely. Only where nothing can be damaged — and never with sensitive material around (see [`folder-guardrails.md`](folder-guardrails.md)) |
 
-Course recommendation: live in **auto** for day-to-day work, drop into **plan
-mode** at the start of anything substantial, and save the plan as a file.
+Two things worth being precise about, because the names invite the wrong
+assumption:
+
+- **Plan mode is not a cage.** It won't edit your files, but it *does* read them
+  and run shell commands to look around. It's "propose before changing", not
+  "sit still".
+- **Auto is not a slightly-relaxed Accept-edits.** Accept edits frees up *file
+  editing*; auto lets **everything** run and leans on an automated reviewer
+  instead of you. That's a genuinely bigger step, and worth taking deliberately.
+
+In every mode, your own deny rules still apply, and writes to protected paths
+(your git repo internals, the agent's own config) are never auto-approved except
+in full-bypass. So the ladder sets the default; guardrails sit on top of it.
+
+Course recommendation: **Accept edits** for everyday work, drop into **plan mode**
+at the start of anything substantial and save the plan as a file, and move up to
+**auto** only once you know what the agent tends to do unsupervised. (Auto isn't
+available on every account — if you don't see it, you're not missing a setting.)
 
 ## 2. The context meter — knowing how full the window is
 
@@ -82,3 +102,10 @@ or out-of-bounds should stay a human decision.
   into a compacted session. Handoff and restart.
 - **Not sure what your current setup even is?** Ask: *"show me my current mode,
   model, and what's in my allowlist."* The agent can read its own settings.
+
+---
+
+*Mode names and behaviour checked against the Claude Code permission-modes
+documentation on 2026-07-27. This is the fastest-moving part of both tools — if a
+mode name here doesn't match what you see, trust the tool and ask your agent to
+check the current docs.*

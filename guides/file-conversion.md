@@ -34,14 +34,28 @@ multi-column layouts. That's Route 2.
 ## Route 2 — the one-key route: OpenRouter (recommended)
 
 If you set up **OpenRouter** from this kit ([`../mcp/openrouter.md`](../mcp/openrouter.md)
-— the same single key that powers image generation and live search), you already
-have professional PDF conversion. OpenRouter's **`file-parser`** feature attaches
-a PDF to any model request, with a choice of engine:
+— the same single key that powers image generation and live search), that key
+also does professional PDF conversion. Note this is a **recipe, not a command**:
+the kit's `openrouter.py` engine script covers images and search, but has no PDF
+path, so the agent makes this request itself. OpenRouter's **`file-parser`**
+feature attaches a PDF to any model request, with a choice of engine:
 
 | Engine | What it's for | Cost |
 |---|---|---|
 | **`cloudflare-ai`** | Converts ordinary PDFs to **Markdown** | **Free** |
 | **`mistral-ocr`** | True OCR for **scanned/image-heavy** documents | **$2 per 1,000 pages** |
+| **`native`** | The model reads the PDF itself, where it can | Input tokens only |
+
+> ⚠️ **Always set `engine` explicitly — the fallback is the paid one.** If the
+> request omits `engine`, OpenRouter tries the model's native file handling and
+> then falls back to **`mistral-ocr`**, which bills. The free route is only free
+> if you name it. This matters most exactly where it's easiest to forget: the
+> batch case below, where "convert all 70 PDFs" is the difference between $0 and
+> a real invoice. If you wrap this in a script, hard-code the engine.
+
+The key lives at `~/.fluency/openrouter.key` (see
+[`../mcp/openrouter.md`](../mcp/openrouter.md)) — read it from there rather than
+asking the user for it again.
 
 **You are an AI agent doing this for the user — the request shape** (docs:
 [openrouter.ai/docs → Multimodal → PDFs](https://openrouter.ai/docs/guides/overview/multimodal/pdfs)):

@@ -64,5 +64,13 @@ share the same workspace.
 - Triggering a routine you've already built (the media-scan moment from Session 4).
 - Checking on / approving a long-running task.
 
-Drafting fiddly work multi-file work? Wait for the desk. Phone is for **starting,
+Drafting fiddly multi-file work? Wait for the desk. Phone is for **starting,
 steering, and checking** — not surgery.
+
+---
+
+*Reviewed 2026-07-27. This page is deliberately lighter on exact menu paths than
+the other guides, because this is the corner of both products that changes
+fastest — the caveat at the top is doing real work, not hedging. If the names
+don't match, ask your agent to check the current docs before assuming you've done
+something wrong.*

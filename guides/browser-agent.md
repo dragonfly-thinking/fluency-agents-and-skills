@@ -22,6 +22,14 @@ attached).
 clean browser by default — logged into nothing — which is exactly what you want.
 Don't connect it to your daily browser profile unless you've thought hard about why.
 
+**Second rule: don't give it your passwords.** `agent-browser` includes a
+credential store (`agent-browser auth save/login`) that we deliberately don't set
+up here. It encrypts what you save — but the decryption key sits in the same
+folder, so anything running as you, *including your agent*, can use those
+credentials at will. That's fine for a throwaway test account and wrong for
+anything real. If your agent offers to save a password to get past a login wall,
+say no and log in yourself (see Troubleshooting).
+
 ## Install (agent-followable)
 
 The tool is **`agent-browser`** — a free command-line tool that works identically
@@ -33,11 +41,18 @@ under Claude Code and Codex (it's just a command; no per-runtime setup).
    `brew install node`; Windows: `winget install OpenJS.NodeJS.LTS`; or
    [nodejs.org](https://nodejs.org)).
 2. **The CLI** — `npm install -g agent-browser`, then check `agent-browser --version`.
-3. **The browser engine** — run `agent-browser install`. ⚠️ **Known trap:** on some
-   machines this fetches the wrong build and later commands fail with *"Executable
-   doesn't exist… chromium-XXXX"*. The reliable fix: check the pinned Playwright
-   version (`npm ls -g agent-browser` → its `playwright` dependency, e.g. `1.57.0`)
-   and run `npx playwright@<that version> install chromium` (~160 MB, one-time).
+3. **The browser engine** — run `agent-browser install` (~160 MB, one-time).
+
+   ⚠️ **If later commands fail with *"Executable doesn't exist… chromium-XXXX"***,
+   the browser build and the tool disagree about versions. Try, in order:
+   1. `agent-browser install` again — it's usually enough on current versions.
+   2. `npx playwright install chromium`.
+   3. Only if the error names a specific Playwright version, pin to it:
+      `npx playwright@<that version> install chromium`.
+
+   *(Don't bother hunting for a pinned Playwright version in `npm ls -g
+   agent-browser` — current releases declare no dependencies, so there's nothing
+   listed there to match against.)*
 4. **Verify end-to-end** (a visible browser window should open):
    ```bash
    agent-browser open --headed https://example.com
@@ -81,10 +96,14 @@ Two rules the whole thing hinges on:
 | `Executable doesn't exist… chromium-XXXX` | Step 3's pinned-Playwright fix |
 | `Unsupported token "@e1"` | You skipped `snapshot` — snapshot first, then act |
 | Element not found after clicking around | Refs went stale — re-snapshot |
-| A login wall | Stop and ask the user — don't have the agent handle credentials; log in yourself in the agent's browser window, then let it continue |
+| A login wall | Stop and ask the user — don't have the agent handle credentials, and don't use `agent-browser auth save` (see the safety rules). Log in yourself in the agent's browser window, then let it continue |
 | Codex: browser won't launch | Codex's sandbox must allow writes — normal interactive sessions do; a `read-only` sandbox (some scripted runs) blocks the launch |
 | CAPTCHA | That's the site saying "humans only" — respect it; do that step yourself |
 
 **Where it doesn't belong:** sites you're logged into with real money or real
 sensitivity (banking, patient records), and anything a site's terms forbid
 automating. When in doubt, drive; let the agent navigate.
+
+*Verified against `agent-browser` 0.33.0 on 2026-07-27. It's a fast-moving tool —
+if a command below doesn't exist, check `agent-browser --help` before assuming
+something is broken.*

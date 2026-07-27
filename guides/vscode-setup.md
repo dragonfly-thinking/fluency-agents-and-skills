@@ -68,3 +68,9 @@ Install 'code' command in PATH"* — then retry.)
   autosave means it always sees your latest edits.
 - **Word wrap** for prose: ⌘⇧P / Ctrl+Shift+P → *"Toggle Word Wrap"* — so long
   paragraphs wrap instead of scrolling sideways.
+
+---
+
+*All five extension IDs above verified on the VS Code marketplace on 2026-07-27.
+If one won't install, search the name in the Extensions panel rather than
+assuming the guide is broken — publishers occasionally rename.*
