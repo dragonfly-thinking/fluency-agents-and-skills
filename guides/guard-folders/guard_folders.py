@@ -14,16 +14,24 @@ Protected folders are listed one per line in:
     ~/.claude/protected-folders.txt   (and/or ~/.codex/protected-folders.txt)
 Lines starting with # are comments. ~ is expanded. Symlinks are resolved.
 
-Known limits (v1, by design — see the guide):
+Known limits (v1, by design — see the guide). These are tested, not assumed:
 - Bash commands are checked by substring (absolute and ~ forms of each protected
-  path). A command that reaches a folder by *relative* path or via a variable can
-  slip past. Pair this hook with permission deny rules and, for the truly
-  sensitive, OS-level locks. Layers, not silver bullets.
+  path), so a command that spells the path another way slips past — a glob
+  (cat ~/Priv*te/x), split quoting (cat ~/'Pri''vate'/x), cd plus a relative
+  path, or a shell variable.
+- A script that opens the file itself is invisible here: this hook sees
+  `python3 analyse.py`, not what that script goes on to read. No hook that
+  inspects the command can close that gap — only an OS-enforced boundary can
+  (Claude Code's sandbox.filesystem.denyRead, or the OS-level options in the
+  guide).
+Pair this hook with permission deny rules, the sandbox, and — for the truly
+sensitive — OS-level locks. Layers, not silver bullets.
 """
 
 import json
 import os
 import sys
+import unicodedata
 
 CONFIG_FILES = [
     os.path.expanduser("~/.claude/protected-folders.txt"),
@@ -35,6 +43,19 @@ PATH_KEYS = (
     "file_path", "path", "notebook_path", "directory", "cwd",
     "old_path", "new_path", "target_file", "source_file",
 )
+
+# macOS and Windows are case-insensitive by default: ~/Private and ~/private are
+# the SAME folder, but a plain string compare treats them as different, which
+# would let a trivial case change walk straight past this guard. macOS also
+# stores filenames decomposed (NFD), so an accented folder name can arrive in a
+# different byte form than the one in protected-folders.txt.
+FOLD_CASE = sys.platform in ("darwin", "win32")
+
+
+def norm(text):
+    """Normalise for comparison: Unicode form, then case where the OS ignores it."""
+    text = unicodedata.normalize("NFC", text)
+    return text.casefold() if FOLD_CASE else text
 
 
 def load_protected():
@@ -88,17 +109,21 @@ def main():
                 (path_values if key in PATH_KEYS else other_values).append(v)
 
     for folder in protected:
+        folder_n = norm(folder)
+
         # 1) known path arguments — resolved-prefix match (catches ../ and symlinks)
         for value in path_values:
-            resolved = os.path.realpath(os.path.expanduser(value))
-            if resolved == folder or resolved.startswith(folder + os.sep):
+            resolved = norm(os.path.realpath(os.path.expanduser(value)))
+            if resolved == folder_n or resolved.startswith(folder_n + os.sep):
                 block(folder, tool)
 
         # 2) everything else (shell commands, argv items, unknown fields) —
         #    substring match on absolute and ~ forms
         tilde_form = folder.replace(home, "~", 1) if folder.startswith(home) else None
+        tilde_n = norm(tilde_form) if tilde_form else None
         for value in other_values:
-            if folder in value or (tilde_form and tilde_form in value):
+            value_n = norm(value)
+            if folder_n in value_n or (tilde_n and tilde_n in value_n):
                 block(folder, tool)
 
     sys.exit(0)
