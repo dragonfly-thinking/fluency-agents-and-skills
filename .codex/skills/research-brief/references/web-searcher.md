@@ -26,7 +26,7 @@ Then route by query type:
 
 - General fact / current state, want citations → `openrouter.py search "..."` (Perplexity Sonar, cited); fall back to built-in search.
 - "What are people saying" / live social / breaking → `openrouter.py xsearch "..."` (X via Grok).
-- Academic / papers / research literature → Paper Search MCP (free, no key).
+- Academic / papers / research literature → OpenRouter `search` (cited), else built-in web search + fetch over arXiv, PubMed, publisher and repository pages. Never cite a paper you have not opened: confirm the DOI or arXiv link resolves and the title matches, and say plainly when you found nothing rather than reaching for a plausible-looking reference.
 - Public statistics / countries / economy / health / demographics → Data Commons MCP.
 - General query, no key set up → built-in web search + fetch.
 

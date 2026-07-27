@@ -72,11 +72,18 @@ Agent-followable setup guides — point your agent at one and say *"follow this 
 
 | Guide | What it unlocks | Key? |
 |-------|-----------------|------|
-| [`mcp/paper-search.md`](mcp/paper-search.md) | Academic literature — arXiv, PubMed, Semantic Scholar and ~20 more | None |
 | [`mcp/data-commons.md`](mcp/data-commons.md) | Public statistics — World Bank, WHO, UN, ABS and ~240 datasets | Free key |
 | [`mcp/openrouter.md`](mcp/openrouter.md) | Live cited search, X/social search, image generation, PDF→Markdown conversion | One paid key (~$10 credit) |
 
-Together these fill out all of the `web-searcher` agent's lanes — it routes queries to whichever source fits.
+Together these fill out the `web-searcher` agent's lanes — it routes queries to whichever source fits, and falls back to built-in web search when a lane isn't set up.
+
+> **On academic literature.** We previously shipped a Paper Search setup guide and have
+> withdrawn it. The server it installed included a Sci-Hub download path enabled by default,
+> which we're not willing to put on a participant's machine — many of you work somewhere that
+> would take a dim view of it, and rightly. Ask your agent to search for papers with ordinary
+> web search in the meantime; it reaches arXiv, PubMed and publisher pages perfectly well.
+> Whatever the tool, **open a paper before you cite it** — agents will offer a confident,
+> plausible reference for something that doesn't exist.
 
 ## Plain-English guides (`guides/`)
 
@@ -106,7 +113,7 @@ Short how-tos for the questions that came up most in the course — written so y
 │   └── skills/                #   14 skills (Codex ships its own skill-creator)
 ├── course-notes/              # Key points from the 4 sessions + put-into-action prompts
 ├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
-└── mcp/                       # Setup guides for external connections (paper-search, …)
+└── mcp/                       # Setup guides for external connections (data-commons, openrouter)
 ```
 
 ## Claude Code vs. Codex
