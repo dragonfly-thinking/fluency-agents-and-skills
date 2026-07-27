@@ -28,8 +28,12 @@ Send the user to **https://openrouter.ai** to sign up (Google sign-in is fine).
 At **https://openrouter.ai/settings/credits**, add **$10**.
 
 **Do not turn on auto top-up.** Pre-paid credit that never refills itself is the
-single thing that makes this safe: $10 in means $10 is the most it can ever cost,
-whatever goes wrong. Auto top-up removes that ceiling.
+single thing that makes this safe: put $10 in and roughly $10 is the most it can
+cost, whatever goes wrong. Auto top-up removes that ceiling entirely.
+
+*Roughly, not exactly* — we've seen a balance land slightly past zero, with small
+calls still going through and the next expensive one refused. Treat it as a
+backstop that holds within a few cents, not a hard cut-off at the last penny.
 
 ## Step 3 — Create the key, and cap it (user, in browser)
 
