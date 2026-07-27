@@ -72,18 +72,17 @@ Agent-followable setup guides — point your agent at one and say *"follow this 
 
 | Guide | What it unlocks | Key? |
 |-------|-----------------|------|
-| [`mcp/data-commons.md`](mcp/data-commons.md) | Public statistics — World Bank, WHO, UN, ABS and ~240 datasets | Free key |
+| [`mcp/paper-search.md`](mcp/paper-search.md) | Academic literature — arXiv, PubMed, Semantic Scholar and ~20 more | None to start |
+| [`mcp/data-commons.md`](mcp/data-commons.md) | Public statistics — World Bank, UN, US Census, ABS · 180+ datasets from 85+ sources | Free key |
 | [`mcp/openrouter.md`](mcp/openrouter.md) | Live cited search, X/social search, image generation, PDF→Markdown conversion | One paid key (~$10 credit) |
 
 Together these fill out the `web-searcher` agent's lanes — it routes queries to whichever source fits, and falls back to built-in web search when a lane isn't set up.
 
-> **On academic literature.** We previously shipped a Paper Search setup guide and have
-> withdrawn it. The server it installed included a Sci-Hub download path enabled by default,
-> which we're not willing to put on a participant's machine — many of you work somewhere that
-> would take a dim view of it, and rightly. Ask your agent to search for papers with ordinary
-> web search in the meantime; it reaches arXiv, PubMed and publisher pages perfectly well.
-> Whatever the tool, **open a paper before you cite it** — agents will offer a confident,
-> plausible reference for something that doesn't exist.
+> **Before you install Paper Search**, read the warning at the top of its guide. The server
+> it connects includes tools that download from Sci-Hub, reached **automatically** as a
+> fallback rather than only when you ask. Whether that's fine or a problem depends entirely
+> on whose machine you're on — the guide explains it and shows how to block those two tools
+> if you'd rather they couldn't run. Your call, made with the facts.
 
 ## Plain-English guides (`guides/`)
 

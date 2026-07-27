@@ -81,7 +81,7 @@ In Claude Desktop / Cowork: **Customize → Connectors** in the sidebar. Browse,
 In Codex: **Plugins** menu. Similar experience, called "plugins" instead of "connectors", but functionally the same.
 
 **Useful public-data MCPs mentioned** (all free, most without an API key):
-- ~~**Paper Search**~~ — **withdrawn since the session, don't install it.** It searches 20+ academic sources, but on a later review we found the server also ships a Sci-Hub download path turned on by default. That's a problem on a university or firm machine, so we've pulled our setup guide. Ordinary web search reaches arXiv, PubMed and publisher pages fine in the meantime.
+- **Paper Search** — searches 20+ academic sources (arXiv, Semantic Scholar, OpenAlex, Crossref, PubMed, SSRN). No API key to start. ⚠️ Read the warning at the top of `mcp/paper-search.md` before installing: the server includes Sci-Hub download tools reached automatically as a fallback, and the guide shows how to block them if that's a problem where you work.
 - **ABS Statistics** — Australian Bureau of Statistics data.
 - **World Bank Data360** — 1,000+ development indicators across 200+ countries.
 - **Data Commons** — Google's harmonised aggregator across ~240 public datasets (World Bank, WHO, UN, OECD, US Census, ABS, NOAA). Free API key required.
@@ -116,7 +116,7 @@ You're reading this from inside the kit: sub-agents (`writing-editor`, `critical
 - **[here.now](https://here.now)** — Free hosting that lets an agent publish files/HTML to a live `{slug}.here.now` URL. 24h free, longer with an account.
 
 ### MCPs and public data sources
-- ~~**Paper Search MCP**~~ — **withdrawn, don't install** (see the note above): the server ships a Sci-Hub download path enabled by default.
+- **[Paper Search MCP](https://github.com/openags/paper-search-mcp)** — Searches 20+ academic sources. No API key to start. See the Sci-Hub warning in `mcp/paper-search.md` before installing.
 - **[ABS Statistics MCP](https://github.com/seansoreilly/mcp-server-abs)** — Australian Bureau of Statistics: CPI, unemployment, GDP, etc. No API key.
 - **[World Bank Data360 MCP](https://github.com/worldbank/data360-mcp)** — Official World Bank MCP. 1,000+ development indicators across 200+ countries. No API key.
 - **[Data Commons MCP](https://github.com/datacommonsorg/agent-toolkit)** — Google's index of ~240 public datasets. Free API key required.

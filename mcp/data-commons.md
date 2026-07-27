@@ -1,9 +1,9 @@
 # Add Data Commons — for the agent
 
 **You are an AI coding agent (Claude Code or Codex). The user wants to add Google
-Data Commons — one connection to ~240 harmonised public datasets (World Bank, WHO,
-UN, US Census, the Australian Bureau of Statistics and more) so they can ask for
-real statistics and get sourced numbers back.** This connects the `datacommons-mcp`
+Data Commons — one connection to 180+ harmonised public datasets from 85+ official
+sources (World Bank, UN, US Census, the Australian Bureau of Statistics and more)
+so they can ask for real statistics and get sourced numbers back.** This connects the `datacommons-mcp`
 server, which powers the **public statistics** lane of the `web-searcher` agent in
 this kit.
 
@@ -199,7 +199,8 @@ read the real error:
     provenance URL, it came from the model's memory, not from Data Commons.
 - **Where your queries go:** every request hits Google's `api.datacommons.org`
   carrying your key. Worth knowing on a firm or government machine.
-- **Sibling source:** [`openrouter.md`](openrouter.md) covers image generation +
-  live/social search (one paid key). Academic literature is handled by ordinary
-  web search for now (see the README).
+- **Sibling sources:** [`paper-search.md`](paper-search.md) covers academic
+  literature (no key to start — read its Sci-Hub warning first);
+  [`openrouter.md`](openrouter.md) covers image generation + live/social search
+  (one paid key).
 - Docs: <https://docs.datacommons.org/mcp> · PyPI: `datacommons-mcp`.

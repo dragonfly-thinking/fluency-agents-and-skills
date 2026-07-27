@@ -26,7 +26,7 @@ Then route by query type:
 
 - General fact / current state, want citations → `openrouter.py search "..."` (Perplexity Sonar, cited); fall back to built-in search.
 - "What are people saying" / live social / breaking → `openrouter.py xsearch "..."` (X via Grok).
-- Academic / papers / research literature → OpenRouter `search` (cited), else built-in web search + fetch over arXiv, PubMed, publisher and repository pages. Never cite a paper you have not opened: confirm the DOI or arXiv link resolves and the title matches, and say plainly when you found nothing rather than reaching for a plausible-looking reference.
+- Academic / papers / research literature → Paper Search MCP if connected, else OpenRouter `search`, else built-in web search + fetch over arXiv, PubMed and publisher pages. Two rules either way: an empty result means UNKNOWN, not "nothing exists" — a throttled search looks identical to a genuinely empty one, so retry and say which sources answered. And never cite a paper you have not opened: confirm the DOI or arXiv link resolves and the title matches. Never call download_scihub, and pass use_scihub=False if you use download_with_fallback.
 - Public statistics / countries / economy / health / demographics → Data Commons MCP.
 - General query, no key set up → built-in web search + fetch.
 

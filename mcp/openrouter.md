@@ -131,6 +131,6 @@ agent to "generate an image of …" and it runs the engine directly.
 
 - This is an API key + engine script, not an MCP server — nothing to add to MCP
   configs, and no restart needed.
-- Sibling in this folder: [`data-commons.md`](data-commons.md) (public
-  statistics, free key). Together they fill out `web-searcher`'s lanes; academic
-  literature is handled by ordinary web search for now (see the README).
+- Siblings in this folder: [`paper-search.md`](paper-search.md) (academic
+  literature, no key to start) and [`data-commons.md`](data-commons.md) (public
+  statistics, free key) — together they fill out `web-searcher`'s lanes.

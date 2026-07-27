@@ -11,7 +11,7 @@ user took (or is taking) the course; this kit is what they walk away with.
 | `.claude/agents/` + `.claude/skills/` | The kit itself, Claude Code format (`.codex/` mirrors it for Codex) |
 | `course-notes/` | Key points from the four course sessions, plus ready-to-paste prompts for putting them into action — start here when the user doesn't know what to do next |
 | `guides/` | Plain-English how-tos (GitHub, file conversion, interface & settings, folder guardrails incl. the ready-made `guard-folders/` hook, phone, VS Code, browser automation) — written to be read by the user *or* followed by you on their behalf |
-| `mcp/` | Setup guides for external connections (e.g. `data-commons.md`) — written to be followed step-by-step by an agent on the user's behalf |
+| `mcp/` | Setup guides for external connections (e.g. `paper-search.md`) — written to be followed step-by-step by an agent on the user's behalf |
 | `README.md` | The human-facing orientation — what everything is |
 | `AGENTS.md` | The install playbook — follow it when asked to set the kit up |
 
