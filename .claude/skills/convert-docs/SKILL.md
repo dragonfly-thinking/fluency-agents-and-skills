@@ -91,7 +91,21 @@ If the user is converting more than a handful of documents, offer once to make i
 `npm install -g @firecrawl/anydoc` — so every run is instant. Don't insist, and don't do it
 mid-task without asking.
 
-**If Node is missing, or older than 20:** do **not** send the user off to install Node in the middle of their actual task. Drop to Route 1b for this job, finish what they asked for, and *then* mention it once: *"I can set up a faster local converter for next time — it needs Node, which takes a minute to install. Want me to?"* (`guides/browser-agent.md` has the Node install commands per platform.)
+**If Node is missing, or older than 20** — most participants won't have it, so this is the normal
+case, not an edge case. What to do depends on the size of the job, because that's what decides
+whether setup is worth their time:
+
+- **One or a few documents** → don't mention Node at all. Use Route 1b, convert them, done. Setup
+  would take longer than the task. Raising it here is exactly the derailment we're trying to avoid.
+- **A folder, a batch, or anything they'll clearly repeat** → offer *before* you start, because
+  here the difference is real (about a second a file, versus reading every one of them in full):
+  *"There's a free tool that would convert all 40 of these in under a minute. It takes about two
+  minutes to set up, one time. Want me to, or shall I just start now the slower way?"*
+- **Either way, if they decline or it fails** → Route 1b, finish the job, don't ask again.
+
+When they say yes, follow **[`setup-node.md`](setup-node.md)** in this skill's own folder — it has
+the per-platform steps, what to do when a work laptop blocks it, and the parts that need the user
+rather than you. Then come back and do the conversion they actually asked for.
 
 **Verify before claiming success.** anydoc is young software (0.1.x). Open the output and check it's real Markdown with actual content — not empty, not a wall of mojibake, tables not collapsed to nothing. If it looks wrong, say so and escalate to Route 1b rather than handing over a broken file.
 
