@@ -13,9 +13,10 @@ them when it's done.
 1. **Ask first, and say how long.** *"This takes about two minutes and installs Node.js, a
    standard tool your agent uses to run small programs. Want me to?"* If they say no, drop it,
    use Route 1b, and don't ask again this session.
-2. **You cannot type an administrator password.** Some routes below need one. When that happens,
-   hand the step to the user with a clear instruction — don't try to work around it, and never
-   ask them to paste their password to you.
+2. **Prefer the routes that need nothing from them.** On macOS and Linux you can do the whole
+   thing yourself — no password, no installer, no restart. Only the last-resort fallbacks need
+   the user, because **you cannot type an administrator password**. When that happens, hand the
+   step over with a clear instruction, and never ask them to paste a password to you.
 3. **Never leave them worse off.** If any step fails, stop, say plainly that the fast converter
    isn't available, and carry on with Route 1b. A failed setup must not cost them their task.
 
@@ -30,32 +31,56 @@ continue. (An old Node is common; it needs upgrading, not just installing.)
 
 ---
 
-## macOS
+## macOS and Linux
 
-**If Homebrew is installed** (`command -v brew` succeeds) — this is the clean path, no password:
+**You can do this entire section yourself. The user does nothing and types no password.**
+
+**If Homebrew is already installed** (`command -v brew` succeeds) — use it, it's their machine's
+normal way of doing things and needs no password:
 
 ```bash
 brew install node
 ```
 
-**If Homebrew is not installed, do NOT install it.** It's a large install that needs an
-administrator password and pulls in Apple's developer tools — far too much for this. Use the
-official installer instead: you download it, the user double-clicks it.
+**Otherwise use nvm**, which installs Node inside the user's own home folder. No administrator
+rights, no password prompt, no installer to double-click. **Do NOT install Homebrew** to get
+around this — Homebrew needs admin rights and pulls in Apple's developer tools, which is far too
+much for what we're doing here.
 
 ```bash
-# Look up the current LTS release rather than hard-coding a version
+# 1. Install nvm (pinned version, into ~/.nvm — nothing system-wide, no sudo)
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+# 2. Load it into THIS shell — without this, `nvm` and `node` won't be found yet
+export NVM_DIR="$HOME/.nvm"; . "$NVM_DIR/nvm.sh"
+
+# 3. Install the current LTS
+nvm install --lts
+
+# 4. Confirm
+node --version
+```
+
+> **Step 2 matters.** nvm adds itself to the user's shell profile, which only takes effect in
+> *new* terminals. Sourcing it as above makes Node usable immediately, in the session you're
+> already in — so you can go straight on and do their conversion rather than asking them to
+> restart anything.
+
+Verified end to end on macOS: nvm installs with no password, Node LTS installs, and
+`npx -y @firecrawl/anydoc` then converts correctly.
+
+**Only if both of those fail** — fall back to the official installer, which does need the user:
+
+```bash
 V=$(curl -fsL https://nodejs.org/dist/index.json | python3 -c "import sys,json; print([r for r in json.load(sys.stdin) if r.get('lts')][0]['version'])")
 curl -fL "https://nodejs.org/dist/$V/node-$V.pkg" -o ~/Downloads/node-installer.pkg && echo "Saved to ~/Downloads/node-installer.pkg"
 ```
-
-Then tell them, in these words or close to them:
 
 > *"I've put an installer in your Downloads folder called **node-installer.pkg**. Double-click it
 > and click Continue through the steps — it'll ask for your Mac password near the end, which is
 > normal. Tell me when it's finished and I'll carry on."*
 
-When they say it's done, **they must open a new terminal session** for it to be visible — in
-practice, quit and reopen Claude Code or Codex. Then re-check `node --version`.
+Then they must quit and reopen Claude Code or Codex before `node --version` will find it.
 
 ## Windows
 
@@ -63,17 +88,13 @@ practice, quit and reopen Claude Code or Codex. Then re-check `node --version`.
 winget install OpenJS.NodeJS.LTS
 ```
 
-Usually works without a prompt. If `winget` isn't recognised, send them to
-[nodejs.org](https://nodejs.org) to download the Windows installer and double-click it — same
-hand-off wording as the Mac route above.
+Usually works with no prompt and no user involvement. If `winget` isn't recognised, send them to
+[nodejs.org](https://nodejs.org) for the Windows installer to double-click — same hand-off wording
+as the macOS fallback above.
 
-Either way, Node won't appear until a **new** terminal is opened, so have them restart Claude Code
-or Codex before you re-check.
-
-## Linux
-
-`sudo apt install nodejs npm` (Debian/Ubuntu) or the distro equivalent. This needs a password the
-user must type themselves — hand it over rather than attempting it.
+Either way Node won't appear until a **new** terminal is opened, so have them restart Claude Code
+or Codex before you re-check. (Windows is the one platform where there's no reliable
+no-restart path — say so plainly rather than leaving them wondering why nothing happened.)
 
 ---
 
