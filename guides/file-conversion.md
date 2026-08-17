@@ -6,30 +6,60 @@ once it's Markdown. Renaming a file to `.md` does **not** convert it; the routes
 below do. (For going the *other* way — Markdown out to polished PDF or slides —
 see the end.)
 
-You can read this yourself, or point your agent at it: *"read
-`guides/file-conversion.md` and convert the PDFs in this folder for me."*
+**The short version: just ask.** The kit's **`convert-docs`** skill does all of
+this — it picks the right route below, warns you before anything costs money, and
+needs nothing installed to work the first time. *"Convert these to markdown"* is
+enough. Read on if you want to know what it's doing, or to do it by hand.
 
 ---
 
-## Route 1 — just ask your agent (start here)
+## Route 1 — anydoc, on your machine (start here)
 
-For most **digitally-created** documents (exported PDFs, Word docs, PowerPoints —
-anything where the text is real text, not a photo of text), your agent can convert
-without any external service:
+[**anydoc**](https://github.com/firecrawl/anydoc) converts Word, PowerPoint,
+Excel, OpenDocument, RTF, EPUB, CSV and text-based PDFs into clean Markdown in
+milliseconds. It runs **entirely on your computer** — no API key, no account,
+nothing sent anywhere, no cost. Headings, tables, lists, links and footnotes all
+survive.
 
-> *"Convert `report.pdf` to Markdown, save it next to the original, and keep the
-> heading structure."*
+**Nothing to install.** Your agent runs it with `npx`, which fetches the tool and
+runs it in one go:
 
-Under the hood it will read the file directly or use a small free tool (it may ask
-to install a Python library or `pandoc` the first time — that's normal and safe).
-Free, and everything stays on your machine.
+```bash
+npx -y @firecrawl/anydoc report.docx -o report.md
+```
+
+If you convert documents often, ask your agent to install it permanently
+(`npm install -g @firecrawl/anydoc`) so every run is instant. Either way, your
+agent handles it — you don't need to touch a terminal.
+
+> **Needs Node 20+.** Most people who've installed Claude Code or Codex already
+> have it. If you don't, your agent will quietly use Route 2 instead and finish
+> the job — then offer to set Node up for next time. Nothing blocks.
+>
+> **Agents:** the `-y` flag is required. Without it `npx` waits for a keypress
+> that never comes and the command hangs.
 
 **Batch tip from the course:** for a folder of many documents this is a perfect
-**routine** — *"each night, convert any new PDFs in `~/Inbox` to Markdown"* — or a
-one-off: *"convert all 70 PDFs in this folder; keep a progress log as you go."*
+**routine** — *"each night, convert any new documents in `~/Inbox` to Markdown"* —
+or a one-off: *"convert all 70 PDFs in this folder; keep a progress log as you go."*
 
-**Where Route 1 falls short:** scanned documents (images of text) and complex
-multi-column layouts. That's Route 2.
+**Use the original file, not a PDF of it.** If you have both `deck.pptx` and
+`deck.pdf`, convert the PowerPoint. A PDF has already thrown the structure away, so
+anything in columns — slides especially — can come out with the columns read *across*
+instead of down, which scrambles the sentences. We tested this: the same content
+converted cleanly from `.pptx` and came back interleaved from the PDF export. Same
+logic for `.docx` over a printed PDF of it.
+
+**Where Route 1 falls short:** scanned documents (photos of text) and multi-column
+PDF layouts, as above. anydoc is also young software (0.1.x) — so glance at the
+output rather than assuming. If it comes out empty or garbled, escalate.
+
+## Route 1b — let the agent read it directly
+
+For a digitally-created PDF or Word file, your agent can also just read the file
+and write the Markdown out itself. Slower and it uses up context on a long
+document, but it needs absolutely nothing installed. This is the automatic
+fallback when Route 1 isn't available.
 
 ## Route 2 — the one-key route: OpenRouter (recommended)
 
@@ -112,13 +142,14 @@ current rate).
 
 ## Which route when?
 
-| Document | Route |
-|---|---|
-| Exported PDF, Word, PowerPoint (real text) | **1** — just ask |
-| Ordinary PDF you want as clean Markdown | **2** with `cloudflare-ai` (free) |
-| Scanned pages, photographed documents | **2** with `mistral-ocr` |
-| Image/figure-heavy documents where everything must survive | **3** — Mistral direct |
-| Hundreds of documents on a budget | **1** first; **2** for the ones that come out mangled |
+| Document | Route | Cost |
+|---|---|---|
+| Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV | **1** — anydoc | free |
+| Exported PDF (real text, not a scan) | **1** — anydoc, else **1b** | free |
+| No Node installed | **1b** — agent reads it | free |
+| Scanned pages, photographed documents | **2** with `mistral-ocr` | $2 / 1,000 pages |
+| Image/figure-heavy documents where everything must survive | **3** — Mistral direct | per page |
+| Hundreds of documents on a budget | **1** for all of them; escalate only the ones that come out mangled | free |
 
 ## Going the other way — Markdown out to polished formats
 

@@ -1,7 +1,7 @@
 # Fluency Agents and Skills
 
 This repo is the **Fluency Agents and Skills** kit from the Dragonfly Thinking AI Fluency
-course — 6 specialist subagents, 15 skills, MCP setup guides, plain-English how-to guides (`guides/`), and the course notes. The
+course — 6 specialist subagents, 16 skills, MCP setup guides, plain-English how-to guides (`guides/`), and the course notes. The
 user took (or is taking) the course; this kit is what they walk away with.
 
 ## Key resources — know your way around
@@ -17,17 +17,12 @@ user took (or is taking) the course; this kit is what they walk away with.
 
 ## If the user asks you to install or set this up
 
-Follow [`AGENTS.md`](AGENTS.md) — it's the full install playbook. For Claude Code, the short version is:
+**Read [`AGENTS.md`](AGENTS.md) and follow it — don't install from memory.** There is no safe
+"short version": the playbook checks whether the user has customised a skill before it copies
+over anything, handles a re-install without destroying their copy, and covers the Codex
+config merge. Copying the folders straight across skips all of that.
 
-```bash
-mkdir -p ~/.claude/agents ~/.claude/skills
-cp -R .claude/agents/*  ~/.claude/agents/
-cp -R .claude/skills/*  ~/.claude/skills/
-```
-
-Then start a new session — Claude Code auto-discovers `~/.claude/agents/` and
-`~/.claude/skills/`. See `AGENTS.md` for verification, the here-now publish skill, and
-runtime dependencies (web search, etc.).
+It also covers verification, the here-now publish skill, and runtime dependencies.
 
 ## This kit is the user's to shape — help them shape it
 

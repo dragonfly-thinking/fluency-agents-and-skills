@@ -12,14 +12,14 @@ No GitHub account needed — this page is public. Copy this page's link, paste i
 
 > **"Read the AGENTS.md at this link and install the kit for me."**
 
-Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 15 skills into your setup (14 on Codex — Codex ships its own first-party skill-creator, so the kit doesn’t duplicate it) (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
+Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 16 skills into your setup (15 on Codex — Codex ships its own first-party skill-creator, so the kit doesn’t duplicate it) (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
 
 Already downloaded the kit (the green **Code → Download ZIP** button)? Same idea — tell your agent: *"I've downloaded the fluency kit to my Downloads folder — install it for me."* (Took the course earlier and still have last time's copy? Just paste the link above instead — your agent grabs the current version, since the kit keeps improving.)
 
 <details>
 <summary>Prefer to do it by hand? (terminal commands)</summary>
 
-From inside the downloaded/cloned folder:
+From inside the downloaded/cloned folder. ⚠️ **If you've installed before and customised any skill, back it up first** — these commands overwrite same-named files without asking. (Letting your agent install it, as above, avoids this: it checks and asks first.)
 
 ```bash
 # Claude Code
@@ -63,6 +63,7 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 | **pdf-create** | Produces a polished PDF | — |
 | **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
 | **verify-work** | Checks finished work against what was actually asked, using fresh adversarial sub-agents | critical-friend + fact-checker |
+| **convert-docs** | Converts Word / PowerPoint / Excel / PDF / EPUB and more into clean Markdown — free and on your machine, nothing to install | — |
 | **skill-creator** | Interviews you and packages a repeatable workflow as a new skill (Claude Code only — Codex ships its own first-party skill-creator) | — |
 | **browser-agent** | Drives a real browser — fills web forms, clicks through flows, extracts page content (agent-browser CLI) | — |
 
@@ -90,7 +91,7 @@ Short how-tos for the questions that came up most in the course — written so y
 
 | Guide | What it covers |
 |-------|----------------|
-| [`guides/file-conversion.md`](guides/file-conversion.md) | Converting PDFs, Word and PowerPoint to Markdown (and back) — free via your OpenRouter key, or Mistral OCR for scans |
+| [`guides/file-conversion.md`](guides/file-conversion.md) | Converting PDFs, Word, PowerPoint, Excel and more to Markdown (and back) — free and local via anydoc, OCR for scans. The **`convert-docs`** skill does it all for you |
 | [`guides/github-basics.md`](guides/github-basics.md) | What GitHub is, backup/sharing/version-history, agent-followable setup, second computers |
 | [`guides/interface-and-settings.md`](guides/interface-and-settings.md) | Where the context meter is (Claude *and* Codex), permission modes, a sane always-allow list |
 | [`guides/folder-guardrails.md`](guides/folder-guardrails.md) | Actually blocking your agent from sensitive folders — includes **`guard-folders/`**, a ready-made, tested guard your agent installs in a minute |
@@ -104,12 +105,12 @@ Short how-tos for the questions that came up most in the course — written so y
 .
 ├── .claude/                   # Claude Code kit
 │   ├── agents/                #   6 subagents (.md)
-│   └── skills/                #   15 skills (SKILL.md per folder)
+│   └── skills/                #   16 skills (SKILL.md per folder)
 ├── .codex/                    # Codex kit (same capabilities, Codex-native)
 │   ├── AGENTS.md
 │   ├── config.toml            #   registers the agent roles (multi_agent = true)
 │   ├── agents/                #   6 agent-role personas (.toml, via config_file)
-│   └── skills/                #   14 skills (Codex ships its own skill-creator)
+│   └── skills/                #   15 skills (Codex ships its own skill-creator)
 ├── course-notes/              # Key points from the 4 sessions + put-into-action prompts
 ├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
 └── mcp/                       # Setup guides for external connections (data-commons, openrouter)
