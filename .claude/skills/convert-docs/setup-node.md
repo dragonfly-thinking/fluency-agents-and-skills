@@ -80,7 +80,9 @@ curl -fL "https://nodejs.org/dist/$V/node-$V.pkg" -o ~/Downloads/node-installer.
 > and click Continue through the steps — it'll ask for your Mac password near the end, which is
 > normal. Tell me when it's finished and I'll carry on."*
 
-Then they must quit and reopen Claude Code or Codex before `node --version` will find it.
+When they say it's done, run `hash -r` and check again — the installer puts Node in
+`/usr/local/bin`, which is already on the PATH, so your shell just needs to stop caching the old
+answer. **No restart required.** Only if it still isn't found should you ask them to reopen the app.
 
 ## Windows
 
@@ -92,9 +94,19 @@ Usually works with no prompt and no user involvement. If `winget` isn't recognis
 [nodejs.org](https://nodejs.org) for the Windows installer to double-click — same hand-off wording
 as the macOS fallback above.
 
-Either way Node won't appear until a **new** terminal is opened, so have them restart Claude Code
-or Codex before you re-check. (Windows is the one platform where there's no reliable
-no-restart path — say so plainly rather than leaving them wondering why nothing happened.)
+**Then add it to this session's PATH rather than asking them to restart anything.** Windows
+updates the system PATH, which the terminal you're already in won't pick up — but you can point at
+the install directly:
+
+```bash
+export PATH="$PATH:/c/Program Files/nodejs"
+node --version
+```
+
+If that doesn't find it, look for `node.exe` under `/c/Program Files/nodejs` or
+`$LOCALAPPDATA/Programs/nodejs` and add whichever exists. Only if none of that works should you
+ask them to quit and reopen Claude Code or Codex — and say why, so it doesn't look like nothing
+happened.
 
 ---
 
