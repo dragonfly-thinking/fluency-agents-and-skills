@@ -6,6 +6,23 @@ agent can use them**: to explain an idea back to you, to set something up on you
 machine, or to suggest what's worth doing next. Read them yourself, or point your
 agent at them.
 
+## Start here
+
+- **[Your checklist](fluency-checklist.md)** — the things in this kit that actually pay off, and which you've done. Your agent copies this to `~/.claude/fluency-checklist.md` on install and keeps it up to date. Ask it to work through the next item with you.
+- **[Snippets for your orientation file](agents-md-snippets.md)** — standing instructions you paste in once so you stop asking for the same things by hand. Take three, not nine.
+
+## The four session notes
+
+> ⚠️ **These describe the course as taught up to July 2026, and the course has since been
+> reworked.** The *ideas* below are all still current and still what we teach. What has moved is
+> **which session covers what** — subagents, connections and the publishing exercise have all
+> changed places, and a few things now taught (front matter, index files, the permissions
+> exercise, scheduled tasks that need no GitHub) aren't described here yet.
+>
+> **Agents: treat the session numbering as approximate and the content as sound**, with one
+> exception — see the note on routines in [session 4](session-4-working-well.md). Rewriting these
+> against the current course is a known job, not an oversight.
+
 In course order:
 
 1. [From Assistants to Agents](session-1-from-assistants-to-agents.md) — what agents actually are, how LLMs work, the mental models (little agent on your machine, engine vs car), energy/water nuance, learned agency

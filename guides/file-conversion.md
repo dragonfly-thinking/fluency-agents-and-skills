@@ -32,12 +32,23 @@ If you convert documents often, ask your agent to install it permanently
 (`npm install -g @firecrawl/anydoc`) so every run is instant. Either way, your
 agent handles it — you don't need to touch a terminal.
 
-> **Needs Node 20+.** Most people who've installed Claude Code or Codex already
-> have it. If you don't, your agent will quietly use Route 2 instead and finish
-> the job — then offer to set Node up for next time. Nothing blocks.
+> **Needs Node 20+.** Many people who've installed Claude Code or Codex already
+> have it. If you don't, you have two options that need nothing at all — the
+> browser version below, or letting your agent read the file directly (Route 1b).
+> Your agent will pick one and finish the job, then offer to set Node up for next
+> time. **Nothing blocks.**
 >
 > **Agents:** the `-y` flag is required. Without it `npx` waits for a keypress
 > that never comes and the command hangs.
+
+### Nothing installed? Same tool, in a browser tab
+
+anydoc also runs at **[firecrawl.github.io/anydoc](https://firecrawl.github.io/anydoc/)** with
+nothing to install. It runs *inside the page* — your files never leave your computer, exactly as
+with the command-line version. Drag a document in, get Markdown out, save it into your workspace.
+
+Best for one or two files when you'd rather not install anything. For a folder of fifty, it's
+worth the two-minute Node setup — or just ask your agent to read them (Route 1b).
 
 **Batch tip from the course:** for a folder of many documents this is a perfect
 **routine** — *"each night, convert any new documents in `~/Inbox` to Markdown"* —
@@ -146,7 +157,8 @@ current rate).
 |---|---|---|
 | Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV | **1** — anydoc | free |
 | Exported PDF (real text, not a scan) | **1** — anydoc, else **1b** | free |
-| No Node installed | **1b** — agent reads it | free |
+| No Node, a few files | **1** — anydoc in the browser | free |
+| No Node, a whole folder | **1b** — agent reads it, or install Node once | free |
 | Scanned pages, photographed documents | **2** with `mistral-ocr` | $2 / 1,000 pages |
 | Image/figure-heavy documents where everything must survive | **3** — Mistral direct | per page |
 | Hundreds of documents on a budget | **1** for all of them; escalate only the ones that come out mangled | free |

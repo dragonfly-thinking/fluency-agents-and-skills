@@ -8,12 +8,32 @@ If you don't know which runtime you're in: you're **Claude Code** if you read `C
 
 ---
 
+## 🚫 Never overwrite these — read before you copy anything
+
+**This is an install, and it is also an *update*.** Returning users have files they built
+themselves, some of them in a live session with an instructor. Losing one is worse than any
+capability this kit adds. **These are never yours to replace:**
+
+| File | Why it matters | What you do instead |
+|---|---|---|
+| **Their orientation file** — `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, or any `CLAUDE.md`/`AGENTS.md` in a project | They wrote it, usually by interview. It is the single most personal file in their setup. | **Never write to it during install.** Snippets from `course-notes/agents-md-snippets.md` are *offered* after the install, one at a time, and appended only on an explicit yes. |
+| **Their checklist** — `~/.claude/fluency-checklist.md` | Holds their ticked progress and notes. | If it exists, leave it. Add only genuinely new items from the template, unticked, at the end. |
+| **Skills they've tailored** | The course told them to shape these. Theirs is the version tuned to their work. | The MODIFIED check below catches these. Ask before touching any of them. |
+| **`~/.codex/config.toml`** | Contains config that isn't ours. | Back it up, then *merge* the `[agents.*]` blocks. Never overwrite the file. |
+| **`context/`, `projects/`, `user.md`, and anything else in their workspace** | Their actual work. | Don't touch it. Don't tidy it. Don't reorganise it. |
+
+If you are ever unsure whether a file is theirs or ours: **it's theirs.** Ask.
+
+---
+
 ## What gets installed
 
 - **6 agents** (specialists a skill can delegate to): `critical-friend`, `fact-checker`, `writing-editor`, `project-planner`, `vault-librarian`, `web-searcher`
 - **16 skills** (verbs the user invokes): `setup-workspace`, `new-project`, `proofread`, `critical-review`, `research-brief`, `premortem`, `daily-brief`, `visual-explainer`, `slides`, `canvas-design`, `pdf-create`, `here-now`, `verify-work`, `convert-docs`, `skill-creator` *(Claude only — Codex has its own built in)*, `browser-agent`
 
-The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format). Install the one matching the runtime. The repo also carries `course-notes/` (session key points), `guides/` (plain-English how-tos: GitHub, file conversion, folder guardrails, phone, VS Code, browser automation), and `mcp/` (external-connection setup guides) — these stay in the repo rather than being installed; see the wrap-up step.
+The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format). Install the one matching the runtime. The repo also carries `course-notes/` (the reference library, plus `agents-md-snippets.md` — standing instructions for their orientation file), `guides/` (plain-English how-tos: GitHub, file conversion, folder guardrails, phone, VS Code, browser automation), and `mcp/` (external-connection setup guides) — these stay in the repo rather than being installed; see the wrap-up step.
+
+**One file *is* copied out of the repo:** `course-notes/fluency-checklist.md` → `~/.claude/fluency-checklist.md` (or `~/.codex/`). It lives outside the kit folder deliberately, so updating the kit never wipes the user's progress. See the wrap-up step for the copy rule.
 
 ---
 
@@ -209,12 +229,31 @@ Tell the user it's done and give them something to try:
 
 > "Installed 6 agents and 16 skills. **First time?** Run *`setup-workspace`* — it'll interview you and create your `CLAUDE.md` / `AGENTS.md` + `context/` + `projects/` for you. **Been here before?** Run *`setup-workspace`* again — it'll spot what's missing from your setup and fill just those gaps. Or try: *start a new project with `new-project`* (it opens by asking what you'd like to work on), *build me slides on X*, *research-brief on Y*, or *publish something with here-now*."
 
-Then three more things:
+Then four more things:
 
-1. **Point at the course notes.** Tell the user where the repo lives on their machine (normally `~/fluency-agents-and-skills` — see Step 0) and that `course-notes/` there holds the key points from the four course sessions, `guides/` the plain-English how-tos, and `mcp/` the external-connection setup guides. Offer: *"Want me to read the course notes and suggest what's worth putting into action first?"*
-2. **Tell them the kit is theirs to shape.** One line is enough: *"If a skill ever gets something wrong, just tell me — I can update the skill so it doesn't happen again. And if you notice a task you repeat, I can turn it into a new skill."* (If they do tailor a skill, mention that re-installing the kit later will ask before overwriting it — it won't wipe their changes.)
+1. **Set up their checklist.** The kit ships a lot that people never get round to using; this is what stops that.
 
-3. **Offer to sort out permissions now.** This is the single most common frustration in the first hour: the skills that fetch from the web (`research-brief`, `daily-brief`, `fact-checker`) and the ones that write files will otherwise ask for approval over and over — one prompt per site on a batch job. Ask: *"Want me to set up a sensible always-allow list so you're not approving every web fetch?"* If yes, read [`guides/interface-and-settings.md`](guides/interface-and-settings.md) § *Always-allow* — it gives the safe-vs-keep-asking split in principle, and [`guides/folder-guardrails.md`](guides/folder-guardrails.md) shows the actual `permissions` file shape to write it into. Note the guide's "review what you've been approving" method **won't work for a brand-new user** — they haven't approved anything yet — so for a first install, propose a starting list from the guide's table (web search and fetching yes; deleting files no) and explain each line in one sentence rather than writing a config they can't read.
+   ```bash
+   mkdir -p ~/.claude   # or ~/.codex
+   [ -f ~/.claude/fluency-checklist.md ] \
+     && echo "EXISTS — do not overwrite; merge new items only" \
+     || cp course-notes/fluency-checklist.md ~/.claude/fluency-checklist.md
+   ```
+
+   **If it already exists, leave it alone.** Read it, and add only genuinely new items from the
+   template, unticked, at the end. Their ticks and notes are theirs.
+
+   Then *use* it, don't just announce it: look at what's actually on their machine, tick what's
+   already true, and tell them. **Offer one next thing, not thirteen** — the header inside the
+   file explains why. Say: *"I've started a checklist at `~/.claude/fluency-checklist.md` of the
+   things in this kit worth doing. You've already got three of them. Want to do the next one now?"*
+
+2. **Point at the course notes.** Tell the user where the repo lives on their machine (normally `~/fluency-agents-and-skills` — see Step 0) and that `course-notes/` there holds the reference library, `guides/` the plain-English how-tos, and `mcp/` the external-connection setup guides. Flag `course-notes/agents-md-snippets.md` specifically — standing instructions they can add to their orientation file so they stop asking for the same things by hand. Offer: *"Want me to read those and suggest two or three that fit how you work?"*
+
+   ⚠️ **Offering is where this goes wrong.** Do not paste snippets into their orientation file as part of the install, do not add several at once, and do not rewrite the file to "tidy it up". Show one, say what it changes, append it if they say yes. Re-read the *Never overwrite these* table above if you're about to touch that file.
+3. **Tell them the kit is theirs to shape.** One line is enough: *"If a skill ever gets something wrong, just tell me — I can update the skill so it doesn't happen again. And if you notice a task you repeat, I can turn it into a new skill."* (If they do tailor a skill, mention that re-installing the kit later will ask before overwriting it — it won't wipe their changes.)
+
+4. **Offer to sort out permissions now.** This is the single most common frustration in the first hour: the skills that fetch from the web (`research-brief`, `daily-brief`, `fact-checker`) and the ones that write files will otherwise ask for approval over and over — one prompt per site on a batch job. Ask: *"Want me to set up a sensible always-allow list so you're not approving every web fetch?"* If yes, read [`guides/interface-and-settings.md`](guides/interface-and-settings.md) § *Always-allow* — it gives the safe-vs-keep-asking split in principle, and [`guides/folder-guardrails.md`](guides/folder-guardrails.md) shows the actual `permissions` file shape to write it into. Note the guide's "review what you've been approving" method **won't work for a brand-new user** — they haven't approved anything yet — so for a first install, propose a starting list from the guide's table (web search and fetching yes; deleting files no) and explain each line in one sentence rather than writing a config they can't read.
 
 ## Runtime dependencies to mention
 

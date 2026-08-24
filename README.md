@@ -4,7 +4,7 @@ Everything you take home from the Dragonfly Thinking **AI Fluency** course: the 
 
 A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent is a *specialist* a skill can hand work to. Several skills delegate to the base agents below.
 
-**Fresh from the course?** After installing, start with [`course-notes/`](course-notes/) — the key points from all four sessions, with ready-to-paste prompts for putting them into action.
+**Fresh from the course?** After installing, your agent starts you a **checklist** at `~/.claude/fluency-checklist.md` — the things in here that actually pay off, and which you've done. Ask it to work through the next one with you. Then browse [`course-notes/`](course-notes/) — the reference library, including [`agents-md-snippets.md`](course-notes/agents-md-snippets.md): standing instructions you paste into your orientation file once so you stop asking for the same things by hand.
 
 ## Install (let your agent do it)
 
@@ -15,6 +15,20 @@ No GitHub account needed — this page is public. Copy this page's link, paste i
 Your agent does the rest: it downloads the kit, follows [`AGENTS.md`](AGENTS.md), and copies the 6 agents and 16 skills into your setup (15 on Codex — Codex ships its own first-party skill-creator, so the kit doesn’t duplicate it) (`~/.claude/` or `~/.codex/`) so they're available in every session. When it's done, it'll tell you what to try first.
 
 Already downloaded the kit (the green **Code → Download ZIP** button)? Same idea — tell your agent: *"I've downloaded the fluency kit to my Downloads folder — install it for me."* (Took the course earlier and still have last time's copy? Just paste the link above instead — your agent grabs the current version, since the kit keeps improving.)
+
+### Installing again? Nothing of yours gets overwritten
+
+If you've installed before, this is safe to run again — and that's deliberate, because the kit keeps improving and re-installing is how you get the improvements.
+
+**Your agent is instructed never to replace any of these:**
+
+- **Your `CLAUDE.md` / `AGENTS.md`** — the orientation file you built. Snippets from [`course-notes/agents-md-snippets.md`](course-notes/agents-md-snippets.md) are *offered* one at a time and added only if you say yes. Never pasted in wholesale, never rewritten.
+- **Your checklist** (`~/.claude/fluency-checklist.md`) — your ticks and notes stay; only genuinely new items get added.
+- **Any skill you've tailored** — it checks contents before copying and asks you about anything you've actually changed, offering to back yours up first.
+- **Your `~/.codex/config.toml`** — backed up, then merged. Never overwritten.
+- **Everything else in your workspace** — your `context/`, your projects, your files. Untouched.
+
+If you'd rather be certain, ask your agent to show you what it's about to change before it does anything.
 
 <details>
 <summary>Prefer to do it by hand? (terminal commands)</summary>
@@ -63,7 +77,7 @@ Start a new session and the skills/agents are live. See [`AGENTS.md`](AGENTS.md)
 | **pdf-create** | Produces a polished PDF | — |
 | **here-now** | Publishes a file/folder to a live `{slug}.here.now` URL | — |
 | **verify-work** | Checks finished work against what was actually asked, using fresh adversarial sub-agents | critical-friend + fact-checker |
-| **convert-docs** | Converts Word / PowerPoint / Excel / PDF / EPUB and more into clean Markdown — free and on your machine, nothing to install | — |
+| **convert-docs** | Converts Word / PowerPoint / Excel / PDF / EPUB and more into clean Markdown, using [anydoc](https://github.com/firecrawl/anydoc) — free, open source, and it runs on your own machine, so nothing is uploaded | — |
 | **skill-creator** | Interviews you and packages a repeatable workflow as a new skill (Claude Code only — Codex ships its own first-party skill-creator) | — |
 | **browser-agent** | Drives a real browser — fills web forms, clicks through flows, extracts page content (agent-browser CLI) | — |
 
@@ -111,7 +125,9 @@ Short how-tos for the questions that came up most in the course — written so y
 │   ├── config.toml            #   registers the agent roles (multi_agent = true)
 │   ├── agents/                #   6 agent-role personas (.toml, via config_file)
 │   └── skills/                #   15 skills (Codex ships its own skill-creator)
-├── course-notes/              # Key points from the 4 sessions + put-into-action prompts
+├── course-notes/              # Reference library from the course
+│   ├── agents-md-snippets.md  #   standing instructions for your orientation file
+│   └── fluency-checklist.md   #   template; copied to ~/.claude/ on install
 ├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
 └── mcp/                       # Setup guides for external connections (data-commons, openrouter)
 ```
