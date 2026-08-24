@@ -141,6 +141,8 @@ Dull, and in practice the single most-used kind of instruction anyone writes. Th
 - When we finish planning something, save the plan here as a Markdown file — not to your
   own scratchpad.
 - Give it a name I'd recognise in a month, not a generated one.
+- Real work gets a folder with an overview and a running progress log, so it survives a
+  new session. When you hand work to a subagent, tell it to document what it did there.
 - If you're not sure where something belongs, ask me before you write it.
 ```
 
@@ -241,20 +243,37 @@ A session doesn't announce that it's degrading; it just goes from sharp to vague
 
 You can go further and have a scheduled routine do this monthly, so it happens whether or not you remember — see [`session-4-working-well.md`](session-4-working-well.md).
 
-## 13 · Improve yourself as we go
+**This is the backstop for §13, not a substitute.** §13 catches things in the moment they come
+up; this catches whatever slipped past. If you take only one, take §13 — but the review date is
+what stops a file quietly rotting for six months.
 
-**What it does:** your setup gets better while you use it, instead of only when you remember to maintain it.
+## 13 · Keep making this better
+
+**What it does:** your setup improves itself as you work, instead of only when you remember to improve it.
+**When you want it:** early. This is the one that compounds.
 
 ```markdown
-## How I want you to work
+## Keep making this better
+- If you notice something about how I work that isn't written down here, say so and offer
+  to add it. Don't wait for me to ask.
+- If I correct you on the same thing twice, propose a line for this file that stops it
+  happening a third time.
+- If my setup is making your job harder — missing context, a folder you can't navigate,
+  something in here that's gone stale — tell me plainly rather than working around it.
 - After running a skill, suggest how it could be improved. If I repeat a task with no
   skill, propose one.
-- When something trips you up in here, write it into a `gotchas.md` so we don't relearn it.
-- Real work gets a folder with an overview and a running progress log, so it survives a
-  new session. When you hand work to a subagent, tell it to document what it did there.
+- When something trips you up here, write it into a `gotchas.md` so we don't relearn it.
 ```
 
-The full version of this idea — why a file beats a chat as memory — is in [`self-documenting-workspaces.md`](self-documenting-workspaces.md).
+**Why this is a standing line and not just a question you ask.** You can ask *"how could my
+setup be better?"* any time — but you won't, because nothing reminds you, and you can't ask
+about the things you haven't noticed. Baking it in means the agent raises them at the moment
+it hits them, which is the only moment anyone actually knows what they are.
+
+The first three lines improve **your setup**; the last two improve **your tools**. Both are the
+same habit pointed at different things, and the setup half is the one people miss. The longer
+version of the idea — why a file beats a chat as memory — is in
+[`self-documenting-workspaces.md`](self-documenting-workspaces.md).
 
 ## 14 · Back it up at the end of a session
 
