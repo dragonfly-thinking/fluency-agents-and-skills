@@ -37,9 +37,18 @@ under Claude Code and Codex (it's just a command; no per-runtime setup).
 
 **You are an AI agent installing this — steps, verifying each:**
 
-1. **Node.js** — check `node --version`. If missing, install it (macOS:
-   `brew install node`; Windows: `winget install OpenJS.NodeJS.LTS`; or
-   [nodejs.org](https://nodejs.org)).
+1. **Node.js — and it must be v24 or newer.** Check `node --version`.
+
+   ⚠️ **This is a silent trap, not a nice-to-have.** `agent-browser` requires Node 24+, and npm
+   does **not** error when you're below it — it quietly installs an old release from June 2026
+   instead, with no message. Symptoms look like missing commands or unexplained failures, and
+   `--help` will never reveal the cause. If a user is on Node 22 or below, upgrade before
+   installing anything else.
+
+   To install: macOS `brew install node@24` (**not** `brew install node` — that formula tracks the
+   Current release, not the LTS); Windows `winget install OpenJS.NodeJS.LTS`; or
+   [nodejs.org](https://nodejs.org). If they're on a pre-2017 Mac stuck on macOS 11/12, Node 24
+   won't run at all — say so plainly; `browser-agent` isn't available to them.
 2. **The CLI** — `npm install -g agent-browser`, then check `agent-browser --version`.
 3. **The browser engine** — run `agent-browser install` (~160 MB, one-time).
 

@@ -103,10 +103,9 @@ to do depends on the size of the job, because that's what decides whether setup 
   page that does the same thing with nothing to install. Or I can just start now the slower way."*
 
 When they want it installed, follow **[`setup-node.md`](setup-node.md)** in this skill's own
-folder (the participant-facing version of the same steps is at
-https://courses-visuals.dragonflythinking.com/fluency-doc-conversion/) — it has the per-platform
-steps, what to do when a work laptop blocks it, and the parts that need the user rather than you.
-Then come back and do the conversion they actually asked for.
+folder — it has the per-platform steps, which Node version to use, what to do when a work laptop
+blocks it, and the parts that need the user rather than you. Then come back and do the conversion
+they actually asked for.
 
 ## Route 2 — anydoc in a browser tab
 

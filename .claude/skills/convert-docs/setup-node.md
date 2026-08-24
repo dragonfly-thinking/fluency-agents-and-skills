@@ -20,14 +20,36 @@ them when it's done.
 3. **Never leave them worse off.** If any step fails, stop, say plainly that the fast converter
    isn't available, and carry on with Route 1b. A failed setup must not cost them their task.
 
-## First, check it isn't already there
+## First, work out which version they need
+
+**On a Mac, check the OS version before anything else** — this decides which Node they get:
+
+```bash
+sw_vers -productVersion
+```
+
+- **macOS 13 or newer** → **Node 24** (the current Active LTS).
+- **macOS 11 or 12** → **Node 22**. Node 24 requires macOS 13.5, so on a pre-2017 Mac it will not
+  run. Node 22 is in maintenance until April 2027, which is fine for this purpose.
+- **Windows or Linux** → **Node 24**. Both Node versions support Windows 10+ identically; there is
+  no old-Windows problem, only an old-Mac one.
+
+## Then check what's already installed
 
 ```bash
 node --version
 ```
 
-Anything `v20.x` or higher — you're done, nothing to install. Below v20, or "command not found",
-continue. (An old Node is common; it needs upgrading, not just installing.)
+**At or above the version you just chose — you're done, nothing to install.**
+
+> ⚠️ **Do not accept Node 20 or below.** Node 20 reached end-of-life on 30 April 2026. It also
+> silently caps `agent-browser` (used by the `browser-agent` skill) at an old release, because npm
+> quietly serves the newest version whose requirements the installed Node satisfies — with no error.
+> Upgrade it rather than waving it through.
+>
+> ⚠️ **If they already have Node 22 on a macOS 13+ machine**, that's worth upgrading to 24 for the
+> same reason. If they're on macOS 11/12, leave it — 22 is the correct answer there, and a future
+> session should be told so (see *Finishing up*).
 
 ---
 
@@ -35,11 +57,12 @@ continue. (An old Node is common; it needs upgrading, not just installing.)
 
 **You can do this entire section yourself. The user does nothing and types no password.**
 
-**If Homebrew is already installed** (`command -v brew` succeeds) — use it, it's their machine's
-normal way of doing things and needs no password:
+**Do NOT use `brew install node`.** The Homebrew `node` formula tracks the *Current* release
+(Node 26 as of August 2026), not the LTS this skill wants. If Homebrew is already installed, ask
+for the version explicitly:
 
 ```bash
-brew install node
+brew install node@24     # or node@22 on macOS 11/12 — both formulae exist
 ```
 
 **Otherwise use nvm**, which installs Node inside the user's own home folder. No administrator
@@ -54,12 +77,16 @@ curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bas
 # 2. Load it into THIS shell — without this, `nvm` and `node` won't be found yet
 export NVM_DIR="$HOME/.nvm"; . "$NVM_DIR/nvm.sh"
 
-# 3. Install the current LTS
-nvm install --lts
+# 3. Install the version chosen above — name it explicitly, don't use --lts
+nvm install 24        # or: nvm install 22   on macOS 11/12
 
 # 4. Confirm
 node --version
 ```
+
+> **Why not `nvm install --lts`?** It resolves to whatever is Active LTS on the day, which moves —
+> Node 26 takes over in late October 2026. Two participants installing a fortnight apart would get
+> different runtimes, and a re-install would silently change the answer. Name the version.
 
 > **Step 2 matters.** nvm adds itself to the user's shell profile, which only takes effect in
 > *new* terminals. Sourcing it as above makes Node usable immediately, in the session you're
@@ -90,9 +117,12 @@ answer. **No restart required.** Only if it still isn't found should you ask the
 winget install OpenJS.NodeJS.LTS
 ```
 
-Usually works with no prompt and no user involvement. If `winget` isn't recognised, send them to
-[nodejs.org](https://nodejs.org) for the Windows installer to double-click — same hand-off wording
-as the macOS fallback above.
+Usually works with no prompt and no user involvement. That package tracks whichever line is
+Active LTS, which is Node 24 today — fine on Windows either way, since there is no old-Windows
+constraint. Check what landed with `node --version` and carry on.
+
+If `winget` isn't recognised, send them to [nodejs.org](https://nodejs.org) for the Windows
+installer to double-click — same hand-off wording as the macOS fallback above.
 
 **Then add it to this session's PATH rather than asking them to restart anything.** Windows
 updates the system PATH, which the terminal you're already in won't pick up — but you can point at
@@ -124,7 +154,13 @@ step in your task.
 
 ## Finishing up
 
-Once `node --version` reports v20 or higher:
+**If — and only if — you installed Node 22 because the Mac is too old for 24**, add one line to
+their `CLAUDE.md` / `AGENTS.md` saying so. Everything else about the install (which version, where
+it lives) a future session can rediscover in a second with `node --version` and `which node`, so
+don't write that down. The *reason* is the part that isn't recoverable: without it, a future
+session sees an old version number and offers to upgrade them to one their machine cannot run.
+
+Once `node --version` reports the version you chose:
 
 ```bash
 npm install -g @firecrawl/anydoc && anydoc --version
