@@ -65,7 +65,28 @@ The earlier notes cover [getting started](session-1-from-assistants-to-agents.md
 
 - A **routine** (Claude) or **scheduled task** (Codex) is a pre-saved prompt that fires on a schedule — daily, weekly, or manually triggered — as a full agent session, with access to everything you've built (skills, sub-agents, folders).
 - Common examples: a **daily news digest** (one built on the visual-explainer skill to produce a clean HTML page each morning), a **morning brief**, an important-email flag, an alert system tracking regulator publications, batch-converting PDFs to Markdown overnight — and a **weekly "tidy and document my workspace" pass** that reviews the week's sessions and makes sure the work is written down, so a future session (or a recovery after a crash) can get up to speed fast. That last one is the routine that keeps [Self-Documenting Workspaces](self-documenting-workspaces.md) honest without you remembering to.
-- **Local vs. cloud:** local runs on your laptop (awake and online); cloud runs without it — for Claude, cloud routines work through **GitHub** (files pulled from your repo, processed, results written back — see [`../guides/github-basics.md`](../guides/github-basics.md)). No GitHub? Run it locally. Note that cloud means your files travel to GitHub (a third party — secure and standard practice, but a real consideration for genuinely sensitive material; keep those routines local).
+- **There are three ways to schedule, not two** — and the difference decides whether a routine can see your actual files.
+
+  | | **Desktop scheduled task** | **Cloud routine** | **`/loop`** |
+  |---|---|---|---|
+  | Needs GitHub | **No** | **Yes** | No |
+  | Sees your local files | **Yes** | No — a fresh copy from your repo | Yes |
+  | Survives closing the session | Yes | Yes | No |
+  | Needs your machine on | Yes (awake, app open) | No | Yes |
+
+  **Start with a desktop scheduled task.** No GitHub, no repository, and it works on your real
+  files — which is the whole premise of working this way. Set one up from the desktop app's
+  **Routines → New routine → Local**, or just ask in any session: *"set up a daily review that
+  runs every morning at 9am."* Codex's desktop app does the same thing against a local project
+  folder.
+
+  **Cloud routines are the "when my laptop is shut" option**, and the trade is real: they need a
+  **GitHub repo** ([`../guides/github-basics.md`](../guides/github-basics.md)), they work on a
+  fresh copy pulled from it rather than your machine, and your files therefore travel to a third
+  party. Fine and standard for most work; keep genuinely sensitive routines local.
+
+  **`/loop` is session-scoped** — it dies when you close the terminal. Useful for babysitting
+  something for an hour, not for anything durable.
 - **Two settings to get right:** permissions to **auto** (so it can finish without waiting on approvals), and **choose the model to match the job** (a heavyweight model for real thinking; a fast/cheap one for mechanical tasks).
 - **Connections carry over — sometimes.** A routine can use the email/calendar/other connections you set up in the Claude desktop app (their credentials live in the cloud), so a scheduled agent really can, say, read your inbox and flag what matters. But a *cloud* routine may not see connections you only wired up locally — if a routine can't reach a tool, check where it's running.
 - Common gotchas: if a routine seems stuck on "running," click into it — there may be a **permission prompt waiting quietly**; and check the output folder, because it sometimes finishes without saying so.
