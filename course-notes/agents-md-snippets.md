@@ -8,13 +8,50 @@ Most of what makes an agent feel *yours* isn't a skill or a subagent — it's a 
 
 ---
 
+## The safety floor — if you paste nothing else, paste this
+
+Everything after this section is a menu. This bit isn't. It's three lines that stop the small number of things an agent can do that you can't undo — and if you built your file with `setup-workspace`, some of it is already in there.
+
+```markdown
+## Always
+- Never send, post or publish anything under my name. Draft it and show me — I press send.
+- Before anything irreversible — deleting files, overwriting a document, spending money —
+  stop and ask, even if I've already approved something similar.
+- Never write passwords, API keys or access tokens into a file. If I paste one, tell me
+  where it should live instead.
+```
+
+Everything else on this page is a preference. These three are the difference between a mistake you laugh about and one you have to explain to a client.
+
+---
+
 ## Before you paste anything
 
-**Don't take all of them.** A giant orientation file works, but it costs you: you're loading instructions for jobs you aren't doing, and they pull the agent in odd directions. Think of it like briefing a colleague — you'd tell them what *this* job needs, not every process in the business. **One or two from the groups that matter to you.**
+**Take fewer than you want to.** A giant orientation file doesn't just waste space — it actively backfires: when the file gets long, **the agent starts missing the instructions that matter**, because they're buried among ones that don't. Every line you add makes the others slightly weaker.
+
+**The test for each line:** *would removing this cause a mistake?* If not, cut it. If your agent already does something correctly without being told, don't tell it.
+
+**Is this a line in the file, or a skill?** Rule of thumb: if it applies to **nearly everything you do**, it belongs here. If it only matters **sometimes** — a particular kind of report, a specific client's format — it belongs in a *skill*, which gets loaded only when it's relevant. Putting occasional instructions in your orientation file is the most common way these get bloated.
+
+**Never say "never" on its own.** A bare prohibition leaves your agent stuck the moment it hits that situation. Always pair it with what to do instead — *"don't X; do Y"* or *"don't X; stop and ask me."* Every snippet below is written that way, and it's worth keeping if you edit them.
 
 **Global or project?** You'll have a global file that applies everywhere (`~/.claude/CLAUDE.md`, or `~/.codex/AGENTS.md`) and project files inside specific folders. Global is federal law, project is state law — except **the local one wins** where they disagree, and otherwise they **stack**: your agent reads every orientation file from the folder it's working in all the way up to home, and adds them together. So "how I work" goes global; "what this project is" goes local.
 
 Not sure where yours live? Just ask: *"open my global orientation file for me."*
+
+---
+
+## Is it actually working?
+
+Most people paste something in and never check. Three ways to find out, in order of how often you'll need them.
+
+**Did it even load?** In Claude Code, type **`/context`** — it shows what's taking up the session's memory, including your orientation file. If it isn't listed, it isn't loaded, and nothing else here matters. In Codex, **`/status`**.
+
+**It loaded, but it's being ignored.** The instinct is to add emphasis. **Usually the real problem is that the file is too long** and the rule is getting lost among the others. Prune first — take out the lines that wouldn't cause a mistake if they vanished — and see if the behaviour comes back. Adding more rarely fixes a file that's already too full.
+
+**Still ignored after pruning?** Mark that *one* line `IMPORTANT`. This works precisely because it's rare — if you emphasise five lines, none of them stands out and you're back where you started.
+
+**Treat the file like something you maintain, not something you wrote once.** When your agent does something you didn't want, the file is the first place to look — and the fix is often a line removed rather than a line added. The review-date snippet (§12) makes that happen on a schedule rather than when you happen to remember.
 
 ---
 
@@ -34,22 +71,53 @@ Not sure where yours live? Just ask: *"open my global orientation file for me."*
 
 You met this in Session 1 as the reverse interview that wrote your orientation file. It works for everything else too.
 
-## 2 · Tell me when you're guessing
+## 2 · Don't invent — mark the gap and name your source
 
-**What it does:** makes uncertainty visible, instead of arriving as a confident answer that happens to be wrong.
-**When you want it:** always — and especially if you're working somewhere you can't easily check the answer yourself.
+**What it does:** makes uncertainty visible and checkable, instead of arriving as a confident answer that happens to be wrong.
+**When you want it:** always — and non-negotiably if anything you produce gets cited, filed or sent to a client.
 
 ```markdown
 ## When you don't know
-- If you don't have what you need, say so and ask me for it. Don't fill the gap with something
-  plausible.
-- When you're inferring rather than reading, say which it is — "the file says X" versus
-  "I'd guess X".
+- Never invent a statistic, a quotation, a date or a name. If you need one and don't have it,
+  write `[TK]` where it should go and tell me what's missing.
+- If you don't have what you need, say so and ask. Don't fill the gap with something plausible.
+- When something comes from my files, name the file it came from. When you're inferring rather
+  than reading, say which it is — "the plan says X" versus "I'd guess X".
 ```
 
-An agent with nothing to go on will still produce a fluent, confident answer, because predicting a plausible continuation is what it does. This line turns that into a question instead.
+An agent with nothing to go on will still produce a fluent, confident answer, because predicting a plausible continuation is what it does. `[TK]` is the old newsroom mark for "to come" — it survives a search, so nothing ships with a hole you forgot about. Naming the source file turns "trust me" into something you can check in ten seconds.
 
-## 3 · Don't make me hand-write things
+## 3 · Say it straight
+
+**What it does:** stops the flattery, and gets you an actual second opinion.
+**When you want it:** if you're using your agent to think rather than just to produce.
+
+```markdown
+## How to talk to me
+- Have an opinion. If you think I'm wrong, say so and tell me why.
+- Don't open by telling me my question is great. Skip the preamble and answer.
+- If I ask for a view and you genuinely don't have one, say the tradeoffs instead of
+  manufacturing a preference.
+```
+
+These models lean agreeable, which is pleasant and useless when you wanted to be argued with. This is the single most common line experienced users add.
+
+## 4 · My house style
+
+**What it does:** stops you re-editing the same things out of every draft.
+**When you want it:** the first time you find yourself fixing the same tic twice.
+
+```markdown
+## House style
+- British English. Prose over bullet lists unless I ask for a list.
+- No emoji unless I ask for them.
+- Name files `YYYY-MM-DD-what-it-is.md`.
+- Match the voice in [context/writing-style.md] — read it before drafting anything I'll send.
+```
+
+Dull, and in practice the single most-used kind of instruction anyone writes. The last line is the highest-leverage one: **examples beat description.** A file with several samples of your actual writing does far more than any adjective you could pick — and give it a few, not one, or it over-imitates.
+
+## 5 · Don't make me hand-write things
 
 **What it does:** stops you being handed a blank file to fill in.
 **When you want it:** as soon as you start making skills, subagents or config.
@@ -62,7 +130,7 @@ An agent with nothing to go on will still produce a fluent, confident answer, be
 
 # B · Where things land
 
-## 4 · Work and plans go in my workspace
+## 6 · Work and plans go in my workspace
 
 **What it does:** stops output vanishing into a hidden temp folder under a name you'd never guess.
 **When you want it:** always. This catches people out more than anything else.
@@ -72,13 +140,13 @@ An agent with nothing to go on will still produce a fluent, confident answer, be
 - Write files into this workspace. Never into a temp folder or your own scratch space.
 - When we finish planning something, save the plan here as a Markdown file — not to your
   own scratchpad.
-- Name files `YYYY-MM-DD-what-it-is.md`. A name I'd recognise in a month, not a generated one.
+- Give it a name I'd recognise in a month, not a generated one.
 - If you're not sure where something belongs, ask me before you write it.
 ```
 
 Left to itself, plan mode saves to the tool's own config folder under a machine-generated name — so the plan you spent twenty minutes refining ends up somewhere you'll never look, called something like `elucidate-fox-universe`.
 
-## 5 · The README is a map, not a drawer
+## 7 · The README is a map, not a drawer
 
 **What it does:** stops new content being appended into a README that should be *pointing* at it.
 **When you want it:** as soon as a folder has more than a couple of files.
@@ -95,7 +163,7 @@ Ask your agent to "save this to my workspace" and it will often tuck it into the
 
 # C · A workspace it can read
 
-## 6 · Convert documents before working on them
+## 8 · Convert documents before working on them
 
 **What it does:** stops you asking for the same conversion over and over.
 **When you want it:** the moment you're working with more than a handful of PDFs or Word documents.
@@ -111,7 +179,7 @@ Ask your agent to "save this to my workspace" and it will often tuck it into the
 
 The skill uses **[anydoc](https://github.com/firecrawl/anydoc)** — free, open source, and it runs on your own machine, so nothing is uploaded anywhere. See [`../guides/file-conversion.md`](../guides/file-conversion.md) for the detail, including the browser version that needs nothing installed.
 
-## 7 · Properties, and an index for busy folders
+## 9 · Properties, and an index for busy folders
 
 **What it does:** lets your agent answer *"which of my projects are still open?"* by reading a few labels instead of re-reading every file.
 **When you want it:** as soon as you have more than about ten files you care about.
@@ -129,7 +197,7 @@ The skill uses **[anydoc](https://github.com/firecrawl/anydoc)** — free, open 
 
 # D · Boundaries
 
-## 8 · Out of bounds, and stop if you'd need to stray
+## 10 · Out of bounds, and stop if you'd need to stray
 
 **What it does:** the polite version of a lock — and makes the agent *ask* rather than relying on the permission mode to catch it.
 **When you want it:** whenever the boundary matters more than the convenience.
@@ -145,7 +213,7 @@ An instruction does better than people expect — but it is *asking*, not lockin
 
 # E · Keeping it alive
 
-## 9 · Write a handover before the context fills
+## 11 · Write a handover before the context fills
 
 **What it does:** stops a long session quietly getting worse without telling you.
 **When you want it:** if you have sessions that run for hours.
@@ -159,7 +227,7 @@ An instruction does better than people expect — but it is *asking*, not lockin
 
 A session doesn't announce that it's degrading; it just goes from sharp to vague while the automatic summary quietly drops the detail that mattered. A fresh session with a good handover beats a long one every time.
 
-## 10 · Give this file a review date
+## 12 · Give this file a review date
 
 **What it does:** hands your agent the job of noticing your orientation file has gone stale.
 **When you want it:** once the file is real enough to be worth maintaining.
@@ -173,7 +241,7 @@ A session doesn't announce that it's degrading; it just goes from sharp to vague
 
 You can go further and have a scheduled routine do this monthly, so it happens whether or not you remember — see [`session-4-working-well.md`](session-4-working-well.md).
 
-## 11 · Improve yourself as we go
+## 13 · Improve yourself as we go
 
 **What it does:** your setup gets better while you use it, instead of only when you remember to maintain it.
 
@@ -188,7 +256,7 @@ You can go further and have a scheduled routine do this monthly, so it happens w
 
 The full version of this idea — why a file beats a chat as memory — is in [`self-documenting-workspaces.md`](self-documenting-workspaces.md).
 
-## 12 · Back it up at the end of a session
+## 14 · Back it up at the end of a session
 
 **What it does:** means a dead laptop is an inconvenience rather than a catastrophe.
 **When you want it:** once your workspace holds anything you'd hate to lose.
@@ -206,11 +274,11 @@ That second line is the one people find out about the hard way, usually while se
 
 ## If you only paste three
 
-These map to what most reliably goes wrong in the first month: work landing where you can't find it, a confident answer that turned out to be a guess, and a file that quietly goes out of date.
+Assuming you've already taken the safety floor at the top — that one isn't optional. These three map to what most reliably goes wrong in the first month: work landing where you can't find it, a confident answer that turned out to be a guess, and a file that quietly goes out of date.
 
-1. **Work and plans go in my workspace** (§4)
-2. **Tell me when you're guessing** (§2)
-3. **Give this file a review date** (§10)
+1. **Work and plans go in my workspace** (§6)
+2. **Don't invent — mark the gap and name your source** (§2)
+3. **Give this file a review date** (§12)
 
 ## Try this
 
