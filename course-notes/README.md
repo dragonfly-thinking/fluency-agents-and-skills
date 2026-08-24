@@ -8,7 +8,7 @@ agent at them.
 
 ## Start here
 
-- **[Your checklist](fluency-checklist.md)** — the things in this kit that actually pay off, and which you've done. Your agent copies this to `~/.claude/fluency-checklist.md` on install and keeps it up to date. Ask it to work through the next item with you.
+- **[The checklist](../fluency-checklist.md)** (at the repo root) — what's worth setting up from this kit, written for your agent to work through *with* you. It copies this to `~/.claude/fluency-checklist.md` on install and keeps it current. Ask it what's next.
 - **[Snippets for your orientation file](agents-md-snippets.md)** — standing instructions you paste in once so you stop asking for the same things by hand. Take three, not nine.
 
 ## The four session notes

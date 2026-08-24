@@ -125,9 +125,10 @@ Short how-tos for the questions that came up most in the course — written so y
 │   ├── config.toml            #   registers the agent roles (multi_agent = true)
 │   ├── agents/                #   6 agent-role personas (.toml, via config_file)
 │   └── skills/                #   15 skills (Codex ships its own skill-creator)
+├── fluency-checklist.md       # What's worth setting up, and what you've done
+│                              #   (template; the live copy goes to ~/.claude/)
 ├── course-notes/              # Reference library from the course
-│   ├── agents-md-snippets.md  #   standing instructions for your orientation file
-│   └── fluency-checklist.md   #   template; copied to ~/.claude/ on install
+│   └── agents-md-snippets.md  #   standing instructions for your orientation file
 ├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
 └── mcp/                       # Setup guides for external connections (data-commons, openrouter)
 ```

@@ -33,7 +33,7 @@ If you are ever unsure whether a file is theirs or ours: **it's theirs.** Ask.
 
 The repo ships both `.claude/` (Claude Code format) and `.codex/` (Codex format). Install the one matching the runtime. The repo also carries `course-notes/` (the reference library, plus `agents-md-snippets.md` — standing instructions for their orientation file), `guides/` (plain-English how-tos: GitHub, file conversion, folder guardrails, phone, VS Code, browser automation), and `mcp/` (external-connection setup guides) — these stay in the repo rather than being installed; see the wrap-up step.
 
-**One file *is* copied out of the repo:** `course-notes/fluency-checklist.md` → `~/.claude/fluency-checklist.md` (or `~/.codex/`). It lives outside the kit folder deliberately, so updating the kit never wipes the user's progress. See the wrap-up step for the copy rule.
+**One file *is* copied out of the repo:** `fluency-checklist.md` → `~/.claude/fluency-checklist.md` (or `~/.codex/`). It lives outside the kit folder deliberately, so updating the kit never wipes the user's progress. See the wrap-up step for the copy rule.
 
 ---
 
@@ -237,7 +237,7 @@ Then four more things:
    mkdir -p ~/.claude   # or ~/.codex
    [ -f ~/.claude/fluency-checklist.md ] \
      && echo "EXISTS — do not overwrite; merge new items only" \
-     || cp course-notes/fluency-checklist.md ~/.claude/fluency-checklist.md
+     || cp fluency-checklist.md ~/.claude/fluency-checklist.md
    ```
 
    **If it already exists, leave it alone.** Read it, and add only genuinely new items from the

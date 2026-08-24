@@ -10,7 +10,7 @@ user took (or is taking) the course; this kit is what they walk away with.
 |---|---|
 | `.claude/agents/` + `.claude/skills/` | The kit itself, Claude Code format (`.codex/` mirrors it for Codex) |
 | `course-notes/` | The reference library from the course — start here when the user doesn't know what to do next. ⚠️ The four session notes describe the course up to July 2026; the session mapping has since changed (banner in `course-notes/README.md`) |
-| `course-notes/fluency-checklist.md` | Template for the user's progress checklist. Copied to `~/.claude/fluency-checklist.md` on install — **the copy there is the live one** |
+| `fluency-checklist.md` | Template for the user's progress checklist. Copied to `~/.claude/fluency-checklist.md` on install — **the copy there is the live one** |
 | `course-notes/agents-md-snippets.md` | Standing instructions for the user's orientation file. **Offer these one at a time; never paste them in unasked** |
 | `guides/` | Plain-English how-tos (GitHub, file conversion, interface & settings, folder guardrails incl. the ready-made `guard-folders/` hook, phone, VS Code, browser automation) — written to be read by the user *or* followed by you on their behalf |
 | `mcp/` | Setup guides for external connections (e.g. `paper-search.md`) — written to be followed step-by-step by an agent on the user's behalf |
