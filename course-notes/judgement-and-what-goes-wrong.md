@@ -146,8 +146,8 @@ Critical use, not non-use. The people getting the most out of these tools are no
 
 ## Further reading
 
-- **[The Cybernetic Teammate / jagged frontier](https://www.oneusefulthing.org/)** — Ethan Mollick's work is where the jagged-frontier framing comes from.
-- **[The lethal trifecta](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)** — Simon Willison's explanation of the prompt-injection mechanism, in plain English.
+- **[One Useful Thing](https://www.oneusefulthing.org/)** — Ethan Mollick's newsletter, and where the jagged-frontier framing comes from. Search it for "jagged frontier" for the original write-up.
+- **[The lethal trifecta for AI agents](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)** — Simon Willison's explanation of the prompt-injection mechanism, in plain English. The three legs quoted above are his.
 - **[Learning Agency: Two Processes, Not Just One](https://www.dragonflythinking.com/insights/learning-agency)** — the two divergent outcomes of the same tool, and choosing between them deliberately.
 
 ## Try this
