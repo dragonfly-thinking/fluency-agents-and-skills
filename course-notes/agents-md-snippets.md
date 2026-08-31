@@ -69,7 +69,7 @@ Most people paste something in and never check. Three ways to find out, in order
 - Don't ask me to specify everything up front — I often don't know what you need to know.
 ```
 
-You met this in Session 1 as the reverse interview that wrote your orientation file. It works for everything else too.
+This is the same move as the reverse interview that wrote your orientation file ([Your Orientation File](your-orientation-file.md)). It works for everything else too.
 
 ## 2 · Don't invent — mark the gap and name your source
 
@@ -241,7 +241,7 @@ A session doesn't announce that it's degrading; it just goes from sharp to vague
   written down? Update it, then set the next date.
 ```
 
-You can go further and have a scheduled routine do this monthly, so it happens whether or not you remember — see [`session-4-working-well.md`](session-4-working-well.md).
+You can go further and have a scheduled routine do this monthly, so it happens whether or not you remember — see [Routines & Scheduling](routines-and-scheduling.md).
 
 **This is the backstop for §13, not a substitute.** §13 catches things in the moment they come
 up; this catches whatever slipped past. If you take only one, take §13 — but the review date is
@@ -273,7 +273,8 @@ it hits them, which is the only moment anyone actually knows what they are.
 The first three lines improve **your setup**; the last two improve **your tools**. Both are the
 same habit pointed at different things, and the setup half is the one people miss. The longer
 version of the idea — why a file beats a chat as memory — is in
-[`self-documenting-workspaces.md`](self-documenting-workspaces.md).
+[Self-Improvement & Memory](self-improvement-and-memory.md) and
+[Structuring a Workspace](structuring-a-workspace.md).
 
 ## 14 · Back it up at the end of a session
 
