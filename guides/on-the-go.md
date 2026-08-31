@@ -40,8 +40,9 @@ available on all plans as a preview):
 3. From the phone you can kick off new tasks, watch output stream in, review
    changes, and approve actions. Your files and credentials stay on the Mac.
 
-(As of mid-2026 the computer side of this pairing is **macOS-only**; Windows
-support is promised but undated.)
+(⚠️ Last verified **2026-07-27** — re-verify before relying on it: the computer
+side of this pairing was **macOS-only**, with Windows support promised but
+undated.)
 
 ## The "very dedicated" option — a cloud computer
 
@@ -69,7 +70,7 @@ steering, and checking** — not surgery.
 
 ---
 
-*Reviewed 2026-07-27. This page is deliberately lighter on exact menu paths than
+*⚠️ Last verified **2026-07-27** — re-verify before delivery. This page is deliberately lighter on exact menu paths than
 the other guides, because this is the corner of both products that changes
 fastest — the caveat at the top is doing real work, not hedging. If the names
 don't match, ask your agent to check the current docs before assuming you've done

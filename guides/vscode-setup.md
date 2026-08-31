@@ -71,6 +71,8 @@ Install 'code' command in PATH"* — then retry.)
 
 ---
 
-*All five extension IDs above verified on the VS Code marketplace on 2026-07-27.
-If one won't install, search the name in the Extensions panel rather than
-assuming the guide is broken — publishers occasionally rename.*
+*All five extension IDs above re-verified on the VS Code marketplace on 2026-09-01
+— every one still resolves under the ID given, from the publisher named. (Note
+`openai.chatgpt` now displays as "Codex — OpenAI's coding agent"; the ID is
+unchanged.) If one won't install, search the name in the Extensions panel rather
+than assuming the guide is broken — publishers occasionally rename.*

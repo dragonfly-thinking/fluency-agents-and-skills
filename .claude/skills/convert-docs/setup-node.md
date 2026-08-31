@@ -57,9 +57,10 @@ node --version
 
 **You can do this entire section yourself. The user does nothing and types no password.**
 
-**Do NOT use `brew install node`.** The Homebrew `node` formula tracks the *Current* release
-(Node 26 as of August 2026), not the LTS this skill wants. If Homebrew is already installed, ask
-for the version explicitly:
+**Do NOT use `brew install node`.** The Homebrew `node` formula tracks the *Current* release,
+not the LTS this skill wants. (Re-checked against the Node.js release schedule on 2026-09-01:
+**24 "Krypton" is Active LTS, 26 is Current**, so `brew install node` gets you 26.) If Homebrew
+is already installed, ask for the version explicitly:
 
 ```bash
 brew install node@24     # or node@22 on macOS 11/12 — both formulae exist
@@ -85,8 +86,9 @@ node --version
 ```
 
 > **Why not `nvm install --lts`?** It resolves to whatever is Active LTS on the day, which moves —
-> Node 26 takes over in late October 2026. Two participants installing a fortnight apart would get
-> different runtimes, and a re-install would silently change the answer. Name the version.
+> Node 26 is due to take over from 24 in late October 2026. Two people installing a fortnight
+> apart would end up on different runtimes, and a re-install would silently change the answer
+> under someone who changed nothing. Name the version.
 
 > **Step 2 matters.** nvm adds itself to the user's shell profile, which only takes effect in
 > *new* terminals. Sourcing it as above makes Node usable immediately, in the session you're

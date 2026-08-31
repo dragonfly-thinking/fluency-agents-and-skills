@@ -47,7 +47,8 @@ X_MODEL = "~x-ai/grok-latest"                      # tilde-alias: auto-tracks cu
 # family deprecates versions quickly, so an alias is the stable choice. The other
 # two stay PINNED on purpose: neither has a ~latest alias, and both are
 # price-sensitive, so silently jumping a generation would change what a call costs.
-# Models checked against openrouter.ai/api/v1/models on 2026-07-27.
+# Models re-checked against openrouter.ai on 2026-09-01 — perplexity/sonar and
+# google/gemini-2.5-flash-image both still live; the grok tilde-alias resolves.
 
 KEY_FILE = Path.home() / ".fluency" / "openrouter.key"
 ATTRIB = {  # attribution only — affects OpenRouter rankings, nothing functional

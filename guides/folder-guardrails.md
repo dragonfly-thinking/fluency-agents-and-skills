@@ -280,7 +280,8 @@ a machine the agent never sees.
 
 ---
 
-*Runtimes move fast. The Claude Code behaviour here was checked against the
+*⚠️ Runtimes move fast. The Claude Code behaviour here was checked against the
 permissions and sandboxing documentation, and the Codex sandbox behaviour against
-the Codex source, in July 2026. Re-run the verification tests after a major
-upgrade of either tool rather than assuming a rule still bites.*
+the Codex source, on **2026-07-27** — **re-verify before delivery**. Re-run the
+verification tests after a major upgrade of either tool rather than assuming a
+rule still bites.*

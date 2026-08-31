@@ -106,7 +106,7 @@ or out-of-bounds should stay a human decision.
 
 ---
 
-*Mode names and behaviour checked against the Claude Code permission-modes
-documentation on 2026-07-27. This is the fastest-moving part of both tools — if a
-mode name here doesn't match what you see, trust the tool and ask your agent to
-check the current docs.*
+*⚠️ Mode names and behaviour last verified against the Claude Code permission-modes
+documentation on **2026-07-27** — re-verify before delivery. This is the
+fastest-moving part of both tools. If a mode name here doesn't match what you see,
+trust the tool and ask your agent to check the current docs.*

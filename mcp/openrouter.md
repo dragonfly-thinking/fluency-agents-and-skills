@@ -11,7 +11,9 @@ isn't part of the engine script below; it's a separate recipe in
 One key powers all of it, pay-as-you-go, no extra subscriptions. Rough costs: an
 image ≈ **$0.04**, a cited web search ≈ **$0.005**, an X/social search ≈
 **$0.015**. So $10 is roughly 250 images or 1,800 searches — it lasts a long time.
-*(Checked against `openrouter.ai/api/v1/models` on 2026-07-27.)*
+*(Re-checked 2026-09-01: both models the script uses are still live, and the
+costs above still hold — Sonar's web search bills at $5.00 per 1,000 calls, and
+the image model's output pricing works out at roughly four cents an image.)*
 
 Explain each step to the user in plain English before you run it, and ask them to
 approve any command. Steps 1–3 happen in the user's browser — guide them; don't

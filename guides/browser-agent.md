@@ -39,9 +39,9 @@ under Claude Code and Codex (it's just a command; no per-runtime setup).
 
 1. **Node.js — and it must be v24 or newer.** Check `node --version`.
 
-   ⚠️ **This is a silent trap, not a nice-to-have.** `agent-browser` requires Node 24+, and npm
-   does **not** error when you're below it — it quietly installs an old release from June 2026
-   instead, with no message. Symptoms look like missing commands or unexplained failures, and
+   ⚠️ **This is a silent trap, not a nice-to-have.** `agent-browser` declares `node >= 24`, and
+   npm does **not** error when you're below it — it quietly installs the last release that
+   *did* support your version instead, with no message. Symptoms look like missing commands or unexplained failures, and
    `--help` will never reveal the cause. If a user is on Node 22 or below, upgrade before
    installing anything else.
 
@@ -114,6 +114,7 @@ Two rules the whole thing hinges on:
 sensitivity (banking, patient records), and anything a site's terms forbid
 automating. When in doubt, drive; let the agent navigate.
 
-*Verified against `agent-browser` 0.33.0 on 2026-07-27. It's a fast-moving tool —
-if a command below doesn't exist, check `agent-browser --help` before assuming
-something is broken.*
+*Re-verified 2026-09-01: `agent-browser` is now **0.35.2** and still declares
+`engines: node >= 24`, so the Node requirement above is current. It's a
+fast-moving tool — if a command here doesn't exist, check `agent-browser --help`
+before assuming something is broken.*
