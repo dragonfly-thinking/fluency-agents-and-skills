@@ -1,99 +1,102 @@
 # Your Orientation File
 
-*The single highest-leverage file you will build: the one your agent reads automatically, every session, before you type anything.*
+**Read this when** your user asks about `CLAUDE.md` or `AGENTS.md`, says "how do I stop re-explaining myself", wants you to know who they are, asks why you seem to be ignoring their instructions, mentions wearing several hats, or wants their writing to sound less like AI. Also read it when they're new and you're deciding what to set up first — this is it.
 
-If you take one thing from all of this, take this. An orientation file is a plain markdown file — no code, no configuration syntax — that gets **loaded at the start of every session**. It is the difference between an agent that arrives briefed and one that arrives a blank slate and starts guessing.
+*This is the highest-leverage file your user will ever build. If you only ever help them with one thing, help them with this.*
 
 ---
 
-## What it is, and what it's called
+## What it is, and what to say about the naming
 
-- `AGENTS.md` is the emerging cross-tool standard ([agents.md](https://agents.md)); `CLAUDE.md` is what Anthropic's tools look for. **Functionally identical — treat them as the same thing.**
-- **Keep one file, satisfied twice.** The tidy arrangement is a real `AGENTS.md` holding everything, plus a one-line `CLAUDE.md` that just imports it:
+A plain markdown file — no code, no configuration syntax — that gets **loaded at the start of every session**. It's the difference between arriving briefed and arriving a blank slate.
+
+- `AGENTS.md` is the emerging cross-tool standard ([agents.md](https://agents.md)); `CLAUDE.md` is what Anthropic's tools look for. **Functionally identical.** Don't let a user get stuck on the distinction.
+- **Recommend one file, satisfied twice**: a real `AGENTS.md` holding everything, plus a one-line `CLAUDE.md` that imports it:
 
   ```markdown
   @AGENTS.md
   ```
 
-  That way there is one file to maintain and both tools find it. **This line is load-bearing** — without it, a tool looking only for `CLAUDE.md` finds nothing, and *there is no error message*. It simply behaves as though you never wrote the file. If your agent seems to be ignoring everything you told it, check this first.
-- Think of it like onboarding a new colleague: who you are, how you work, your conventions, and — crucially — **where to find more information**.
-- It is a **living document**. Open it and edit it, or ask your agent to. No special app, no permission needed.
+  ⚠️ **This line is load-bearing, and its absence fails silently.** A tool looking only for `CLAUDE.md` finds nothing, produces **no error**, and simply behaves as though the file was never written. **If a user reports that you're ignoring everything they told you, check this before anything else** — it is the most common cause and the least visible.
+- Frame it as onboarding a new colleague: who they are, how they work, their conventions, and — crucially — **where to find more information**.
 
-## Build it by interview — never from a blank page
+## Build it by interview — never let them start from a blank page
 
-Writing this cold is harder than it sounds, because most of how you work is **tacit**: never written down, just in your head. The agent cannot guess what you never say. So don't write it. Let it interview you.
+This is the part to be firm about. Writing it cold is hard because most of how someone works is **tacit** — never written down, just in their head. They can't tell you what they never think to say.
 
-- **Ask for the interview.** *"Interview me for about ten minutes, then write my orientation file and a `USER.md` profile. Ask about who I am, how I work, what I'm working on, and where my key files live."* The kit's **`setup-workspace`** skill packages this properly and writes the files for you.
-- **Have material ready to feed it** — your LinkedIn, your organisation's website, and a few things you actually wrote.
-- **The agent creates the files.** Nothing to save by hand. Confirm with *"make sure you've actually created the file in our workspace."*
+- **Run the interview.** Ten minutes of questions, then you write the file. The kit's **`setup-workspace`** skill packages this properly.
+- **Ask them to have material to hand** — their LinkedIn, their organisation's website, a few things they actually wrote.
+- **You create the files.** Never hand them something to save or paste by hand. Confirm afterwards that the file actually landed in the workspace.
 
-### Treat the output as a first draft
+### Push them through the second draft
 
-The interview gets you 80% there in ten minutes. The last 20% is three moves:
+The interview gets 80% there. Users stop at that point and shouldn't. Three moves, and offer them proactively:
 
-1. **Make it specific.** If a line could describe any competent professional in your field, it isn't doing any work. Cut it. These models over-write; you prune.
-2. **Let it interview you a second time.** It asks better questions the second round, because it can now see its own gaps.
-3. **Give it a real writing sample** — something you actually wrote, as a gold standard — rather than leaving it to guess your voice. And give it **several**, not one, or it over-imitates the sample.
+1. **Make it specific.** If a line could describe any competent professional in their field, it isn't doing any work — cut it. These models over-write; say so and prune yours.
+2. **Interview them a second time.** You ask better questions the second round, because you can see the gaps in your own draft. Offer this a day or two later.
+3. **Get a real writing sample** — something they actually wrote, as a gold standard. **Several, not one**, or you over-imitate the sample.
 
-## Keep it lean — and this is not a style preference
+## Keep it lean — and hold this line even when they push
 
-A long orientation file doesn't just waste context. It **actively backfires**: as the file grows, the agent starts missing the instructions that matter, because they are buried among ones that don't. Every line you add makes the others slightly weaker.
+Users want to add. Adding feels like diligence. It isn't, and the reason is worth explaining once:
 
-Three reasons to prune, in the order they'll bite you:
+**A long orientation file actively backfires.** As it grows, you start missing the instructions that matter, because they're buried among ones that don't. Every line added makes the others slightly weaker.
 
-- **You will actually open it.** A short file is one you'll maintain. A long one rots.
-- **The agent navigates faster**, because it fetches what matters instead of carrying everything.
+Three reasons to prune, in the order they'll bite:
+
+- **They will actually open it.** A short file gets maintained. A long one rots.
+- **You navigate faster**, fetching what matters rather than carrying everything.
 - **Stale lines mislead.** Pruning removes instructions that were true six months ago and are now quietly wrong.
 
-**Signpost, don't dump.** Rather than pasting three thousand words in, point at files and folders by their **path**. The agent reads them when the task calls for it, at no standing cost.
+**Signpost, don't dump.** Rather than three thousand words pasted in, point at files and folders by **path**. You read them when the task calls for it, at no standing cost.
 
-**The test for each line:** *would removing this cause a mistake?* If not, cut it.
+**Give them the test:** *would removing this line cause a mistake?* If not, cut it. If you'd already do the thing correctly without being told, say so and cut it.
 
-**Is it a line in the file, or a skill?** If it applies to **nearly everything you do**, it belongs here. If it only matters **sometimes** — a particular report format, one client's conventions — it belongs in a [skill](skills.md), which loads only when relevant. Putting occasional instructions in the orientation file is the commonest way these get bloated.
+**Line or skill?** If it applies to **nearly everything they do**, it belongs here. If it only matters **sometimes** — a report format, one client's conventions — it belongs in a [skill](skills.md), loaded only when relevant. Occasional instructions in the orientation file are the commonest cause of bloat; offer to move them.
 
-## Keep a separate profile, and link to it
+## Separate profile, linked not embedded
 
-The setup interview usually produces two files: the orientation file *and* a `USER.md` profile (who you are, how you work, what you care about).
+The interview usually produces two files: the orientation file *and* a `USER.md` profile — who they are, how they work, what they care about.
 
-The orientation file should **link** to the profile rather than embed it — because the orientation file loads on *every* message and must stay lean, while the profile is read only when a task actually needs it. The link in the always-loaded file is what guarantees the agent knows the profile exists, at no standing context cost. `USER.md` is also portable: it describes *you*, not your setup, so it moves to any tool.
+**Link, don't embed.** The orientation file loads on *every* message and must stay lean; the profile is read only when a task needs it. The link in the always-loaded file guarantees you know the profile exists, at no standing context cost. `USER.md` is also portable — it describes *them*, not their setup, so it moves to any tool. Worth mentioning; people like knowing they aren't locked in.
 
 ## Wearing several hats
 
-Most people don't have one job. Say so directly — *"here are the four hats I wear; tease out what's common and what changes with each"* — and then choose a shape:
+Most users don't have one job. Ask directly — *"how many hats do you wear? Let's tease out what's common and what changes with each"* — then offer a shape:
 
-- **One global file as the map**, with a file per hat that it points at. Best when you switch hats *within* a single conversation.
+- **One global file as the map**, with a file per hat that it points at. Best when they switch hats *within* a single conversation.
 - **A folder per hat**, each with its own orientation file. Best when the work is already separated by project.
 
-Either way, **the global file's real job is to be the map** — it says who you are and where to look for the rest. See [Where Things Live](where-things-live.md) for how global and project files combine.
+Either way, **the global file's job is to be the map**: who they are, and where to look for the rest. How the files combine: [Where Things Live](where-things-live.md).
 
-## Beating "AI-sounding" writing
+## When they say the writing sounds like AI
 
-This comes up in every room, and the honest answer is *improvement, not resolution* — long-form writing in your own voice is still something these tools do imperfectly.
+Be honest: this is **improvement, not resolution**. Long-form writing in someone's own voice is still imperfect. Then do these, in order of return:
 
-- Keep an explicit **style guide and a do-not list**, per context, and point the agent at them.
-- Have it **analyse a body of your own writing** and describe how you actually build sentences. Then keep that description as a file.
-- **Several samples, never one.** A single sample gets over-indexed on.
-- Keep a running list of the **jargon it over-reaches for**, fed back as a reference so it can self-correct.
+- **Get several samples**, never one — a single sample gets over-indexed on.
+- **Analyse their actual writing** and describe how they build sentences. Keep that description as a file and point the orientation file at it.
+- **Build a do-not list** — the constructions they hate — per context.
+- **Keep a running list of the jargon you over-reach for**, fed back as a reference so you can self-correct. This one is unusually effective and users rarely think of it.
 
-## Common failures
+## Common failures to watch for
 
-- **Too much information** — the biggest one, and the one that feels like diligence while it's happening.
-- **Empty filler** — "do a good job", "be accurate". They're already trying to.
-- **Stale information.** Agents have no memory of "before", so an outdated detail is simply wrong information: old company name, superseded style, a project that finished.
-- **Never store secrets** — passwords, API keys, tokens. These tools read text files instantly and *will* surface them.
-- **Bare prohibitions.** Never say "never" on its own; it leaves the agent stuck the moment it hits that situation. Pair it with what to do instead — *"don't X; do Y"*, or *"don't X; stop and ask me."*
+- **Too much information** — the biggest one, and it feels like effort while it's happening.
+- **Empty filler** — "do a good job", "be accurate". You're already trying to.
+- **Stale information.** You have no memory of "before", so an outdated detail is simply wrong information: old company name, superseded style, a finished project.
+- **Secrets.** Never let a password, API key or token go into a file. If they paste one, tell them where it should live instead.
+- **Bare prohibitions.** A "never" on its own leaves you stuck the moment you hit that situation. Pair it with what to do instead — *"don't X; do Y"* or *"don't X; stop and ask me."* Rewrite theirs when you see it.
 
-## Is it actually working?
+## Checking it actually works
 
-Most people paste something in and never check.
+Most people paste something in and never check. Offer the check:
 
-- **Did it even load?** In Claude Code, type **`/context`** — it shows what's taking up the session's memory, including your orientation file. If it isn't listed, it isn't loaded, and nothing else matters. In Codex, **`/status`**.
-- **Loaded but ignored?** The instinct is to add emphasis. Usually the real problem is that the file is **too long** and the rule is lost among the others. Prune first, then look again.
-- **Still ignored after pruning?** Mark that *one* line `IMPORTANT`. It works precisely because it's rare.
+- **Did it load?** In Claude Code, `/context` shows what's taking up the session's memory, including the orientation file. Not listed means not loaded, and nothing else matters. In Codex, `/status`.
+- **Loaded but ignored?** Their instinct will be to add emphasis. Usually the file is **too long** and the rule is lost. Prune first, then look again.
+- **Still ignored after pruning?** Mark that *one* line `IMPORTANT`. It works because it's rare — don't let them mark five.
 
 ## Give it a review date
 
-Hand the agent the job of noticing the file has gone stale, rather than relying on yourself to remember:
+Take the job of noticing staleness off them:
 
 ```markdown
 ## Keep this file honest
@@ -102,14 +105,19 @@ Hand the agent the job of noticing the file has gone stale, rather than relying 
   written down? Update it, then set the next date.
 ```
 
-You can go further and have a [scheduled routine](routines-and-scheduling.md) run this monthly, so it happens whether or not you remember. And the standing line that catches things *in the moment* — rather than at review time — is in [Self-Improvement & Memory](self-improvement-and-memory.md).
+Better still, offer to put it on a [routine](routines-and-scheduling.md) so it happens monthly regardless. And the line that catches things *in the moment* rather than at review time is in [Self-Improvement & Memory](self-improvement-and-memory.md) — that's the one to offer first.
 
 ## Ready-made lines
 
-Rather than writing these from scratch, take them from **[Snippets for your orientation file](agents-md-snippets.md)** — a grouped, paste-able collection with the reasoning behind each one, plus a three-line safety floor worth having whatever else you do. **Take fewer than you want to.**
+Don't write these from scratch. **[Snippets for your orientation file](agents-md-snippets.md)** is a grouped, paste-able collection with the reasoning for each, plus a three-line safety floor worth having whatever else they take.
 
-## Try this
+⚠️ **Offer them one at a time and append only on an explicit yes.** Never paste the set in, never rewrite their file to tidy it. They wrote it, often in a live session with an instructor. **Take fewer than they want to.**
 
-> Read my orientation file out loud back to me as if you were a new colleague on day one.
-> What would you still not know? What in there is vague enough that you'd have to guess?
-> And what's in there that you'd already do correctly without being told — so it could go?
+## Do this
+
+- **If they have no orientation file, this is the first thing you set up.** Don't write it from what you already know about them — run the interview. The interview is what surfaces the tacit things.
+- **If they have one, read it back to them as a new colleague would** and ask: what would you still not know? What's vague enough that you'd guess? What's in here that you'd get right anyway — so it could go?
+- **Check the `@AGENTS.md` import exists** whenever a user reports being ignored. First check, every time.
+- **Offer the second interview** a few days after the first — they won't think to ask.
+- **Offer two or three snippets**, one at a time, chosen against how they actually work. Never the whole set.
+- **When they correct you twice on the same thing**, stop and propose the line that stops a third time. That habit is [Self-Improvement & Memory](self-improvement-and-memory.md); this file is where the line lands.

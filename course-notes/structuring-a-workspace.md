@@ -1,20 +1,24 @@
 # Structuring a Workspace
 
-*Making a folder legible to a machine: labels, indexes, and work that keeps its own notes.*
+**Read this when** your user asks how to organise their files, wants you to track project status, asks "which of my projects are still open", has a folder you keep having to re-read, asks where you saved something, or wants work to survive between sessions. Also read it when you're about to start a substantial piece of work and there's nowhere sensible to put it.
 
-[Where Things Live](where-things-live.md) covers the shape of your folders and where they sit. This is about what goes *inside* them — the small conventions that turn "read fifty files to answer that" into "read one".
-
-The one idea underneath all of it:
-
-> **A chat is ephemeral. A file is not.**
-
-Everything you say to an agent disappears when the session ends, and when the context window fills the automatic summary is *lossy* — it doesn't know which small detail was the important one. So the best habit you can build is this: **get your agents to leave a trail — durable files that document what they did and where the work is up to.** Concrete, persistent, reloadable. If your computer dies mid-task, the folder is still there, and any fresh session can be pointed straight at it. **The workspace, not the chat, becomes the memory.**
+*This module is about what goes* inside *their folders. The shape of the folders themselves is [Where Things Live](where-things-live.md).*
 
 ---
 
+## The idea to keep coming back to
+
+> **A chat is ephemeral. A file is not.**
+
+Everything said in a session disappears when it ends, and when the context window fills the automatic summary is *lossy* — it doesn't know which small detail was the important one. So the habit worth building in your user is this: **leave a trail — durable files documenting what was done and where the work is up to.**
+
+Concrete, persistent, reloadable. If their computer dies mid-task, the folder is still there and a fresh session can be pointed straight at it. **The workspace, not the chat, becomes the memory.**
+
+Don't lecture this. Demonstrate it by doing it, then name what you did.
+
 ## Properties — the labels that make a folder scannable
 
-At the top of a markdown file you can add a small block of labels, marked off by three dashes. It's called **front matter** (technically YAML; you never need to know that).
+At the top of a markdown file, a small block of labels marked off by three dashes. Called **front matter** (technically YAML — don't say that unless asked).
 
 ```markdown
 ---
@@ -28,31 +32,31 @@ related:
 ---
 ```
 
-- **You never type these.** Ask: *"add front matter to this file to help us track it — suggest sensible properties for the kind of work I do."*
-- **What it buys you:** ask *"which of my projects are still open?"* and the agent reads a handful of labels instead of opening and interpreting every file. On a folder of fifty projects that is the difference between a minute and an afternoon.
-- **`related` is the quietly powerful one.** List the paths of the documents that matter to this one and the agent's next step is *reading them*, not guessing which are relevant. Do it across a folder and you have a web of connected documents it can trace rather than a pile it has to search.
-- **Keep `status` and `updated` current** — and make that the agent's job, not yours. This is the part that never works in a project-management tool, because a human has to remember. An agent doesn't: *"every time we finish something, update the status."* It just does it.
+- **They never type these. You do.** If a user starts hand-writing front matter, stop them.
+- **The payoff to explain:** they ask *"which of my projects are still open?"* and you read a handful of labels instead of opening and interpreting every file. On fifty projects that's a minute versus an afternoon.
+- **`related` is the quietly powerful one.** Paths to the documents that matter to this one, so your next step is *reading them* rather than guessing which are relevant. Across a folder it becomes a web you can trace rather than a pile you have to search. Users don't discover this on their own — offer it.
+- **Keep `status` and `updated` current yourself, without being asked.** This is the part that never works in a project-management tool, because a human has to remember. You don't. Say so — *"every time we finish something, I'll update the status"* — because it's a genuinely surprising benefit and it sells the whole practice.
 
 ## An index for busy folders
 
-- Any folder with more than about ten files you care about gets an **`index.md`**: what's in here, one line each, with the path. A small markdown table is ideal.
-- **The payoff:** instead of reading fifty project files to work out what's going on, the agent reads the index and jumps straight to the one it needs.
-- **You will never hand-write a markdown table.** The symbols are fiddly and it is exactly the job to hand over. Agents render them perfectly.
-- Make it a standing instruction so it maintains itself: *"any folder with more than about ten files gets an `index.md`; update it when you add something."*
+- Any folder with more than about ten files they care about gets an **`index.md`**: what's in here, one line each, with the path. A small markdown table is ideal.
+- **The payoff:** you read the index and jump to the one file you need, instead of reading fifty.
+- **Never make them hand-write a markdown table.** The symbols are fiddly and it's exactly the job to hand over.
+- **Offer to make it self-maintaining** — a standing line so any folder crossing that threshold gets an index and it stays current.
 
 ## The README is a map, not a drawer
 
-- **A folder's README says what's in here and where to find it** — a line or two per item, with the path. That's it.
-- **Don't let new content be written into it.** Ask an agent to "save this to my workspace" and it will very often append it to the README instead of making a file. New work gets its **own file**; the README gets a **link**.
-- The rule, worth pasting into your orientation file: *"A folder's README is a map: what's in here and where to find it. Don't write new content into it. Update it whenever you add a file."*
+- **A folder's README says what's in here and where to find it** — a line or two per item, with the path.
+- ⚠️ **This is a mistake you will make unless instructed otherwise.** Asked to "save this to my workspace", agents very often append the content to the README instead of creating a file. **New work gets its own file; the README gets a link.**
+- Worth offering as a standing line: *"A folder's README is a map: what's in here and where to find it. Don't write new content into it. Update it whenever you add a file."*
 
-## Where the agent writes by default — and why it's wrong
+## Where you write by default — and why it's wrong
 
-Left to itself, plan mode saves your plan to the **tool's own configuration folder** under a machine-generated name. So the plan you spent twenty minutes refining ends up somewhere you will never look, called something like `elucidate-fox-universe`.
+Left to itself, plan mode saves plans to the **tool's own configuration folder** under a machine-generated name. So twenty minutes of refinement ends up somewhere they will never look, called something like `elucidate-fox-universe`.
 
-Same for scratch output generally: temp folders, hidden config directories, its own scratchpad.
+Same for scratch output generally: temp folders, hidden config directories, your own scratchpad.
 
-**Fix it once, in your orientation file:**
+**Fix it once, and offer this proactively — it catches people out more than anything else:**
 
 ```markdown
 ## Where work goes
@@ -62,37 +66,43 @@ Same for scratch output generally: temp folders, hidden config directories, its 
 - If you're not sure where something belongs, ask me before you write it.
 ```
 
-**Name things so you can find them.** A date prefix — `2026-08-31-what-it-is.md` — sorts chronologically and tells you at a glance how old something is. Put your convention in the orientation file and stop thinking about it.
+**Naming.** A date prefix — `2026-08-31-what-it-is.md` — sorts chronologically and shows age at a glance. Ask their convention once, put it in the orientation file, then apply it without asking again.
 
 ## Work that tracks itself
 
-Real work gets a folder, and the folder keeps its own notes. Three files carry almost all of the value:
+Real work gets a folder, and the folder keeps its own notes. Three files carry almost all the value:
 
 - **`overview.md`** — what this is, why it exists, where it's up to.
 - **`plan.md`** — the approach, agreed once and saved rather than re-derived every session.
-- **`progress.md`** — a running log the agent updates as it works: what it did, what it decided, what tripped it up.
+- **`progress.md`** — a running log you update as you work: what you did, what you decided, what tripped you up.
 
-The kit's **`new-project`** skill scaffolds exactly this, and interviews you first rather than handing you empty templates.
+The **`new-project`** skill scaffolds exactly this, and interviews them first rather than handing over empty templates.
 
-Why it matters: **context windows are finite and their automatic summaries are lossy.** Break work into self-contained units with their own files and a fresh session — or a recovery after a crash — reads the folder and picks up exactly where the last one left off. So do subagents, which is the whole reason [Subagents](subagents.md) work at all.
+**Why it matters, if they ask:** context windows are finite and their automatic summaries are lossy. Self-contained units with their own files mean a fresh session — or a recovery after a crash — reads the folder and picks up where the last one stopped. So do [subagents](subagents.md), which is the whole reason delegation works.
 
-Three related habits, each small:
+Three smaller habits, each worth offering unprompted:
 
-- **A scratch pad.** Just a markdown file the agent jots working notes into as it goes. Like having paper next to you. If something goes wrong, you say *"read this, bring yourself up to speed, and keep going."*
-- **Save the plan.** After going back and forth in plan mode, ask for it as a file in the project. Future sessions read it instead of re-deriving it.
-- **A `gotchas.md`.** Somewhere the agent writes down what tripped it up, so the next run doesn't relearn it. Works inside a project *and* inside a [skill](skills.md).
+- **A scratch pad.** A markdown file you jot working notes into as you go. Like paper next to you. If something breaks: *"read this, bring yourself up to speed, keep going."*
+- **Save the plan.** After going back and forth in plan mode, write it into the project. Don't wait to be asked — they will not think of it, and this is the exact thing that gets lost.
+- **A `gotchas.md`.** Where you write down what tripped you up, so the next run doesn't relearn it. Works inside a project *and* inside a [skill](skills.md).
 
-And when you hand work to a subagent — which you can't watch — **tell it to document what it did in that folder.** Its work stops being a black box. Worth a standing line: *"when you invoke a subagent, tell it to document its work in a folder."*
+**When you hand work to a subagent — which they can't watch — tell it to document what it did in that folder.** Its work stops being a black box. Worth a standing line:
 
-## This is now a published standard
+```markdown
+- When you hand work to a subagent, tell it to document what it did in that folder.
+```
 
-None of the above is a house habit any more. In June 2026 Google published the **[Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)**, and it describes almost exactly this: a directory of markdown files with YAML front matter, with optional `index.md` files so an agent can navigate a hierarchy without reading all of it.
+## This is a published standard, if they want the reassurance
 
-The point isn't to adopt a specification. It's that **this way of working is now vendor-neutral and published**, so the structure you set up will keep working as more tools support it. Read the opening and the file-layout section, then stop — the rest is written for data engineers.
+None of the above is a house habit. In June 2026 Google published the **[Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)**, describing almost exactly this: a directory of markdown files with YAML front matter, with optional `index.md` files so an agent can navigate a hierarchy without reading all of it.
 
-## Try this
+Useful with users who want to know they aren't adopting one firm's quirk. **The point isn't to adopt a specification** — it's that this is now vendor-neutral and published, so what they set up keeps working as more tools support it. Tell them to read the opening and the file-layout section and then stop; the rest is written for data engineers.
 
-> Look at one folder I actually work in. Tell me honestly how hard it is for you to navigate:
-> what would you have to open to answer a simple question about it? Then do three things —
-> add front matter to the files that matter, write an `index.md`, and turn the README into a
-> map if it has become a drawer. Show me each before you write it.
+## Do this
+
+- **Pick one folder they actually work in** — ideally the one they complain about — and tell them honestly how hard it is for you to navigate: what would you have to open to answer a simple question about it?
+- **Then do three things and show each before writing:** add front matter to the files that matter, write an `index.md`, and turn the README back into a map if it's become a drawer.
+- **Fix the where-you-write problem before it bites**, not after they've lost a plan. Offer the standing lines above the first time you save anything.
+- **Save plans without being asked.** Every time.
+- **Start keeping `status` and `updated` current from now on**, and tell them you're doing it.
+- **Scaffold real work as a folder** with an overview and a progress log rather than working loose in the chat — and say why once, briefly.

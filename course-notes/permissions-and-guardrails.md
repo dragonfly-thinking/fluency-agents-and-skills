@@ -1,89 +1,80 @@
 # Permissions & Guardrails
 
-*Deciding once what your agent may do on its own — and, for the things that genuinely matter, making it impossible rather than merely discouraged.*
+**Read this when** your user is clicking approve constantly, asks about permission modes, asks what you can access, mentions confidential or client material, asks how to stop you touching something, is about to schedule a routine, or asks what "auto" means. Also read it proactively the first time they mention sensitive files.
 
-The moment you do real work, the agent asks permission constantly: every web fetch, every file edit, every download. One task can throw thirty prompts. Left unmanaged, this trains you to click "yes" without reading, which is strictly worse than deciding once, deliberately.
-
-There are two separate jobs here and they are easy to confuse. **Permission modes** set how much rope the agent has in general. **Guardrails** put specific things permanently out of reach. You want both.
+*Two separate jobs that users conflate: **modes** set how much rope you have in general; **guardrails** put specific things permanently out of reach. They need both, and they'll only ask about the first.*
 
 ---
 
-## 1 · The modes — how much rope, in general
+## 1 · The modes
 
-| Mode | What runs **without** asking | When |
+| Mode | Runs **without** asking | When |
 |---|---|---|
-| **Manual** *(config name: `default`)* | Reads only | Your first week, or unfamiliar territory |
-| **Plan mode** | Reads, searches, explores — but will not edit your files until you approve the plan | Starting anything non-trivial; staying the director |
-| **Accept edits** | Reads, file edits, everyday file commands | Iterating on something you're actively watching |
-| **Auto** | **Everything**, with an automated safety check reviewing actions as they go | Long tasks, once you trust the direction |
-| **Bypass / full access** | Everything, with nothing reviewing it | Rarely, and never with sensitive material around |
+| **Manual** *(config name: `default`)* | Reads only | Their first week, or unfamiliar territory |
+| **Plan mode** | Reads, searches, explores — won't edit files until they approve the plan | Anything non-trivial; staying the director |
+| **Accept edits** | Reads, file edits, everyday file commands | Iterating on something they're watching |
+| **Auto** | **Everything**, with an automated safety check reviewing as it goes | Long tasks, once they trust the direction |
+| **Bypass / full access** | Everything, nothing reviewing it | Rarely, and never with sensitive material around |
 
-Two things the names invite you to get wrong:
+Two things the names invite users to get wrong — correct these when you see them:
 
-- **Plan mode is not a cage.** It won't edit your files, but it *does* read them and run commands to look around. It's "propose before changing", not "sit still". It is the mode for staying the director: iterate on the plan, then **ask it to save the plan as a file** in your workspace before you switch out.
-- **Auto is not a slightly-relaxed Accept-edits.** Accept edits frees up *file editing*. Auto lets **everything** run and leans on an automated reviewer instead of you. Genuinely a bigger step; take it deliberately.
+- **Plan mode is not a cage.** It won't edit files, but it *does* read them and run commands to look around. "Propose before changing", not "sit still". It's the mode for staying the director: iterate on the plan, then **save the plan as a file** before switching out. Do that saving yourself.
+- **Auto is not a slightly-relaxed Accept-edits.** Accept edits frees up *file editing*. Auto lets **everything** run and leans on an automated reviewer instead of them. A genuinely bigger step — make sure it's deliberate.
 
-**Where to find them:** Claude Code — the mode selector below the chat box, or **Shift+Tab** to cycle. Codex — the approval setting at the bottom, *ask for approval* versus *approve for me*, and typing `plan` triggers plan mode.
+**Where they are:** Claude Code — the mode selector below the chat box, or Shift+Tab to cycle. Codex — the approval setting at the bottom, *ask for approval* versus *approve for me*, and typing `plan` triggers plan mode.
 
-**A reasonable default:** **Accept edits** for everyday work, drop into **plan mode** for anything substantial, move up to **auto** once you know what the agent tends to do unsupervised — and note that [routines](routines-and-scheduling.md) need auto, or they stall silently. Auto isn't available on every account or every model; if you don't see it, you're not missing a setting.
+**Recommend:** Accept edits for everyday work, plan mode for anything substantial, auto once they know what you do unsupervised — and note that [routines](routines-and-scheduling.md) require auto or they stall silently. If they can't see auto, it isn't available on their account or model; say so rather than letting them hunt.
 
-## 2 · The allow / ask / never list — the traffic-light exercise
+## 2 · The allow / ask / never list
 
-This is the piece that ends the thirty-clicks problem, and it is worth twenty minutes.
+This ends the thirty-clicks problem and it's worth twenty minutes of their time. **Offer it early** — re-approving *web search* for the fifteenth time teaches them to click yes without reading, which is worse than allowing it once, deliberately.
 
-**Draw the line yourself, in three colours:**
+**Walk them through it in three colours:**
 
-- 🟢 **Green — allow.** Low risk and **cheap to undo**. If it goes wrong you just ask for it again. Reading files in your workspace, web search, fetching a page, creating and editing files where you're already working.
-- 🟡 **Yellow — allow with a condition.** Fine *inside* a boundary, not outside it. The usual shape is *"you may write in this folder; if a task looks like it needs you to touch anything outside it, stop and ask me first — tell me what and why."*
-- 🔴 **Red — never.** Deleting things, spending money, installing software, sending anything under your name, anything involving credentials.
+- 🟢 **Green — allow.** Low risk and **cheap to undo**. Reading files in their workspace, web search, fetching a page, creating and editing files where they're already working.
+- 🟡 **Yellow — allow with a condition.** Fine *inside* a boundary. Usually: *"you may write in this folder; if a task looks like it needs anything outside it, stop and ask — tell me what and why."*
+- 🔴 **Red — never.** Deleting, spending money, installing software, sending anything under their name, anything involving credentials.
 
 **A sane starting split:**
 
 | Fine to always allow | Keep asking |
 |---|---|
 | Web **search** and **fetching** pages | **Deleting** files or folders |
-| **Reading** files in your workspace | Anything touching folders **outside** your workspace |
-| **Creating/editing** files in your workspace | **Installing** software |
-| Running your installed skills | **Sending** anything — email, posts, publishing |
+| **Reading** files in their workspace | Anything touching folders **outside** the workspace |
+| **Creating/editing** files in the workspace | **Installing** software |
+| Running their installed skills | **Sending** anything — email, posts, publishing |
 |  | Anything involving **credentials or keys** |
 
-The pattern: **reversible-and-contained can be automatic; destructive, outward-facing, or out-of-bounds stays a human decision.**
+The principle to give them: **reversible-and-contained can be automatic; destructive, outward-facing, or out-of-bounds stays a human decision.**
 
-**How to actually set it, without writing config by hand.** Two routes, and the second is better:
+**How to run it.** Ask their comfort level, propose the split, **explain each line in one sentence of plain English**, and only then write it. ⚠️ **Never write a config they can't read** — this is the failure that makes people distrust their own setup. `curl` is the line that will surprise them; explain that agents use it to pull text out of documents and pages, which is why it appears constantly.
 
-1. **In the moment** — when a prompt appears for something you're comfortable with, choose the **"always allow"** option rather than plain "yes". A handful of these and the noise drops sharply.
-2. **In one conversation** — hand your agent the whole job:
+**For an existing user**, the better route is evidence: *"let me look at what you've been approving repeatedly and add the safe ones — I'll show you the list before saving."* ⚠️ **This doesn't work for a brand-new user** — they haven't approved anything yet. Start from the table instead.
 
-   > *"I keep getting permission prompts and I'm not a technical user. Here's my comfort level: [describe it]. Propose an allow / ask / never split for me, explain each line in one sentence, and once I'm happy, save it as the settings for this workspace."*
-
-   Have it **explain each line**, and don't accept a config you can't read. `curl` is the one that will surprise you — it shows up constantly, because agents use it to pull text out of documents and pages.
-
-**Reviewing it later:** *"look at what I've been approving repeatedly and add the safe ones to my allowlist — show me the list before you save it."* Note this only works once you have *been* approving things; on a brand-new setup, start from the table above instead.
-
-Give it a **review date**, the same way you would your orientation file. Circumstances change and an allowlist written for one project can be wrong for the next.
+**Give it a review date**, like their orientation file. An allowlist written for one project can be wrong for the next.
 
 ## 3 · Guardrails — when asking isn't enough
 
-An instruction in your orientation file does better than people expect. But understand what it is:
+Be honest about what an instruction is:
 
-- **Layer 1 — an instruction.** *"Never read, list, edit, or run commands that touch `~/Private/`."* This is **asking**. It's like giving someone a key and requesting they stay out of one room. It works most of the time, and most of the time is not the same as always.
-- **Layer 2 — a guardrail that blocks.** A small piece of configuration (in Claude these are called **hooks**) that **vetoes the action before it runs**. That's locking the door.
+- **Layer 1 — an instruction.** *"Never read, list, edit, or run commands that touch `~/Private/`."* This is **asking**. Like giving someone a key and requesting they stay out of one room. It works most of the time. Most of the time is not always, and users hear "never" as a guarantee unless you tell them otherwise.
+- **Layer 2 — a guardrail that blocks.** Configuration (in Claude, **hooks**) that **vetoes the action before it runs**. Locking the door.
 
-**Do both.** The instruction handles the ordinary case gracefully — the agent understands *why* and works around the boundary sensibly. The guardrail handles the case where something goes wrong.
+**Set up both.** The instruction handles the ordinary case gracefully — you understand *why* and work around the boundary sensibly. The guardrail handles the case where something goes wrong.
 
-The kit ships a **ready-made, tested folder guard** you can install in a minute: [`../guides/guard-folders/README.md`](../guides/guard-folders/README.md), with the layered strategy and the reasoning in [`../guides/folder-guardrails.md`](../guides/folder-guardrails.md). It vetoes any tool call touching folders you list — reading, editing, or shell commands.
+The kit ships a **ready-made, tested folder guard** you can install in a minute: [`../guides/guard-folders/README.md`](../guides/guard-folders/README.md), with the layered strategy in [`../guides/folder-guardrails.md`](../guides/folder-guardrails.md). It vetoes any tool call touching listed folders — reads, edits, or shell commands.
 
-**Then verify it.** Install it, start a **fresh session**, and ask the agent to read something inside the protected folder. The right answer is a refusal. An unverified guardrail is a belief, not a control.
+⚠️ **Then verify it, and make them watch.** Install, start a **fresh session**, and try to read something inside the protected folder. The right answer is a refusal. **An unverified guardrail is a belief, not a control** — and the verification is what makes them trust the rest of their setup.
 
-⚠️ **For genuinely high-stakes material** — health records, anything where no third party can ever see it — the honest current answer is still *don't put it on the machine the agent runs on*. A guardrail protects a folder; the safest folder is one the agent never sees. If you must have both on one machine, **separate operating-system user profiles** for work and personal is the pragmatic move, though it is not an absolute barrier if the account has administrator rights.
+⚠️ **For genuinely high-stakes material** — health records, anything where no third party can ever see it — say plainly that the honest answer is still *don't put it on the machine the agent runs on*. A guardrail protects a folder; the safest folder is one you never see. If both must live on one machine, **separate operating-system user profiles** for work and personal is the pragmatic move — though not an absolute barrier if the account has administrator rights. Don't overstate it.
 
 ## 4 · The practical limit: it drafts, you send
 
-The most useful single boundary anyone sets, and it comes out of how [prompt injection](judgement-and-what-goes-wrong.md) actually works rather than from general caution.
+The most useful boundary available, and it comes out of how [prompt injection](judgement-and-what-goes-wrong.md) actually works rather than from general caution.
 
-**Give the agent read access to your email and let it draft. Never let it send.** Same for posting, publishing, and anything else that leaves the building under your name. It costs you almost nothing — you press one button — and it breaks the attack chain that everything else in this space is worried about.
+**Read their email and draft. Never send.** Same for posting, publishing, anything leaving the building under their name. It costs them one button press and it breaks the attack chain that everything else in this space worries about.
 
-Generalise it into a standing line:
+Offer these three lines — the safety floor from [Snippets for your orientation file](agents-md-snippets.md). **If they take nothing else, they should take these:**
 
 ```markdown
 ## Always
@@ -94,20 +85,19 @@ Generalise it into a standing line:
   where it should live instead.
 ```
 
-Those three lines are the safety floor from [Snippets for your orientation file](agents-md-snippets.md). If you paste nothing else, paste those.
+## Quick fixes to reach for
 
-## Quick fixes
+- **"It seems frozen."** Look for a **permission prompt waiting quietly** — the commonest cause, and the exact failure that kills unattended routines.
+- **"Everything suddenly feels dumber."** Check `/context`. Probably a compacted session; write a handover and restart.
+- **"What can you even do right now?"** Read your own settings back to them: current mode, model, allowlist.
 
-- **Agent seems frozen mid-task?** Look for a **permission prompt waiting quietly** — this is the commonest cause, and it is the failure mode that kills unattended routines.
-- **Everything suddenly feels dumber?** Check `/context`. You're probably deep into a compacted session; write a handover and restart.
-- **Not sure what your setup even is?** Ask: *"show me my current mode, model, and what's in my allowlist."* It can read its own settings.
+Full interface reference: [`../guides/interface-and-settings.md`](../guides/interface-and-settings.md).
 
-Full interface reference, including where the context meter lives in each tool: [`../guides/interface-and-settings.md`](../guides/interface-and-settings.md).
+## Do this
 
-## Try this
-
-> I want to sort out permissions properly. Ask me what I'm comfortable with, then propose an
-> allow / ask / never split — one sentence of plain English per line, no config I can't read.
-> Once I've agreed it, save it. Then ask me whether there's anything on this machine you
-> should never open, and if there is, install the folder guard and prove it works in a fresh
-> session.
+- **Offer the allow/ask/never list the moment they complain about approving things** — don't wait for them to ask for a solution, they don't know one exists.
+- **Ask their comfort level first, propose second.** Never hand over a config without a plain-English line for each rule.
+- **The first time they mention client files, NDAs, HR records or personal finances, ask directly** whether there's anything on this machine you should never open. Then install the guard and verify it in a fresh session while they watch.
+- **Offer the three safety-floor lines** to any user who hasn't got them, whatever else you're doing.
+- **Before scheduling anything**, check the permission mode is auto — otherwise it will stall silently overnight.
+- **Say what you're about to do before doing anything irreversible**, even where a mode technically allows it.
