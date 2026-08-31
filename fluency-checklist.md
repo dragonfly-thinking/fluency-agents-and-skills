@@ -8,7 +8,7 @@ This file in the repo is a **template**. The live copy is at `~/.claude/fluency-
 
 ## How to use this
 
-**Never show the user the whole list.** Thirteen unticked boxes reads as homework and stalls people — which is the exact failure this file exists to prevent.
+**Never show the user the whole list.** Fourteen unticked boxes reads as homework and stalls people — which is the exact failure this file exists to prevent.
 
 1. **Check before you ask.** Look at what's actually on their machine — orientation file, settings, installed skills, whether documents are already converted — and tick what's already true. Tell them what you found. People have usually done more than they think, and starting with three ticks changes how the rest lands.
 2. **Offer one thing.** Pick the item with the best payoff given how they actually work, say in a sentence what it would change *for them*, and offer to do it now, together. Not a menu.
@@ -40,7 +40,8 @@ This file in the repo is a **template**. The live copy is at `~/.claude/fluency-
 
 ## Make it durable
 
-- [ ] **A routine that runs itself** — a morning brief, a news digest, an overnight batch conversion. Start with a **desktop scheduled task**: no GitHub, and it can see their real files.
+- [ ] **A routine scheduled from a skill they built** — not a fresh toy. Take the skill they made under *Use what's installed* and put it on a schedule: it proves that work was real, the routine has a job worth doing, and you're only debugging one new thing. (No skill of their own yet? `/proofread` or `/daily-brief` work fine.) Start with a **desktop scheduled task**: no GitHub, and it can see their real files. ⚠️ **Set permissions to auto**, or it starts and sits waiting for an approval that never comes.
+- [ ] **A `DESIGN.md` for how output should look** — their colours, fonts, layout preferences, and the things they never want. Same idea as the orientation file, pointed at visuals instead of behaviour. Offer it the first time they say an output looks generic; that's the moment it lands. [`course-notes/publishing-and-sharing.md`](course-notes/publishing-and-sharing.md).
 - [ ] **Workspace backed up** — [`guides/github-basics.md`](guides/github-basics.md). **Back up their `.claude` / `.codex` folder as well**: it holds their global orientation file, skills and settings, and backing up a project folder does *not* include it. This is what people lose when they change laptop.
 - [ ] **Something published** — take a document they care about, turn it into a page, hand them a link they can send someone. `here-now`. Usually the moment it clicks.
 

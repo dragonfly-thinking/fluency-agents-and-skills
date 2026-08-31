@@ -18,7 +18,7 @@ Key lookup order:
     2. ~/.fluency/openrouter.key   (plain text file, just the key)
     3. macOS Keychain item "My OpenRouter Key"
 
-Design notes (these are deliberate, see the course best-practices research):
+Design notes — all four are deliberate, and the reason is given inline:
   * Always sends an explicit max_tokens — OpenRouter reserves credit against
     max_tokens before running, so a huge default 402s on a low balance.
   * 402 (out of credit) is a HARD STOP, never retried — retrying just burns money.

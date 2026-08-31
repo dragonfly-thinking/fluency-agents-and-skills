@@ -58,7 +58,8 @@ Code extension, use the same `/context` command in the session panel.
 
 **When the meter runs low**, don't push through — capture and restart: ask the agent
 to *write a handover note* (a short file: what this session did, decided, and is up
-to — there's a copy-able prompt in the session-2 course notes), then start a fresh
+to — there's a copy-able prompt in
+[`../course-notes/agents-and-what-changed.md`](../course-notes/agents-and-what-changed.md)), then start a fresh
 session and point it at that file. Fresh context beats compressed context.
 
 ## 3. Always-allow — ending the thirty-clicks problem

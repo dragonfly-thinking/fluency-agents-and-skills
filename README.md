@@ -1,6 +1,6 @@
 # Fluency Agents and Skills
 
-Everything you take home from the Dragonfly Thinking **AI Fluency** course: the agents and skills we built and used, setup guides for the external connections we covered, and the key points from each session. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://developers.openai.com/codex/cli) and you have a real multi-agent setup — to use as-is, and to make your own.
+Everything you take home from the Dragonfly Thinking **AI Fluency** course: the agents and skills we built and used, setup guides for the external connections we covered, and the teaching itself, written up as a reference library you can read in any order. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://developers.openai.com/codex/cli) and you have a real multi-agent setup — to use as-is, and to make your own.
 
 A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent is a *specialist* a skill can hand work to. Several skills delegate to the base agents below.
 
@@ -109,7 +109,7 @@ Short how-tos for the questions that came up most in the course — written so y
 | [`guides/github-basics.md`](guides/github-basics.md) | What GitHub is, backup/sharing/version-history, agent-followable setup, second computers |
 | [`guides/interface-and-settings.md`](guides/interface-and-settings.md) | Where the context meter is (Claude *and* Codex), permission modes, a sane always-allow list |
 | [`guides/folder-guardrails.md`](guides/folder-guardrails.md) | Actually blocking your agent from sensitive folders — includes **`guard-folders/`**, a ready-made, tested guard your agent installs in a minute |
-| [`guides/on-the-go.md`](guides/on-the-go.md) | Talking to your agent from your phone (Claude Dispatch, the Codex app) |
+| [`guides/on-the-go.md`](guides/on-the-go.md) | Talking to your agent from your phone (Claude Remote Control and Dispatch; Codex inside the ChatGPT app) |
 | [`guides/vscode-setup.md`](guides/vscode-setup.md) | Setting up VS Code as your shared workspace, with the recommended extensions |
 | [`guides/browser-agent.md`](guides/browser-agent.md) | Your agent driving a real browser — install, the separate-profile safety rule, form-filling |
 
@@ -127,7 +127,7 @@ Short how-tos for the questions that came up most in the course — written so y
 │   └── skills/                #   15 skills (Codex ships its own skill-creator)
 ├── fluency-checklist.md       # What's worth setting up, and what you've done
 │                              #   (template; the live copy goes to ~/.claude/)
-├── course-notes/              # Reference library from the course
+├── course-notes/              # Reference library — 14 topic modules + snippets
 │   └── agents-md-snippets.md  #   standing instructions for your orientation file
 ├── guides/                    # Plain-English how-tos (GitHub, file conversion, settings, …)
 └── mcp/                       # Setup guides for external connections (data-commons, openrouter)
@@ -155,18 +155,18 @@ Once the kit is installed (see [Install](#install-let-your-agent-do-it) above), 
 - **Anything on your computer agents should never touch?** Client files, HR records, personal folders — say *"read `guides/guard-folders/README.md` and set up the folder guard for me"* and those folders become hard-off-limits, not just politely avoided.
 - **Not sure what to do with any of this?** Paste this into your agent:
 
-> *Read the course notes in `course-notes/`, then look at what's actually set up on my computer. What from the course am I not using yet? Suggest three things worth putting into action this week — and walk me through the first one.*
+> *Read the course notes in `course-notes/`, then look at what's actually set up on my computer. What am I not using yet? Suggest three things worth putting into action this week — and walk me through the first one.*
 
 ## Make it yours
 
 This is a starter, not a product. The whole point of the course was that you can shape these tools — so shape them:
 
 - **Improve a skill** after it stumbles: *"that wasn't quite right — update the proofread skill so it keeps my heading style next time."*
-- **Add a skill** when you notice a repeated task: *"I keep doing X by hand — turn it into a skill."* (Tip from Session 3: add a line to your `CLAUDE.md` / `AGENTS.md` asking your agent to *suggest* these moments.)
+- **Add a skill** when you notice a repeated task: *"I keep doing X by hand — turn it into a skill."* (Better still, add a line to your `CLAUDE.md` / `AGENTS.md` asking your agent to *suggest* these moments — see [`course-notes/self-improvement-and-memory.md`](course-notes/self-improvement-and-memory.md).)
 - **Trim and tailor**: delete skills you never use, adjust defaults, add examples of your own documents to a skill's folder so outputs come out in your style.
 
 Your agent can do all of this for you — just ask.
 
 ---
 
-Part of the **AI Fluency** course by [Dragonfly Thinking](https://github.com/dragonfly-thinking). This is the AI Fluency tier — a starter scaffold, not a methodology-license deployment.
+Part of the **AI Fluency** course by [Dragonfly Thinking](https://github.com/dragonfly-thinking). A starter scaffold, meant to be taken apart and made yours.

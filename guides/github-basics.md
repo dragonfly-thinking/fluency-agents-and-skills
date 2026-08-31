@@ -1,8 +1,8 @@
 # GitHub, Explained — backup, sharing, and history for your workspace
 
-**Who this is for:** you took the AI Fluency course, your work now lives in folders
-of Markdown files, and you keep hearing "GitHub" — from the course, from your
-agent, and from the cloud-routines setup screen. This is the plain-English version
+**Who this is for:** your work now lives in folders of Markdown files, and you keep
+hearing "GitHub" — from your agent, from colleagues, and from the cloud-routines
+setup screen. This is the plain-English version
 of what it is and how to start using it, with steps written so **your agent can do
 the setup for you**.
 

@@ -273,7 +273,7 @@ prompt, or injection can route around that.
 | Using Codex rather than Claude Code | Layer 1 + the `guard-folders` hook + Layer 3 — Codex's sandbox does not restrict reads |
 | Regulated or truly sensitive data | Layer 3 — or keep it off the machine agents run on entirely |
 
-One honest note from the course: for genuinely high-stakes data (health records
+One honest note: for genuinely high-stakes data (health records
 and the like), the current best practice is still **don't expose it to coding
 agents at all** — a guardrail protects a folder, but the safest folder is one on
 a machine the agent never sees.

@@ -1,4 +1,4 @@
-# Codex CLI configuration for the Session 3 "Extending" demo.
+# Codex CLI configuration for the Fluency Agents and Skills kit.
 #
 # Enables the multi-agent / subagent system and registers the three review
 # agents the demo's skills spawn. Each role's persona lives in its own file

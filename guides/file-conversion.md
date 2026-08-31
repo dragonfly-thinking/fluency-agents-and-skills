@@ -50,7 +50,7 @@ with the command-line version. Drag a document in, get Markdown out, save it int
 Best for one or two files when you'd rather not install anything. For a folder of fifty, it's
 worth the two-minute Node setup — or just ask your agent to read them (Route 1b).
 
-**Batch tip from the course:** for a folder of many documents this is a perfect
+**Batch tip:** for a folder of many documents this is a perfect
 **routine** — *"each night, convert any new documents in `~/Inbox` to Markdown"* —
 or a one-off: *"convert all 70 PDFs in this folder; keep a progress log as you go."*
 
@@ -166,8 +166,8 @@ current rate).
 ## Going the other way — Markdown out to polished formats
 
 - **Markdown → PDF:** the **`pdf-create`** skill in this kit produces a designed
-  PDF; or use the course pattern — agent writes **HTML**, you iterate on it
-  visually, then *"turn this into a PDF"*.
+  PDF; or use the pattern that works better in practice — agent writes **HTML**,
+  you iterate on it visually, then *"turn this into a PDF"*.
 - **Markdown → slides:** the **`slides`** skill.
 - **Markdown → Word:** just ask — *"save this as a `.docx` I can send to legal"*
   (agents use `pandoc` for this; installing it once is fine).

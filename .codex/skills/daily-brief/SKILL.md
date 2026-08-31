@@ -77,7 +77,7 @@ Today — Tuesday 21 May
 Calendar:
   09:00  Team standup (15 min)
   11:00  Client call — ACME (1 hr, prep doc attached)
-  14:30  1:1 with Anthea (30 min, no agenda yet)
+  14:30  1:1 with Jordan (30 min, no agenda yet)
 
 Inbox (3 need you):
   · Sarah — quote signoff, waiting since Friday

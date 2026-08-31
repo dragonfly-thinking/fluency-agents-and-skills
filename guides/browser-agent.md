@@ -87,7 +87,7 @@ Two rules the whole thing hinges on:
 
 ## Three things to try
 
-1. **Fill a form from a file** — the course demo. Write a messy notes file about a
+1. **Fill a form from a file.** Write a messy notes file about a
    (fictional!) person, then: *"Open
    https://courses-visuals.dragonflythinking.com/fluency-demo-form/ and fill it out
    based on my notes file."* That form is a safe practice target: it's a dead demo
@@ -96,7 +96,8 @@ Two rules the whole thing hinges on:
 2. **Extract what a page won't give you** — *"open this dashboard, snapshot it, and
    give me the table as Markdown."*
 3. **A repeating check** — *"each morning, open the grants portal and tell me if
-   anything new is listed"* (pairs with routines — see the Session 4 notes).
+   anything new is listed"* (pairs with routines — see
+   [`../course-notes/routines-and-scheduling.md`](../course-notes/routines-and-scheduling.md)).
 
 ## Troubleshooting
 

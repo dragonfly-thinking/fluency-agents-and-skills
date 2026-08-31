@@ -1,6 +1,6 @@
 # guard-folders v1 — install
 
-The worked folder-guardrail from the course: a small hook that **vetoes any agent
+The worked folder-guardrail: a small hook that **vetoes any agent
 tool call touching folders you list** — reading, editing, or shell commands — before
 it runs. Concept and layered strategy: [`../folder-guardrails.md`](../folder-guardrails.md).
 
