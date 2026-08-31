@@ -35,7 +35,7 @@ Everything else on this page is a preference. These three are the difference bet
 
 **Never say "never" on its own.** A bare prohibition leaves your agent stuck the moment it hits that situation. Always pair it with what to do instead — *"don't X; do Y"* or *"don't X; stop and ask me."* Every snippet below is written that way, and it's worth keeping if you edit them.
 
-**Global or project?** You'll have a global file that applies everywhere (`~/.claude/CLAUDE.md`, or `~/.codex/AGENTS.md`) and project files inside specific folders. Global is federal law, project is state law — except **the local one wins** where they disagree, and otherwise they **stack**: your agent reads every orientation file from the folder it's working in all the way up to home, and adds them together. So "how I work" goes global; "what this project is" goes local.
+**Global or project?** You'll have a global file that applies everywhere (`~/.claude/CLAUDE.md`, or `~/.codex/AGENTS.md`) and project files inside specific folders. Global is federal law, project is state law — except that mostly they **stack** rather than compete: your agent reads every orientation file from the folder it's working in all the way up to home, and adds them together. If two files flatly contradict each other, the closest one *usually* wins, but that isn't guaranteed — so don't rely on a local line to cancel a global one. Write them so they don't fight. "How I work" goes global; "what this project is" goes local.
 
 Not sure where yours live? Just ask: *"open my global orientation file for me."*
 

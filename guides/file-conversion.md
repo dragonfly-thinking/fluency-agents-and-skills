@@ -32,9 +32,13 @@ If you convert documents often, ask your agent to install it permanently
 (`npm install -g @firecrawl/anydoc`) so every run is instant. Either way, your
 agent handles it — you don't need to touch a terminal.
 
-> **Needs Node 20+.** Many people who've installed Claude Code or Codex already
-> have it. If you don't, you have two options that need nothing at all — the
-> browser version below, or letting your agent read the file directly (Route 1b).
+> **Needs Node.** 20 is the technical floor, but **install 24** — Node 20 went
+> end-of-life on 30 April 2026, and 24 "Krypton" is the current Active LTS. The
+> `convert-docs` skill's [`setup-node.md`](../.claude/skills/convert-docs/setup-node.md)
+> installs the right version for you and explains why not to use `brew install node`
+> or `nvm install --lts`. Many people who've installed Claude Code or Codex already
+> have a usable Node. If you don't, two options need nothing at all — the browser
+> version below, or letting your agent read the file directly (Route 1b).
 > Your agent will pick one and finish the job, then offer to set Node up for next
 > time. **Nothing blocks.**
 >
@@ -62,8 +66,9 @@ converted cleanly from `.pptx` and came back interleaved from the PDF export. Sa
 logic for `.docx` over a printed PDF of it.
 
 **Where Route 1 falls short:** scanned documents (photos of text) and multi-column
-PDF layouts, as above. anydoc is also young software (0.1.x) — so glance at the
-output rather than assuming. If it comes out empty or garbled, escalate.
+PDF layouts, as above. anydoc is also very young — first released in August 2026,
+still on a 0.x version — so glance at the output rather than assuming. If it comes
+out empty or garbled, escalate.
 
 ## Route 1b — let the agent read it directly
 

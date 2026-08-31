@@ -129,13 +129,19 @@ If the answers are uncomfortable, the fix is usually **narrower reach**, not mor
 
 Two judgement calls that are theirs, with no correct answer. Give both sides; don't resolve them.
 
-**Cognitive offloading.** ⚠️ **The evidence does not say "AI makes you lazy" and you must not imply it does.** What the research separates is the *mode* of use: passive consumption — accept the output, move on — tracks with skill decay; deliberate use — argue with it, direct it, check it — doesn't. One large multi-continent study found treating AI as a collaborator raised offloading *and* critical vigilance simultaneously, with both predicting deeper learning. Contested and still moving.
+**Cognitive offloading.** ⚠️ **The evidence does not say "AI makes you lazy" and you must not imply it does.** What the research separates is the *mode* of use: passive consumption — accept the output, move on — tracks with skill decay; deliberate use — argue with it, direct it, check it — doesn't. One study of **~900 students across three continents** (Wang & Zhang, 2026, N=912) found treating AI as a collaborator raised offloading *and* critical vigilance simultaneously, with both predicting deeper learning. Contested and still moving — name the study if they ask, and say it's contested rather than settled.
 
 What's clear enough to act on: **the mode is the variable, and the mode is their choice.** Working this way well is more demanding, not less. People who use these tools hardest often report being more tired.
 
 **The disclosure penalty**, and it's uncomfortable. Told AI helped, readers rate identical text as lazier and less sincere. Told nothing, they rate it as well as human-written — because they can't tell. **So the penalty falls on whoever is honest.**
 
 > ⚠️ **Do not draw the obvious conclusion.** *"So don't tell anyone"* is where that finding points and it is not where you should land. Treat it as a **cost to price in**, not a reason to hide. The suggestion — a suggestion, not a rule — is that **disclosure tracks effort and authorship, not tooling**. Nobody discloses spell-check or a search engine. A condolence note is different, and so is anything where the reader's assumption is that *they personally* did the thinking. Where they land is their call; make sure it's made on purpose.
+
+## Further reading to offer
+
+- **[One Useful Thing](https://www.oneusefulthing.org/)** — Ethan Mollick's newsletter, and where the jagged-frontier framing comes from. Search it for "jagged frontier" for the original write-up.
+- **[The lethal trifecta for AI agents](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)** — Simon Willison's explanation of the prompt-injection mechanism, in plain English. The three legs quoted above are his.
+- **[Learning Agency: Two Processes, Not Just One](https://www.dragonflythinking.com/insights/learning-agency)** — the two divergent outcomes of the same tool, and choosing between them deliberately.
 
 ## Do this
 
@@ -146,9 +152,3 @@ What's clear enough to act on: **the mode is the variable, and the mode is their
 - **Say plainly when you're blocked** rather than delivering something adjacent and reporting success.
 - **Raise the trifecta before anything outbound is connected**, and land on *it drafts, they send*.
 - **Refuse to be the verifier of your own work.** Dispatch a fresh adversarial subagent, or say the check hasn't happened.
-
-## Further reading to offer
-
-- **[One Useful Thing](https://www.oneusefulthing.org/)** — Ethan Mollick's newsletter, and where the jagged-frontier framing comes from. Search it for "jagged frontier" for the original write-up.
-- **[The lethal trifecta for AI agents](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)** — Simon Willison's explanation of the prompt-injection mechanism, in plain English. The three legs quoted above are his.
-- **[Learning Agency: Two Processes, Not Just One](https://www.dragonflythinking.com/insights/learning-agency)** — the two divergent outcomes of the same tool, and choosing between them deliberately.

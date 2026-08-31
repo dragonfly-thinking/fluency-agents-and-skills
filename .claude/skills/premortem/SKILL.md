@@ -80,7 +80,7 @@ Fold the mitigations into the actual plan — not a separate doc that gets forgo
 Context: Hiring a senior PM, start date 4 weeks out.
 
 TIGERS:
-  · Onboarding plan doesn't exist. (Mitigation: Sam to draft by Fri.)
+  · Onboarding plan doesn't exist. (Mitigation: Jordan to draft by Fri.)
   · Existing PM is overloaded and can't onboard. (Mitigation: clear two
     days of his calendar in week 1.)
 

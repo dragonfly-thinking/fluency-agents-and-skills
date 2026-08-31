@@ -43,6 +43,7 @@ code --install-extension anthropic.claude-code
 code --install-extension openai.chatgpt
 code --install-extension cweijan.vscode-office
 code --install-extension mechatroner.rainbow-csv
+code --install-extension tomoki1207.pdf          # optional — Office Viewer already opens PDFs
 ```
 
 (If `code` isn't recognised: in VS Code, ⌘⇧P / Ctrl+Shift+P → *"Shell Command:

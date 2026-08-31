@@ -33,7 +33,7 @@ Everything is a folder. Their workspace is a folder, a project is a folder, your
 
 - **"How I work" goes global** — who they are, British English, conventions. Written once, never repeated.
 - **"What this project is" goes local** — this client, this deadline, these files.
-- If two files *directly* contradict, the closest and most specific wins. **But that's the exception — stacking, not overriding, is the everyday case.** Correct them if they're designing as though local replaces global; they'll duplicate things they never needed to.
+- If two files *directly* contradict, the closest one **usually** wins — but that isn't guaranteed, and a contradiction can be resolved either way. **So don't design around it: stacking, not overriding, is the everyday case, and two lines that fight is a bug to fix rather than a mechanism to use.** Correct them if they're building as though local replaces global; they'll duplicate things they never needed to.
 
 The analogy that lands: global is federal law, project is state law — except they mostly add up rather than compete.
 

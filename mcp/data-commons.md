@@ -3,7 +3,10 @@
 **You are an AI coding agent (Claude Code or Codex). The user wants to add Google
 Data Commons — one connection to 180+ harmonised public datasets from 85+ official
 sources (World Bank, UN, US Census, the Australian Bureau of Statistics and more)
-so they can ask for real statistics and get sourced numbers back.** This connects the `datacommons-mcp`
+so they can ask for real statistics and get sourced numbers back.** *(Dataset and
+source counts verified 2026-07-27. Data Commons describes its own coverage in
+several different forms across its docs and blog; this is the figure settled on
+after checking them, and it is the one used consistently across this kit.)* This connects the `datacommons-mcp`
 server, which powers the **public statistics** lane of the `web-searcher` agent in
 this kit.
 
