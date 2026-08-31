@@ -49,7 +49,7 @@ something.
 ## One way to run this
 
 > **This is one delivery's order, not the structure.** Modules are independent and the order
-> changes between cohorts — don't treat the numbering below as anything more than an example
+> changes between deliveries — don't treat the numbering below as anything more than an example
 > of a sequence that worked.
 
 1. Agents, and What Changed

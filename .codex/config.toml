@@ -1,8 +1,8 @@
 # Codex CLI configuration for the Fluency Agents and Skills kit.
 #
-# Enables the multi-agent / subagent system and registers the three review
-# agents the demo's skills spawn. Each role's persona lives in its own file
-# under agents/ (referenced via config_file).
+# Enables the multi-agent / subagent system and registers the kit's six
+# specialist agents. Each role's persona lives in its own file under agents/
+# (referenced via config_file).
 #
 # Drop this `.codex/` folder at the root of your workspace, or merge these
 # blocks into your `~/.codex/config.toml` and copy the `agents/` folder beside
