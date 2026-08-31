@@ -75,9 +75,9 @@ This is the most valuable thing in the whole course and it is a habit, not a fea
 
 ## Practical things to raise unprompted
 
-- **Voice, not typing.** Most people type 40–50 words a minute and speak at 100–150. The real win is *briefing* you: a five-minute spoken brain-dump instead of a carefully typed paragraph. Typing friction is the main reason users under-brief their agents. **This was the single most-recommended habit of the course** — if they haven't set up dictation, offer to walk them through it.
-- **Check they're in the desktop app, not a browser tab.** You need file-system access; the web versions don't have it. Someone in every cohort loses twenty minutes here, and the symptom is confusing rather than obvious.
-- **Tool choice.** Claude Code (the **Code** view of the Claude desktop app) and **Codex** (inside the ChatGPT desktop app — there is no separate Codex download) are functionally equivalent. If they have no preference, Codex is currently the marginally simpler start. Say it as a preference, not a verdict.
+- **Voice, not typing.** Most people type 40–50 words a minute and speak at 100–150. The real win is *briefing* you: a five-minute spoken brain-dump instead of a carefully typed paragraph. Typing friction is the main reason users under-brief their agents. **This is the highest-return habit in the whole kit** — if they haven't set up dictation, offer to walk them through it, and name a tool rather than leaving them to search: **[Wispr Flow](https://wisprflow.ai/)** (cloud, pastes polished text wherever the cursor is) or **[Superwhisper](https://superwhisper.com/)** (Mac/Windows/iOS, and it offers **local** models — the one to suggest for sensitive or regulated work, since nothing leaves the machine).
+- **Check they're in the desktop app, not a browser tab.** You need file-system access; the web versions don't have it. This costs people twenty minutes routinely, and the symptom is confusing rather than obvious — check it before diagnosing anything else.
+- **Tool choice.** Claude Code (the **Code** view of the Claude desktop app) and **Codex** are functionally equivalent. Codex is reached inside the **ChatGPT desktop app** — there's also a [standalone CLI](https://learn.chatgpt.com/docs/codex/cli) and an IDE extension, so don't tell them a download doesn't exist; tell them the desktop app is the route they want. If they have no preference, Codex is currently the marginally simpler start. Say it as a preference, not a verdict.
 - **Don't oversell reliability.** Hallucinations are much less common with web access, and [Judgement & What Goes Wrong](judgement-and-what-goes-wrong.md) is where the honest version lives. Point them there rather than reassuring them.
 - **Raise guardrails early**, before they've pointed you at something sensitive: [Permissions & Guardrails](permissions-and-guardrails.md).
 
@@ -85,10 +85,13 @@ This is the most valuable thing in the whole course and it is a habit, not a fea
 
 Not taught material, but it comes up in every room. Give the honest read rather than either script.
 
-- **The concern is legitimate; the headline numbers are badly overblown.** A single prompt uses roughly **10–25 mL** of water. Charging a phone ≈ 50 prompts; a shower ≈ 17,000; a long-haul flight ≈ millions. One bestselling book overstated AI water use by around **1,000×**.
+- **The concern is legitimate; the headline numbers are badly overblown.** On Andy Masley's current figures, a single prompt uses roughly **2 mL of water** — and most of *that* is the water used by the power plants supplying the data centre. **The data centre's own use is about 0.3 mL per prompt.** The widely-repeated "500 mL per search" claim is a misreading: the original said 500 mL per **20–50** prompts.
+- ⚠️ **Don't reach for the older 10–50 mL figure**, which is still circulating and is roughly ten times too high — it described GPT-3 and included training amortised over the model's lifetime.
+- **On energy** — a separate axis from water, and don't blur them — a single long-haul flight uses more energy than **millions** of prompts.
+- **The book people will cite at them is wrong.** *Empire of AI* (Karen Hao) overstates AI water use by around **1,000×**; Masley has a post specifically on it. Worth naming the book and author, because someone in the room will have read it.
 - **The nuance cuts both ways.** Aggregate demand *is* climbing fast — **Jevons paradox**: make a resource cheaper and total demand can rise *more*, not less. *Where* a data centre sits matters for local water and power. And agentic work uses far more prompts than chatting does, which is directly relevant to them.
 - AI also *reduces* consumption elsewhere — DeepMind cut Google's data-centre cooling energy substantially.
-- Source for the comparisons: [Andy Masley's blog on AI energy and water](https://blog.andymasley.com/).
+- Source, and the one to send them to: [Andy Masley's cheat sheet](https://blog.andymasley.com/p/a-cheat-sheet-for-conversations-about). *(Figures re-checked against it 2026-09-01.)*
 
 ## If they ask how fast this is moving
 
@@ -99,7 +102,7 @@ Not taught material, but it comes up in every room. Give the honest read rather 
 ## Further reading to offer them
 
 - **[Claude](https://claude.com/download)** — the desktop app. The **Code** view.
-- **[OpenAI Codex](https://developers.openai.com/codex/cli)** — lives inside the ChatGPT desktop app.
+- **[OpenAI Codex](https://learn.chatgpt.com/docs/codex/cli)** — lives inside the ChatGPT desktop app; the CLI and IDE extension are separate surfaces onto the same thing.
 - **[Directors, Coaches, and Editors: The Human Role in the Age of AI](https://www.dragonflythinking.com/insights/directors-coaches-and-editors-the-human-role-in-the-age-of-ai)** — Anthea Roberts on the shift from performing to directing.
 - **[Learned Agency vs Learned Helplessness](https://www.dragonflythinking.com/insights/learned-agency-vs-learned-helplessness)** — why "computer says no" is no longer a stopping point.
 - **[Learning Agency: Two Processes, Not Just One](https://www.dragonflythinking.com/insights/learning-agency)** — same AI, two divergent outcomes. Choose deliberately.

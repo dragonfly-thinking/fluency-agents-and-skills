@@ -77,16 +77,18 @@ Same idea applies to prose: you have recognisable writing habits (overuse of em 
 
 > ⚠️ **Published without an account, a site expires in 24 hours — and the claim URL that makes it permanent is returned ONCE and cannot be recovered.** If it scrolls past and the session closes, the page is gone tomorrow with no way back. **Save the claim URL somewhere they'll find it, and tell them you've done so** — or get them signed in first.
 
-> ⚠️ **Sites are public by default. No password.** Anyone with the link can open it, and links are guessable enough that "nobody will find it" is not a security model. **Ask before publishing whether the document is safe to put on the open web** — client material, anything under NDA, anything they'd have to defend. Don't publish and then mention it.
+> ⚠️ **Sites are public by default.** Anyone with the link can open it, and "nobody will find it" is not a security model. A password can be set afterwards, but the default is open — and a signed-in user's sites can also surface on their public here.now profile. **Ask before publishing whether the document is safe to put on the open web** — client material, anything under NDA, anything they'd have to defend. Don't publish and then mention it.
 
-> ✅ **Publishing is optional, and say so.** The whole thing works if you stop at the HTML file and they open it locally. If they work with sensitive material and would rather not install a publishing tool at all, that's a completely reasonable call — one participant made exactly that decision after talking the risk through with their agent, which had advised the same.
+> ✅ **Publishing is optional, and say so.** The whole thing works if you stop at the HTML file and they open it locally. If they work with sensitive material and would rather not install a publishing tool at all, that is a completely reasonable call — and worth saying out loud, because people assume the exercise requires it.
 
-With a free account, pages persist. On a paid account they can **pin or password-gate** a page — a code handed to specific recipients — and **attach their own domain**, so the address reads `insights.theircompany.com` rather than a random subdomain.
+**What a free account changes**, and it changes more than people expect. Signed in, **pages persist** rather than expiring, they can set a **custom expiry** instead, they can **password-protect** a page, and they get **one custom domain** — so the address reads `insights.theircompany.com` rather than a random subdomain. Paid plans raise the domain and storage limits; they don't unlock passwords or persistence.
+
+⚠️ **There is no "PIN" feature — don't call it one.** Password protection is a setting on a published site, applied after publishing. And a site with no password is **public**, including to a signed-in user's public here.now profile.
 
 ## Turning it into a document
 
 - **HTML → PDF.** Build and iterate as HTML, where changes are fast and cheap, then export **only at the end** when it's right. The **`pdf-create`** skill, or their browser's print dialogue. ⚠️ Doing it the other way round means re-doing the layout on every wording change — steer them away from it.
-- **A confidential document workflow without Word:** gated HTML behind a pin, their own domain, exported to PDF when a document is needed.
+- **A document workflow without Word:** password-protected HTML on their own domain, exported to PDF when a document is needed. ⚠️ **Don't sell this as a route for genuinely confidential material.** A password on a public host is access control, not confidentiality — it's fine for "don't want this indexed and shared onward", wrong for client-privileged or regulated content. For that, keep it local and export to PDF.
 - **First-draft combination:** a retrieval tool like NotebookLM is strong at a fast first pass and weak at iterating. Take its first pass, then develop it properly.
 - **Slides:** the **`slides`** skill builds HTML decks.
 

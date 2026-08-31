@@ -32,15 +32,17 @@ Why: setting up a routine means an unfamiliar screen with fields they've never s
 
 **Do the drafting for them.** Don't describe the method; run it.
 
-## ⚠️ Auto permissions, or it stalls silently
+## ⚠️ Auto permissions, or a local routine stalls silently
 
-**The single most common way a routine fails, and it fails invisibly.**
+**The most common way a *desktop* routine fails, and it fails invisibly.**
 
-Above the folder selector is a permissions setting. Left asking for approval, the routine starts on schedule, hits its first action, and **sits waiting for a click that never comes** — they're asleep, in a meeting, or the app is closed. **No error. No notification. It just never finishes.**
+On a **local / desktop scheduled task**, above the folder selector, is a permissions setting. Left asking for approval, the routine starts on schedule, hits its first action, and **sits waiting for a click that never comes** — they're asleep, in a meeting, or the app is closed. **No error. No notification. It just never finishes.**
 
 **Check this before they finish setting anything up.** Set it to auto.
 
-And when a user says a routine "seems stuck on running", look for the permission prompt waiting quietly before investigating anything else.
+**Scope it correctly when you explain it**, because it isn't universal: Claude **cloud** routines don't prompt mid-run at all, and Codex scheduled tasks default to never asking for approval for exactly this reason. **This is a local-desktop trap** — which is also the option you'll be steering most people to, so it will come up.
+
+And when a user says a local routine "seems stuck on running", look for the permission prompt waiting quietly before investigating anything else.
 
 The second setting: **match the model to the job.** Heavyweight for real thinking, fast for mechanical work. This is where cost actually lives.
 

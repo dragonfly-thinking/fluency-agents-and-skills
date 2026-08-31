@@ -16,6 +16,8 @@
 | **Auto** | **Everything**, with an automated safety check reviewing as it goes | Long tasks, once they trust the direction |
 | **Bypass / full access** | Everything, nothing reviewing it | Rarely, and never with sensitive material around |
 
+*⚠️ Mode names move. This table was spot-checked against the current Claude Code permission-modes documentation on **2026-09-01**, but [`../guides/interface-and-settings.md`](../guides/interface-and-settings.md) is the source of truth — if it and this table ever disagree, trust the guide, and trust the tool over both.*
+
 Two things the names invite users to get wrong — correct these when you see them:
 
 - **Plan mode is not a cage.** It won't edit files, but it *does* read them and run commands to look around. "Propose before changing", not "sit still". It's the mode for staying the director: iterate on the plan, then **save the plan as a file** before switching out. Do that saving yourself.
@@ -58,13 +60,18 @@ The principle to give them: **reversible-and-contained can be automatic; destruc
 Be honest about what an instruction is:
 
 - **Layer 1 — an instruction.** *"Never read, list, edit, or run commands that touch `~/Private/`."* This is **asking**. Like giving someone a key and requesting they stay out of one room. It works most of the time. Most of the time is not always, and users hear "never" as a guarantee unless you tell them otherwise.
-- **Layer 2 — a guardrail that blocks.** Configuration (in Claude, **hooks**) that **vetoes the action before it runs**. Locking the door.
+- **Layer 2 — guardrails that block**, and there are three of them. ⚠️ **Don't install only the hook** — on Claude Code it is the *weakest* of the three:
+  - **Deny rules** in `~/.claude/settings.json` — the built-in permission system, no code required. **This is the load-bearing layer on Claude Code.**
+  - **The OS-level sandbox** — enforced by the operating system rather than by the agent, which is what closes the gap below.
+  - **The `guard-folders` hook** — vetoes a tool call before it runs. Its real value is on **Codex**, which has no read-side deny rules of its own. On Claude Code it's a useful third opinion, not the answer.
 
-**Set up both.** The instruction handles the ordinary case gracefully — you understand *why* and work around the boundary sensibly. The guardrail handles the case where something goes wrong.
+**Set up the instruction and the guardrails.** The instruction handles the ordinary case gracefully — you understand *why* and work around the boundary sensibly. The guardrails handle the case where something goes wrong.
 
-The kit ships a **ready-made, tested folder guard** you can install in a minute: [`../guides/guard-folders/README.md`](../guides/guard-folders/README.md), with the layered strategy in [`../guides/folder-guardrails.md`](../guides/folder-guardrails.md). It vetoes any tool call touching listed folders — reads, edits, or shell commands.
+Both live in [`../guides/folder-guardrails.md`](../guides/folder-guardrails.md), which has the layered strategy and the exact settings to write; the ready-made hook is at [`../guides/guard-folders/README.md`](../guides/guard-folders/README.md). **Follow the guide rather than working from this summary** — the deny-rule path syntax is fiddly and a rule that doesn't match fails silently.
 
-⚠️ **Then verify it, and make them watch.** Install, start a **fresh session**, and try to read something inside the protected folder. The right answer is a refusal. **An unverified guardrail is a belief, not a control** — and the verification is what makes them trust the rest of their setup.
+⚠️ **Know the ceiling, and tell them.** The hook reads the *text* of a tool call, so it catches a plainly-written path and a symlink — but the guide documents four **tested** shell spellings that get through it: a glob, split quoting, `cd` then a relative path, and a script that opens the file itself. That's the ceiling of the technique, not a bug. It's why the sandbox exists.
+
+⚠️ **Then verify it, and make them watch.** Install, start a **fresh session**, and run the guide's **five tests** — read, search, `cat`, a symlink, and a Python one-liner that opens the file directly. **The fifth is expected to succeed** unless the sandbox layer is on, and that is the point of running it: permission rules govern what *you* do, and a script opening a file itself works below that layer. **A one-test check manufactures exactly the false confidence this section exists to prevent.** An unverified guardrail is a belief, not a control.
 
 ⚠️ **For genuinely high-stakes material** — health records, anything where no third party can ever see it — say plainly that the honest answer is still *don't put it on the machine the agent runs on*. A guardrail protects a folder; the safest folder is one you never see. If both must live on one machine, **separate operating-system user profiles** for work and personal is the pragmatic move — though not an absolute barrier if the account has administrator rights. Don't overstate it.
 

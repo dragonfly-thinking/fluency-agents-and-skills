@@ -1,6 +1,6 @@
 # Connections, APIs & MCP
 
-**Read this when** your user asks about connecting you to another tool, mentions MCP, APIs or API keys, asks whether you can reach their email or calendar, wants real statistics or data rather than a web search, or asks "can you talk to [some service]".
+**Read this when** your user asks about connecting you to another tool, mentions MCP, APIs or API keys, asks whether you can reach their email or calendar, wants real statistics or data rather than a web search, asks "can you talk to [some service]", or says their **work laptop blocks the desktop app** and they think they're stuck.
 
 *Everything else happens inside their machine. This is reaching outside it — and the setup is your job, not theirs.*
 
@@ -26,6 +26,16 @@ Before searching for anything, check what's already one click away — users don
 - **Codex:** the **Plugins** menu. Same thing, different name.
 
 Gmail, Outlook, Google Drive, SharePoint, Notion and similar are usually pre-built. ⚠️ **On a managed work laptop, some need an administrator to approve the permission.** Raise that before promising anything — it's the commonest way this beat fails in front of someone.
+
+## ⚠️ When their work laptop blocks the desktop app
+
+A live question on any managed machine, and it arrives disguised as "I can't install this." Don't treat it as a dead end — there are three routes, and they're worth raising *before* someone concludes the whole approach is closed to them.
+
+- **The GitHub-backed cloud route.** Their work lives in a GitHub repository; a cloud session spins up a machine, does the work against the repo, saves back, and shuts down. No desktop install on the locked laptop at all. Plain-English setup, written to be followed by you: [`../guides/github-basics.md`](../guides/github-basics.md).
+- **Cloud-storage connectors.** **OneDrive**, **SharePoint** and **Dropbox** connectors let you reach documents already stored there — ⚠️ **subject to their administrator approving the permission**, which is the step that actually decides it. Have them ask before you build anything on it.
+- **Give them a map of the cloud storage.** Whichever route, put the structure of that storage into their orientation file exactly as you would for a local workspace — the [context engineering](context-engineering.md) argument doesn't change just because the files are somewhere else.
+
+And the wider pattern for anyone under institutional restriction: **do the open-data research in an unrestricted environment, then carry the conclusions into the locked one.** Segregating what you connect to is the point — see [Judgement & What Goes Wrong](judgement-and-what-goes-wrong.md).
 
 ## What connecting actually buys — don't oversell it
 

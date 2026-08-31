@@ -1,6 +1,6 @@
 # Fluency Agents and Skills
 
-Everything you take home from the Dragonfly Thinking **AI Fluency** course: the agents and skills we built and used, setup guides for the external connections we covered, and the teaching itself, written up as a reference library you can read in any order. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://developers.openai.com/codex/cli) and you have a real multi-agent setup — to use as-is, and to make your own.
+Everything you take home from the Dragonfly Thinking **AI Fluency** course: the agents and skills we built and used, setup guides for the external connections we covered, and the teaching itself, written up as a reference library you can read in any order. Open it in [Claude Code](https://claude.ai/download) or [OpenAI Codex](https://learn.chatgpt.com/docs/codex/cli) and you have a real multi-agent setup — to use as-is, and to make your own.
 
 A skill is a *verb* you invoke ("proofread this", "build me a deck"). A subagent is a *specialist* a skill can hand work to. Several skills delegate to the base agents below.
 

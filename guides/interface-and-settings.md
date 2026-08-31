@@ -37,7 +37,7 @@ In every mode, your own deny rules still apply, and writes to protected paths
 (your git repo internals, the agent's own config) are never auto-approved except
 in full-bypass. So the ladder sets the default; guardrails sit on top of it.
 
-Course recommendation: **Accept edits** for everyday work, drop into **plan mode**
+A sensible default: **Accept edits** for everyday work, drop into **plan mode**
 at the start of anything substantial and save the plan as a file, and move up to
 **auto** only once you know what the agent tends to do unsupervised. (Auto isn't
 available on every account — if you don't see it, you're not missing a setting.)
@@ -106,7 +106,7 @@ or out-of-bounds should stay a human decision.
 
 ---
 
-*⚠️ Mode names and behaviour last verified against the Claude Code permission-modes
-documentation on **2026-07-27** — re-verify before delivery. This is the
-fastest-moving part of both tools. If a mode name here doesn't match what you see,
+*Mode names and behaviour re-checked against Claude Code's current documentation on
+**2026-09-01** — the ladder and the allow/ask/deny model still hold. This remains the
+fastest-moving part of both tools: if a mode name here doesn't match what you see,
 trust the tool and ask your agent to check the current docs.*

@@ -32,17 +32,20 @@ phone."
 
 ## Codex — inside the ChatGPT app
 
-Codex's phone experience lives in the **ChatGPT mobile app** (iOS and Android —
-available on all plans as a preview):
+**There is no standalone Codex desktop app.** Codex is one of the surfaces inside
+the **ChatGPT desktop app** — the same app carries chat and Codex — and it also
+exists as a CLI and an IDE extension. If you go hunting for a "Codex" download,
+you'll waste twenty minutes; install ChatGPT and switch surface.
 
-1. On your **Mac**, have Codex running; the pairing flow shows a **QR code**.
+Codex's phone experience lives in the **ChatGPT mobile app** (iOS and Android):
+
+1. On your computer, have Codex running; the pairing flow shows a **QR code**.
 2. Scan it from the ChatGPT app on your phone — the two are now linked.
 3. From the phone you can kick off new tasks, watch output stream in, review
-   changes, and approve actions. Your files and credentials stay on the Mac.
+   changes, and approve actions. Your files and credentials stay on the computer.
 
-(⚠️ Last verified **2026-07-27** — re-verify before relying on it: the computer
-side of this pairing was **macOS-only**, with Windows support promised but
-undated.)
+**Both macOS and Windows are supported** for the desktop side. (An older version of
+this page said macOS-only; that was true when it was written and is not now.)
 
 ## The "very dedicated" option — a cloud computer
 
@@ -70,7 +73,11 @@ steering, and checking** — not surgery.
 
 ---
 
-*⚠️ Last verified **2026-07-27** — re-verify before delivery. This page is deliberately lighter on exact menu paths than
+*Re-verified **2026-09-01** against OpenAI's current Codex documentation: Codex runs
+inside the ChatGPT desktop app (no standalone desktop download), with CLI and IDE
+extension as additional surfaces, and **Windows is supported alongside macOS**. The
+Claude side below was not re-verified against Anthropic's docs on that date — treat
+the Claude feature names as indicative. This page is deliberately lighter on exact menu paths than
 the other guides, because this is the corner of both products that changes
 fastest — the caveat at the top is doing real work, not hedging. If the names
 don't match, ask your agent to check the current docs before assuming you've done

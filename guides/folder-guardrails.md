@@ -280,8 +280,10 @@ a machine the agent never sees.
 
 ---
 
-*⚠️ Runtimes move fast. The Claude Code behaviour here was checked against the
-permissions and sandboxing documentation, and the Codex sandbox behaviour against
-the Codex source, on **2026-07-27** — **re-verify before delivery**. Re-run the
-verification tests after a major upgrade of either tool rather than assuming a
-rule still bites.*
+*Re-verified **2026-09-01** against Claude Code's current settings documentation: the
+`permissions` block still takes `allow` / `ask` / `deny` arrays, deny rules still use
+the `Read(path)` form the docs show verbatim (`"Read(./.env)"`, `"Read(./.env.*)"`),
+and the sandbox settings section is still there. The **Codex** sandbox behaviour was
+last checked against the Codex source on **2026-07-27** and has not been re-checked —
+treat the Codex half as indicative. Runtimes move fast: re-run the five verification
+tests after a major upgrade of either tool rather than assuming a rule still bites.*
