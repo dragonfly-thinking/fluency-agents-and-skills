@@ -1,60 +1,64 @@
 # Skills
 
-*Packaged standard operating procedures — the way you codify how *you* want a job done, once, so you stop explaining it.*
+**Read this when** your user asks what a skill is, wants to package something they do repeatedly, asks how to make you better at their specific work, wants to encode a methodology or framework, asks why typing `/` shows nothing, or has just explained the same preference to you twice.
 
-A skill is a **folder your agent reads on demand**. Inside it, a `SKILL.md` file says what the job is, when to use it, and how you want it done. That's the whole requirement. Everything else — checklists, examples, reference files, scripts — is optional and loaded only when the instructions call for it.
-
-If a subagent is a *specialist*, a skill is a *verb*: "proofread this", "build me a deck", "run a premortem". Skills are how your agent gets meaningfully better at the specific work you actually do.
+*Skills are how your user's expertise gets into you permanently rather than per-conversation. The trigger to watch for is repetition — theirs, not yours.*
 
 ---
 
-## How your agent knows a skill exists
+## What they are
 
-This is worth understanding properly, because it explains why you can install dozens of skills without slowing anything down.
+A **folder you read on demand**. Inside, a `SKILL.md` says what the job is, when to use it, and how they want it done. That's the whole requirement. Everything else — checklists, examples, reference files, scripts — is optional and loaded only when the instructions call for it.
 
-**Your agent pre-loads only each skill's name and description.** That's it — a line or two per skill, sitting in context. When it decides one is relevant to what you're doing, *then* it loads the full `SKILL.md` and whatever that file points at.
+The distinction to give a user: **a subagent is a *specialist*; a skill is a *verb*** — "proofread this", "build me a deck", "run a premortem".
 
-This is true on both runtimes. OpenAI's documentation puts it plainly: *"ChatGPT and Codex start with each skill's name and description, then load the full SKILL.md instructions when they decide to use that skill."*
+## How you find them — worth explaining once
 
-Two consequences:
+This explains why a big library costs nothing, and users assume the opposite.
 
-- **The description is the most important line in the file.** It is the entire basis on which the skill gets chosen. Write it as *when to use this*, not *what this is*.
-- **A big library is cheap.** Twenty unused skills cost you twenty lines of context, not twenty documents.
+**You pre-load only each skill's name and description** — a line or two each. When one looks relevant, *then* you load the full `SKILL.md` and whatever it points at.
 
-The same mechanic drives [subagent](subagents.md) selection on Claude. Where the skill has to *sit* for any of this to work — and the trap that catches everyone — is in [Where Things Live](where-things-live.md).
+True on both runtimes. OpenAI's documentation: *"ChatGPT and Codex start with each skill's name and description, then load the full SKILL.md instructions when they decide to use that skill."*
+
+Two consequences worth passing on:
+
+- **The description is the most important line in the file** — it's the entire basis on which a skill gets chosen. Write it as *when to use this*, not *what this is*. Fix theirs if it's the latter.
+- **A big library is cheap.** Twenty unused skills cost twenty lines, not twenty documents. Users worry about clutter; they needn't.
+
+Same mechanic drives [subagent](subagents.md) selection on Claude. Where a skill has to *sit* — and the trap that catches everyone — is [Where Things Live](where-things-live.md).
 
 ## What's in a `SKILL.md`
 
-- **Front matter** with a `name` and a `description` — the two lines above.
-- **The instructions**: what the job is, the steps, the standards, the shape of the output.
-- **Optionally, anything else in the folder** — a checklist, worked examples, a style reference, a script. Referenced from the instructions, loaded when needed.
+- **Front matter** with a `name` and a `description`.
+- **The instructions** — the job, the steps, the standards, the shape of the output.
+- **Optionally, anything else in the folder** — a checklist, worked examples, a style reference, a script.
 
-**Point a skill at your files.** This is the move that turns a generic skill into yours: put your actual materials in the folder, or point at paths in your workspace. Two or three examples of the documents you typically produce will do more for output quality than any amount of describing.
+**Point a skill at their files.** This is the move that turns a generic skill into theirs: put their actual materials in the folder, or point at paths in their workspace. **Two or three examples of what they typically produce beat any amount of description** — offer to go and find some.
 
-## Composition — skills, subagents, and skills again
+## Composition
 
-Skills can **dispatch subagents**, and subagents can invoke skills. That layering is where the real capability sits.
+Skills can **dispatch subagents**, and subagents can invoke skills. That layering is where real capability sits.
 
-The clearest example is in the kit: run **`/proofread`** and open its `SKILL.md`, and you'll see it does **not** do the editing itself. It delegates to the **`writing-editor`** subagent, with an explicit instruction not to do the work directly. A skill as the standard operating procedure; a subagent as the worker it hands off to.
+The clearest demonstration is already installed: run **`/proofread`**, then open its `SKILL.md` and show them it does **not** do the editing itself — it delegates to the **`writing-editor`** subagent, with an explicit instruction not to do the work directly. A skill as the procedure; a subagent as the worker.
 
-Worth running once on your own writing, then running the same piece *without* the skill and comparing. The contrast is the point.
+**Then run the same piece without the skill and compare.** The contrast is the point, and it's the fastest way to make skills feel worth building.
 
 ## Calling one
 
-- Type **`/`** and pick it from the list, or just mention it by name.
-- **Add context inline:** `/visual-explainer make it pirate-themed`.
-- Or don't name it at all. Describe the job and let the agent choose — that's the name-and-description mechanic above doing its work, and watching it pick the right skill unprompted is the moment the whole thing clicks.
-- **Skill not showing when you type `/`?** Almost always placement, and occasionally a session that started before the skill was installed. [Where Things Live](where-things-live.md) has both fixes.
+- Type **`/`** and pick it, or mention it by name.
+- **Context inline:** `/visual-explainer make it pirate-themed`.
+- **Or not at all** — they describe the job and you choose. Watching you pick the right skill unprompted is the moment it clicks for most people, so let it happen rather than instructing them to name things.
+- ⚠️ **Nothing showing when they type `/`?** Almost always placement, occasionally a session that started before the skill was installed. Both fixes: [Where Things Live](where-things-live.md). Check this before concluding anything is broken.
 
-## Making your own
+## Making one
 
-**The simplest way is to just ask**, right after you've done something you'll do again:
+**The trigger is the second time.** When a user explains the same preference twice, or repeats a procedure, that's the signal — and they will not notice it. You should:
 
-> *"Turn what we just did into a skill. Write the `SKILL.md` for me, and put it somewhere I'll be able to use it everywhere."*
+> *"That's the second time you've walked me through how you like these done. Shall I package it as a skill so I just do it that way?"*
 
-For a more guided build, **`skill-creator`** interviews you, scaffolds the folder, and validates the result. Claude Code users get it from this kit; Codex ships its own.
+Then write it. **`skill-creator`** gives a more guided build — it interviews them, scaffolds the folder, validates the result. Claude Code users get it from this kit; Codex ships its own.
 
-**Never hand-write one.** If your agent offers you a template to fill in, tell it to write the file itself and show you the result. Worth a standing line:
+⚠️ **Never hand them a template to fill in.** Write the file and show the result. Offer this standing line:
 
 ```markdown
 ## Write it for me
@@ -62,50 +66,49 @@ For a more guided build, **`skill-creator`** interviews you, scaffolds the folde
   yourself and show me the result. Don't hand me a template to fill in or a block to paste.
 ```
 
-**Good candidates**, in rough order of payoff:
+**Good candidates, in order of payoff:** a formatting skill fed two or three real examples; a skill that knows their brand colours, logo and house style; anything they've now explained twice.
 
-- A **formatting skill**, fed two or three examples of what you actually produce.
-- A skill that knows your **brand colours, logo and house style**, so visual outputs come out consistent instead of randomly themed.
-- Any procedure you have now explained to your agent **twice**. The second time is the signal.
+## ⚠️ One skill covering many frameworks — not one per framework
 
-## ⚠️ One skill covering many frameworks — not one skill per framework
+The design mistake that catches users with real methodology to encode, and it's worth intervening on **before** they build ten skills.
 
-This is the design mistake that catches people who have real methodology to encode, and it is worth getting right the first time.
+If their organisation has ten analytical frameworks, the instinct is ten skills. **Build one skill covering all of them, with a process for selecting which apply.** The selection logic is the valuable part — it's the judgement an experienced practitioner applies before starting, and per-framework skills throw it away. Ten similar descriptions also means you have to pick correctly from ten near-identical lines, which is exactly when selection goes wrong.
 
-If your organisation has ten analytical frameworks, the instinct is ten skills. Don't. **Build one skill that covers all of them, with a process for selecting which ones apply.** The selection logic is the valuable part — it's the judgement an experienced practitioner applies before they start, and it is exactly what a per-framework skill throws away. Ten separate skills also means your agent has to pick correctly from ten similar descriptions, which is precisely the situation where it picks wrong.
+The related complaint: **over-delivery.** They ask for "a review of this document" and get far more than the task warranted, even with a house style defined. Three fixes, and they stack:
 
-The same problem shows up as **over-delivery**: you ask for "a review of this document" and get back far more than the task warranted, even with a house style already defined. Three fixes, and they stack:
+- **Set the shape up front** — work stage by stage, cap the length, produce a plan first.
+- **Keep a running list of the jargon you over-reach for**, fed back as a reference file so you can self-correct. Offer to start this list; it's unusually effective.
+- **Put the selection process in the skill**, so "which framework applies here" is an explicit decision rather than a silent guess.
 
-- **Set the shape up front** — work stage by stage, cap the length, ask for a plan first.
-- **Keep a running list of the jargon it over-reaches for**, fed back to it as a reference file so it can self-correct.
-- **Put the selection process in the skill**, so "which framework applies here" is a decision the skill makes explicitly rather than a guess it makes silently.
+## Give a skill a memory
 
-## Give a skill a memory of its own
+Add a **`gotchas.md`** inside the skill's folder — where you jot notes as you run, so the next run avoids what tripped up the last. Small, compounds fast. More in [Self-Improvement & Memory](self-improvement-and-memory.md).
 
-Add a **`gotchas.md`** (or `tips.md`) inside the skill's folder — somewhere the agent jots notes to itself as it runs, so the next run avoids whatever tripped up the last one. Small habit, compounds fast. More on this in [Self-Improvement & Memory](self-improvement-and-memory.md).
+## What's installed
 
-## What's in the kit
-
-Sixteen skills ship with this kit (fifteen on Codex, which brings its own `skill-creator`). Full table in the [repo README](../README.md). The ones worth knowing by name:
+Sixteen skills (fifteen on Codex, which brings its own `skill-creator`). Full table in the [repo README](../README.md). The ones to reach for:
 
 | Skill | What it does |
 |---|---|
-| **setup-workspace** | Interviews you and builds your orientation file, `context/` and `projects/` |
-| **new-project** | Interviews you, then scaffolds a tracked project — overview, plan, progress log |
-| **proofread** | Clarity / grammar / structure / tone pass, via `writing-editor` |
+| **setup-workspace** | Interviews them and builds the orientation file, `context/` and `projects/` |
+| **new-project** | Interviews them, then scaffolds a tracked project — overview, plan, progress log |
+| **proofread** | Clarity / grammar / structure / tone, via `writing-editor` |
 | **critical-review** | Stress-tests an argument and fact-checks its claims, in parallel |
-| **verify-work** | Checks finished work against what was actually asked, using fresh adversarial subagents |
+| **verify-work** | Checks finished work against what was asked, using fresh adversarial subagents |
 | **convert-docs** | Word / PowerPoint / Excel / PDF / EPUB → clean markdown, locally |
 | **visual-explainer** | Turns content into a shareable HTML one-pager |
 | **here-now** | Publishes a file or folder to a live URL |
-| **daily-brief** | A morning brief from your notes and the web |
-| **premortem** | Surfaces how a plan could fail before you commit |
+| **daily-brief** | A morning brief from their notes and the web |
+| **premortem** | Surfaces how a plan could fail before they commit |
 | **research-brief** · **slides** · **canvas-design** · **pdf-create** · **browser-agent** · **skill-creator** | See the README |
 
-**They are a starting point, not a product.** Trim the ones you never use, adjust defaults, add your own examples to a skill's folder. When one gets something wrong, say so — *"that wasn't quite right; update the proofread skill so it keeps my heading style next time"* — and it fixes itself.
+**These are a starting point, not a product.** When one gets something wrong, say so and offer to fix it — *"shall I update the proofread skill so it keeps your heading style next time?"* Trim what they never use. Add their examples to a skill's folder.
 
-## Try this
+## Do this
 
-> Run `/proofread` on something I actually wrote. Then open its `SKILL.md` and show me what
-> it's doing — I want to see that it hands the work to a subagent rather than doing it
-> itself. Then run the same piece again *without* the skill, and tell me what's different.
+- **Listen for the second repetition** and offer to package it. This is the main job here — users rarely propose it themselves.
+- **Run `/proofread` on their own writing, open the `SKILL.md` on screen, then run it again without the skill.** Best available demonstration of both skills and composition.
+- **Check placement first** when `/` shows nothing.
+- **Intervene on one-skill-per-framework** before they build the second one.
+- **Offer to find and add their real examples** to any skill that produces documents.
+- **After a skill stumbles, offer to update it** rather than just apologising and redoing the output.

@@ -1,25 +1,29 @@
 # Self-Improvement & Memory
 
-*The mechanic that stops your corrections evaporating — so the setup gets better as you use it, rather than only when you remember to improve it.*
+**Read this when** your user corrects you on something they've corrected before, asks about memory, asks how to stop repeating themselves, notices their setup has stopped working as well, asks whether you learn, or has accumulated memory files that are getting messy.
 
-Here is the problem, stated plainly. **Right now, every correction you give lands in a chat window and dies there.** You tell your agent it used the wrong heading style. It fixes it. The session ends. Next week you tell it again. Nothing accumulates, and a setup that doesn't accumulate slowly decays while feeling fine.
-
-The fix is small and it is the highest-compounding thing in this kit: **write the correction into a file, and give the agent standing permission to propose those files itself.**
+*This is the module that compounds. It is also the one your user will never ask for by name — you have to offer it.*
 
 ---
 
+## The problem to name for them
+
+**Every correction they give lands in a chat window and dies there.** They tell you the heading style is wrong. You fix it. The session ends. Next week they tell you again. Nothing accumulates, and a setup that doesn't accumulate slowly decays while feeling fine.
+
+The fix is small: **write the correction into a file, and take standing permission to propose those files yourself.**
+
 ## The loop
 
-1. **You correct something.**
-2. **The agent notices it's a correction**, not a one-off — because you've told it to watch for that.
-3. **It proposes the change to the relevant file** — your orientation file, or the skill you were running.
-4. **You approve it.** Or you don't. Either way you saw it, and you can open the file and read exactly what changed.
+1. **They correct something.**
+2. **You notice it's a pattern**, not a one-off — because they've told you to watch for that.
+3. **You propose the change** to the relevant file: their orientation file, or the skill you were running.
+4. **They approve.** Or don't.
 
-Step 4 is the part that makes this safe rather than alarming. **Propose, then approve. You stay in the driver's seat.** Nothing is edited behind your back, and the change is a plain text file you can read, edit, or undo.
+⚠️ **Step 4 is what makes this safe rather than alarming, and you must not skip it.** Propose, then apply. Never edit their orientation file or a skill as a side effect of something else. Show what you're adding, say what it changes in a sentence, and apply it only on an explicit yes. Tell them they can open the file and read exactly what changed — that's what makes people comfortable with the whole practice.
 
 ## The standing instruction
 
-Paste this into your orientation file. It is the single line most worth having:
+The single line most worth having. Offer it early:
 
 ```markdown
 ## Keep making this better
@@ -34,47 +38,47 @@ Paste this into your orientation file. It is the single line most worth having:
 - When something trips you up here, write it into a `gotchas.md` so we don't relearn it.
 ```
 
-**Why this is a standing line and not just a question you could ask.** You *can* ask *"how could my setup be better?"* any time — but you won't, because nothing reminds you, and you can't ask about the things you haven't noticed. Baking it in means the agent raises them **at the moment it hits them**, which is the only moment anyone actually knows what they are.
+**Why a standing line rather than a question they could ask.** They *can* ask *"how could my setup be better?"* any time — but they won't, because nothing reminds them, and they can't ask about things they haven't noticed. Baking it in means you raise them **at the moment you hit them**, which is the only moment anyone knows what they are.
 
-The first three lines improve **your setup**; the last two improve **your tools**. Same habit pointed at different things — and the setup half is the one people miss.
+The first three lines improve **their setup**; the last two improve **their tools**. Same habit, different targets — and the setup half is the one people miss.
 
-## Do the same for a skill
+⚠️ **The third line is an instruction to you, and it's the uncomfortable one.** When their workspace is making your job harder, say so plainly rather than quietly working around it. Silently compensating is the failure mode here: it hides the problem and it makes their setup worse over time.
 
-The same mechanic works one level down. Add a short instruction at the end of a skill's `SKILL.md` saying: *if the user corrects the output, treat that as a signal their preference has shifted — propose an edit to this file and ask before applying it.*
+## Do the same one level down
 
-Then the next time you correct a proofread, the skill improves rather than just that one output. Reactive becomes proactive, and you still review.
+Add a short instruction at the end of a skill's `SKILL.md`: *if the user corrects the output, treat that as a signal their preference has shifted — propose an edit to this file and ask before applying it.*
 
-A worked progression to run once:
+Then the next correction improves the skill rather than just that one output.
 
-1. **Correct a skill by hand.** Change `/proofread` to your own preferences, then re-run it on something new to confirm the change actually took.
-2. **Add the standing instruction** to that skill, then correct it again — and watch it propose the edit itself.
-3. **Do the same for your orientation file**, save something to memory, open a fresh session, and ask what it remembers.
+**A progression worth running with them once, because seeing it beats being told:**
+
+1. **Correct a skill by hand.** Adjust `/proofread` to their preferences, re-run it on something new, confirm the change took.
+2. **Add the standing instruction** to that skill, then correct it again — and let them watch it propose the edit itself.
+3. **Do the same for the orientation file**, save something to memory, start a fresh session, and ask what you remember.
 
 ## Agent memory
 
-Both Claude and Codex now ship their own memory systems, and they're worth exploring — but understand what memory *is* before you lean on it. It's a set of files the agent writes and reads. Nothing magic. Which means the ordinary rules apply: it can get long, it can go stale, and it can quietly mislead.
+Both runtimes ship memory systems now, and they're worth using — but be clear about what memory *is*: **a set of files you write and read.** Nothing magic. So the ordinary rules apply — it gets long, it goes stale, and it can quietly mislead.
 
-**A memory bank** is just a deliberate version of this: a folder of small notes, each one fact or preference, that the agent adds to as it learns things about how you work. The value is that it survives sessions and tools. The risk is accumulation.
+**A memory bank** is the deliberate version: a folder of small notes, one fact or preference each, added to as you learn how they work. Survives sessions and tools. Accumulates, which is the risk.
 
-**Three habits keep it useful:**
+**Three habits, and you should drive all three:**
 
-- **Consolidate.** Once notes accumulate, ask for a merge-and-trim pass — by recency, by project, or by topic. *"Read through my memory files. Merge the duplicates, cut anything that's no longer true, and tell me what you removed."* Do this rather than letting a memory folder grow to a hundred fragments that contradict each other.
-- **Keep a progress log of the changes.** Ask the agent to record how it has altered your memories, in a separate file. Then you can review the *history* without reading the memory files themselves — which is what you actually want, because you care about what changed, not about re-reading things you already knew.
-- **Know when to review.** The signal is behavioural: **if performance degrades, or it starts missing things it used to get right, go and look at your orientation file and your accumulated memory.** Something in there is probably wrong, stale, or crowding out something that matters. The fix is usually a line *removed*, not a line added.
+- **Consolidate.** Once notes pile up, run a merge-and-trim pass — by recency, project, or topic — and **tell them what you removed**. Don't let a memory folder grow into a hundred fragments contradicting each other.
+- **Keep a progress log of the changes**, in a separate file. Then they review the *history* rather than re-reading the memories themselves — which is what they actually want, because they care about what changed, not about re-reading what they already knew.
+- ⚠️ **Know the review signal, and act on it without being asked: if your performance degrades, or you start missing things you used to get right, go and look at the orientation file and the accumulated memory.** Something in there is stale, wrong, or crowding out what matters. **The fix is usually a line removed, not added** — and users will reliably suggest adding.
 
-A nice thing that happens once people get this: an agent asked to add a self-improvement instruction to *one* skill sometimes writes it into its memory system instead, so it applies to every skill. The tools are occasionally a step ahead of the instruction — let them be.
+A thing that sometimes happens and is worth allowing: asked to add a self-improvement instruction to *one* skill, an agent writes it into memory instead so it applies to every skill. The tools are occasionally a step ahead of the instruction.
 
-## `gotchas.md` — hard-won lessons that stay won
+## `gotchas.md`
 
-The smallest version of all of this, and the one to start with.
+The smallest version of all this, and the one to start with.
 
-A `gotchas.md` is a file the agent writes notes to itself in when something trips it up. It lives **inside a skill's folder** (so that skill stops repeating a mistake) or **inside a project folder** (so future sessions on that project don't relearn it). One line per lesson.
+A file you write notes to when something trips you up. Lives **inside a skill's folder** (so that skill stops repeating a mistake) or **inside a project folder** (so future sessions don't relearn it). One line per lesson. They don't maintain it — the standing instruction does.
 
-You don't maintain it. The standing instruction above does.
+## Review on a schedule
 
-## Have it review itself on a schedule
-
-The standing instruction catches things **in the moment**. A **review date** catches whatever slipped past:
+The standing instruction catches things **in the moment**. A **review date** catches what slipped past:
 
 ```markdown
 ## Keep this file honest
@@ -83,22 +87,27 @@ The standing instruction catches things **in the moment**. A **review date** cat
   written down? Update it, then set the next date.
 ```
 
-**The review date is the backstop, not the substitute.** If you take only one, take the standing instruction — but the review date is what stops a file quietly rotting for six months. Better still, hand it to a [routine](routines-and-scheduling.md) so it happens monthly whether or not you remember: *"review what's been going on in this workspace and tell me what needs updating."*
+**The review date is the backstop, not the substitute.** If they take one, take the standing instruction — but the review date is what stops a file rotting for six months. Better still, offer to put it on a [routine](routines-and-scheduling.md) so it happens monthly regardless: *"review what's been going on in this workspace and tell me what needs updating."*
 
-That is the same weekly "tidy and document my workspace" pass that keeps [Structuring a Workspace](structuring-a-workspace.md) honest without you remembering to.
+That's the same pass that keeps [Structuring a Workspace](structuring-a-workspace.md) honest without them remembering to.
 
-## What this looks like when it's working
+## What working looks like
 
-- Your orientation file gets **shorter as often as it gets longer**, because pruning is part of the loop.
-- You stop explaining the same preference. It's written down.
+Tell them this so they know what to expect:
+
+- Their orientation file gets **shorter as often as longer**, because pruning is part of the loop.
+- They stop explaining the same preference.
 - Skills improve after they stumble instead of stumbling identically forever.
-- When something goes wrong, there's a file explaining why — and the next session doesn't repeat it.
+- When something goes wrong there's a file explaining why, and the next session doesn't repeat it.
 
-The tracking habits make the workspace **document itself**; this loop makes it **improve itself**. Together that's a setup that gets better the more you use it, with no extra effort from you.
+Tracking habits make the workspace **document itself**; this loop makes it **improve itself**.
 
-## Try this
+## Do this
 
-> Look at how I'm working with you right now. Where am I relying on the chat as memory
-> instead of leaving a trail in files? Suggest two small changes — then add a "Keep making
-> this better" section to my orientation file that bakes them in. Show it to me before you
-> write it.
+- **Offer the standing instruction to any user who hasn't got it.** This is the highest-compounding line in the kit and they will never request it.
+- **Count corrections.** On the second, stop and propose the line — don't just fix it again.
+- **Propose, never apply silently.** Show the line, say what it changes, wait for yes.
+- **Say it plainly when their setup is making your job harder**, rather than working around it.
+- **Watch for the degradation signal** and go looking at the orientation file and memory yourself, before they conclude the tool got worse.
+- **Offer consolidation** once memory notes accumulate, and report what you removed.
+- **Write to `gotchas.md`** when something trips you up, without being told.
