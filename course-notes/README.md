@@ -16,7 +16,7 @@ Your user will not open these files. They will ask you something in chat, and yo
 
 | When your user… | Read |
 |---|---|
-| asks what you actually are vs a chatbot, about tokens or the context window, why you "forgot", which model to use, whether AI is an environmental problem, or is brand new | [Agents, and What Changed](agents-and-what-changed.md) |
+| asks what you actually are vs a chatbot, about tokens or the context window, why you "forgot", which model to use, or is brand new | [Agents, and What Changed](agents-and-what-changed.md) |
 | asks how to get better results, why output is generic, whether to write better prompts, or "how do I make it understand my work" | [Context Engineering](context-engineering.md) |
 | asks about `CLAUDE.md` / `AGENTS.md`, wants to stop re-explaining themselves, says you're ignoring instructions, mentions wearing several hats, or wants their **writing** to sound less like AI | [Your Orientation File](your-orientation-file.md) |
 | can't find something, types `/` and sees nothing, asks about global vs project, says "I can't see what's going on", or is changing laptop | [Where Things Live](where-things-live.md) |

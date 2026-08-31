@@ -77,18 +77,18 @@ Same idea applies to prose: you have recognisable writing habits (overuse of em 
 
 > ⚠️ **Published without an account, a site expires in 24 hours — and the claim URL that makes it permanent is returned ONCE and cannot be recovered.** If it scrolls past and the session closes, the page is gone tomorrow with no way back. **Save the claim URL somewhere they'll find it, and tell them you've done so** — or get them signed in first.
 
-> ⚠️ **Sites are public by default.** Anyone with the link can open it, and "nobody will find it" is not a security model. A password can be set afterwards, but the default is open — and a signed-in user's sites can also surface on their public here.now profile. **Ask before publishing whether the document is safe to put on the open web** — client material, anything under NDA, anything they'd have to defend. Don't publish and then mention it.
+> ⚠️ **A published site is public. There is no password.** Anyone with the link can open it, "nobody will find it" is not a security model, and a signed-in user's sites can also surface on their public here.now profile. **Ask before publishing whether the document is safe to put on the open web** — client material, anything under NDA, anything they'd have to defend. Don't publish and then mention it.
 
 > ✅ **Publishing is optional, and say so.** The whole thing works if you stop at the HTML file and they open it locally. If they work with sensitive material and would rather not install a publishing tool at all, that is a completely reasonable call — and worth saying out loud, because people assume the exercise requires it.
 
-**What a free account changes**, and it changes more than people expect. Signed in, **pages persist** rather than expiring, they can set a **custom expiry** instead, they can **password-protect** a page, and they get **one custom domain** — so the address reads `insights.theircompany.com` rather than a random subdomain. Paid plans raise the domain and storage limits; they don't unlock passwords or persistence.
+**What a free account changes.** Signed in, **sites persist** rather than expiring after 24 hours (they can set a custom expiry instead if they want one), they get **one custom domain** — so the address reads `insights.theircompany.com` rather than a random subdomain — and up to **500 sites**. Paid plans raise the domain and storage limits. **Publishing anonymously, with no account, is the 24-hour case.**
 
-⚠️ **There is no "PIN" feature — don't call it one.** Password protection is a setting on a published site, applied after publishing. And a site with no password is **public**, including to a signed-in user's public here.now profile.
+⚠️ **Don't offer privacy features that don't exist.** There is no "PIN", and there is no password protection — an account changes how long a site lives and what address it lives at, not who can read it. Everything published is readable by anyone with the link.
 
 ## Turning it into a document
 
 - **HTML → PDF.** Build and iterate as HTML, where changes are fast and cheap, then export **only at the end** when it's right. The **`pdf-create`** skill, or their browser's print dialogue. ⚠️ Doing it the other way round means re-doing the layout on every wording change — steer them away from it.
-- **A document workflow without Word:** password-protected HTML on their own domain, exported to PDF when a document is needed. ⚠️ **Don't sell this as a route for genuinely confidential material.** A password on a public host is access control, not confidentiality — it's fine for "don't want this indexed and shared onward", wrong for client-privileged or regulated content. For that, keep it local and export to PDF.
+- ⚠️ **There is no confidential publishing route here, and don't invent one.** Treat anything published to here.now as public. For confidential material, **don't publish it to a web service at all** — build the HTML locally, export to PDF, and send the file directly. Someone working under NDA who declines to publish at all has made the right call, not a timid one — say so.
 - **First-draft combination:** a retrieval tool like NotebookLM is strong at a fast first pass and weak at iterating. Take its first pass, then develop it properly.
 - **Slides:** the **`slides`** skill builds HTML decks.
 
